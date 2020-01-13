@@ -118,7 +118,7 @@ if(isset($_POST["versturen"])){
 	<form action="productitem.php?actie=" method="post">
     <div class="row">
       <div class="col-md-7">
-        <a href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">a
+        <a href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">
           <img class="fotos" src="<?php echo $fotos[$i];  ?>" alt="http://placehold.it/700x300">
         </a>
       </div>
