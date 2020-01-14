@@ -7,14 +7,14 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 else
 {
 
-    $sql_b = "SELECT * FROM tblproducten";
-    if($stmt_b = $mysqli->prepare($sql_b)){
-                if(!$stmt_b->execute()){
-                    echo 'Het uitvoeren van de query is mislukt: '.$stmt_b->error.' in query: '.$sql_b;
+    $sql = "SELECT * FROM tblproducten";
+    if($stmt = $mysqli->prepare($sql)){
+                if(!$stmt->execute()){
+                    echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
                 }
                 else{
-                    $stmt_b->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
-                    while($stmt_b->fetch()){
+                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+                    while($stmt->fetch()){
 						$productiden[$teller] = $productid;
                         $producten[$teller] = $productnaam;
                         $talen[$teller] = $producttaal;
@@ -25,7 +25,7 @@ else
 
                     }
 
-                    $stmt_b->close();
+                    $stmt->close();
                 }
 
             }

@@ -5,7 +5,7 @@
     font-weight: bold;
 }
 .fout{
-    
+
     font-style: italic;
     color: red;
 }
@@ -27,5 +27,19 @@
     float:  left;
     width:  500px;
     height: 500px;
+    background-size: cover;
+}
+.tagt{
+	font-weight: bold;
+	font-size: 16px;
+	list-style-type: none;
+}
+.tags{
+	font-size: 16px;
+	list-style-type: none;
+}
+.relatedfotos{
+	width:  500px;
+    height: 300px;
     background-size: cover;
 }
