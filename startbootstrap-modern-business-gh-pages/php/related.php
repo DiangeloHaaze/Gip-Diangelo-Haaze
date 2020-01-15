@@ -5,25 +5,27 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 else
 {
 	for ($i=0; $i < $tel; $i++) {
-		$querries[$i] = "SELECT p.linkfoto, p.productid FROM tblproducten AS p, tblcategorieperproduct AS cap WHERE p.productid = cap.productid AND cap.categorieid = '$tags[$i]'";
+		$querries[$i] = "SELECT p.linkfoto, p.productid From tblcategorieperproduct AS cap, tblproducten AS p, tblcategorie as c WHERE p.productid = cap.productid AND c.categorieid = cap.categorieid Group by p.linkfoto, p.productid, c.categorie HAVING c.categorie = '$tags[$i]' AND NOT p.productid = '$productid'";
+
 	}
 	foreach ($querries as $querrie) {
+
 		if($stmt = $mysqli->prepare($querrie)){
 			if (!$stmt->execute()) {
 				$error = "Fout";
 			}
-			elseif($mysqli->affected_rows == 0) {
-				$error_w = "Geen wijzigingen";
-			}
 			else{
 				$stmt->bind_result($linkfoto, $productid);
-				$vol = 0;
 				while($stmt->fetch()){
-						$linken[$teller] = $linkfoto;
+						$link[$teller] = $linkfoto;
 						$productiden[$teller] = $productid;
+						$link = array_unique($link);
+						$productiden = array_unique($productiden);
+						if ( sizeof($link) != $teller) {
+							$teller++;
+						}
 
-						//$linken = array_unique($linken);
-						//$productiden = array_unique($productiden);
+
 					}
 				}
 			}
@@ -31,6 +33,4 @@ else
 			$stmt->close();
 		}
 }
-
-
  ?>

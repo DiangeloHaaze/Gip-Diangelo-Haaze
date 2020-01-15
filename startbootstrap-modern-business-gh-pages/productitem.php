@@ -1,6 +1,6 @@
 <?php
 include('php/itemdisplay.php');
-include('php/related.php')
+include('php/related.php');
  ?>
 
 <!DOCTYPE html>
@@ -75,9 +75,8 @@ include('php/related.php')
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3"> <?php echo $product;?>
+    <h1 class="mt-4 mb-3">
     </h1>
-
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">Home</a>
@@ -98,7 +97,7 @@ include('php/related.php')
         <h3 class="my-3">Details</h3>
         <ul>
           <li class="tags">Taal: <?php echo $taal; ?></li>
-          <li class="tags">Prijs: <?php echo $prijs; ?></li>
+          <li class="tags">Prijs: €<?php echo $prijs; ?></li>
 		  <li class="tagt"> Tags: </li>
 		  <?php for ($i=0; $i < $tel ; $i++) { ?>
 		  <li class="tags"> &nbsp; &nbsp; <?php echo $tags[$i] ?></li>
@@ -108,19 +107,19 @@ include('php/related.php')
 
     </div>
     <!-- /.row -->
-
+<!--  -->
     <!-- Related Projects Row -->
     <h3 class="my-4">gerelateerde producten</h3>
 
     <div class="row">
-	<?php for ($i=0; $i < 4; $i++) {
+	<?php for ($i=0; $i < 4; $i++) { 
 	 ?>
       <div class="col-md-3 col-sm-6 mb-4">
         <a href="">
-          <img class="relatedfotos" src="<?php echo $linken[$i]; ?>" alt="">
+          <img class="img-fluid" src="<?php echo $link[$i]; ?>" alt="">
         </a>
       </div>
-<?php } ?>
+  <?php } ?>
     </div>
     <!-- /.row -->
 
