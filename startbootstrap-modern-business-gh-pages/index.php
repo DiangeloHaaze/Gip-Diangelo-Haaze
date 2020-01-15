@@ -36,8 +36,8 @@ include 'php/Checkadmin.php';
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="producten.php">Producten</a>
+		  <li class="nav-item">
+            <a class="nav-link" href="contact.php">Contact</a>
           </li>
             <li class="nav-item">
             <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
@@ -65,6 +65,9 @@ include 'php/Checkadmin.php';
             <?php
             }
             ?>
+		  <li class="nav-item">
+              <a class="nav-link" href=""><span class="glyphicon">&#x1f6d2;</span></a>
+          </li>
         </ul>
       </div>
     </div>
