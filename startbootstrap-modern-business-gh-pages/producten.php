@@ -3,10 +3,9 @@
 include('php/productendisplay.php');
 include('php/categorien.php');
 if(isset($_POST["versturen"])){
-    if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == ''){
+    if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == '' && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
     $fout = true;
     }
-
     else{
     include('php/productzoeker.php');
     }
@@ -97,6 +96,19 @@ if(isset($_POST["versturen"])){
     </ol>
 
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+		  <select name="rangorde">
+		  <option value="start">--Kies een ranschikking--</option>
+          <option value="AZ">--Geranschikt van A naar Z--</option>
+          <option value="ZA">--Geranschikt van Z naar A--</option>
+          <option value="HL">--Prijzen van hoog naar laag--</option>
+		  <option value="LH">--Prijzen van laag naar hoog--</option>
+        </select>
+		  <select name="soort">
+          <option value="start">--Kies een Soort--</option>
+          <?php for($z = 1; $z < $counter; $z++){ ?>
+          <option value="<?php echo $z; ?>">--<?php echo $soorten[$z]; ?>--</option>
+          <?php } ?>
+        </select>
         <select name="categorie">
         <option value="start">--Kies een Categorie--</option>
         <?php for($y = 1; $y < $aantal; $y++){ ?>

@@ -11,7 +11,7 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 		$tel = 0;
 
 		$sql = "SELECT * FROM tblproducten WHERE productid = '$id'";
-		$sql_t = "SELECT c.categorie FROM tblcategorieperproduct AS cap, tblcategorie AS c WHERE cap.categorieid = c.categorieid AND cap.productid = '$id'";
+		$sql_t = "SELECT c.categorie FROM tblcategorieperproduct AS cap, tblcategorie AS c,  WHERE cap.categorieid = c.categorieid AND cap.productid = '$id'";
 
 	    if($stmt = $mysqli->prepare($sql)){
 	                if(!$stmt->execute()){
