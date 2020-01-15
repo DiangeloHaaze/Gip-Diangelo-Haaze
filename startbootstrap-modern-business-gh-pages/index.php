@@ -37,7 +37,7 @@ include 'php/Checkadmin.php';
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="contact.php">Contact</a>
+            <a class="nav-link" href="producten.php">Producten</a>
           </li>
             <li class="nav-item">
             <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
@@ -164,7 +164,7 @@ include 'php/Checkadmin.php';
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/PS_3DS_InazumaEleven3_LightningBolt_enGB.png" alt="http://placehold.it/700x400"></a>
+          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/InazumaEleven3LightningBolt.png" alt="http://placehold.it/700x400"></a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="portfolio-item.html">Inazuma Eleven 3 lightning bolt (3DS-ENG)</a>
@@ -175,7 +175,7 @@ include 'php/Checkadmin.php';
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/PS_NDS_InazumaEleven_nlNL.png" alt="http://placehold.it/700x400"></a>
+          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/InazumaEleven.png" alt="http://placehold.it/700x400"></a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="portfolio-item.html">Inazuma Eleven (DS-ENG)</a>
