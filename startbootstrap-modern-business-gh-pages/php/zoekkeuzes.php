@@ -48,7 +48,6 @@ switch ($_POST["rangorde"]) {
 		$sql = $sql."ORDER BY p.prijs/stuk DESC";
 		break;
 }
-echo $sql;
 
 
 

@@ -112,7 +112,7 @@ include('php/related.php');
     <h3 class="my-4">gerelateerde producten</h3>
 
     <div class="row">
-	<?php for ($i=0; $i < 4; $i++) { 
+	<?php for ($i=0; $i < 4; $i++) {
 	 ?>
       <div class="col-md-3 col-sm-6 mb-4">
         <a href="">
