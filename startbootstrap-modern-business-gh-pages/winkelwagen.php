@@ -1,5 +1,9 @@
 <?php
-include("php/itemsinwinkelwagen.php");
+session_start();
+if($_SESSION['count'] != 0){
+	include("php/itemsinwinkelwagen.php");
+}
+
 $totaal = 0;
 ?>
 <!DOCTYPE html>
@@ -93,6 +97,7 @@ $totaal = 0;
     </ol>
 
       <?php
+	  if($_SESSION["count"] != 0){
         for($i = 0; $i < $teller; $i++){
         ?>
 	<form action="productitem.php?actie=" method="post">
@@ -114,7 +119,7 @@ $totaal = 0;
  </form>
     <hr>
     <?php
-        }
+}
       ?>
 	  <p>Totaalbedrag is: €<?php echo $totaal; ?></p>
 	  <?php if(isset($_SESSION["ingelogd"])){ ?>
@@ -122,7 +127,12 @@ $totaal = 0;
 	  <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Bevestigen </button>
   	  </form>
   <?php } else{ ?>
-	  <a class="link" href="Inloggen.php"> Je moet eerst ingelogt zijn om te kunnen kopen.</a>
+	  <a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om te kunnen kopen.</a>
+  <?php }} else { ?>
+
+	  <p class='leeg'> Je hebt nog niets gekocht</p>
+	  <a href="index.php" class='zwartelink'> Will je terugkeren? </a>
+
   <?php } ?>
     <hr>
 
