@@ -4,6 +4,7 @@ if(!isset($_SESSION["count"])){
 	$_SESSION["count"] = 0;
 }
 include('php/Checkadmin.php');
+include('php/featured.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,27 +24,27 @@ include('php/Checkadmin.php');
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/Stylediangelo.css" rel="stylesheet">
-<style>
-.notification {
-  background-color: #555;
-  color: white;
-  text-decoration: none;
-  padding: 7px 13px;
-  position: relative;
-  display: inline-block;
-  border-radius: 2px;
-}
+  <style>
+  .notification {
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 7px 13px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+  }
 
 
-.notification .badge {
-  position: absolute;
-  top: 20px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-}
+  .notification .badge {
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+  }
 </style>
 </head>
 
@@ -111,21 +112,21 @@ include('php/Checkadmin.php');
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('http://getwallpapers.com/wallpaper/full/1/0/d/1060100-cool-video-games-wallpapers-1920x1080.jpg')">
+        <div class="carousel-item active" style="background-image: url('Pictures/wallpaper1.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>Games</h3>
             <p>Verkrijg de nieuwste games</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('https://wallpapercave.com/wp/wp2004803.jpg')">
+        <div class="carousel-item" style="background-image: url('Pictures/wallpaper2.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>Console</h3>
             <p>Elke console van hier tot in japan</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('http://getwallpapers.com/wallpaper/full/f/6/8/1060216-new-video-games-wallpapers-2560x1440-720p.jpg')">
+        <div class="carousel-item" style="background-image: url('Pictures/wallpaper3.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>Accessoires</h3>
             <p>Van gadgets tot posters</p>
@@ -190,72 +191,21 @@ include('php/Checkadmin.php');
     <h2>Trending</h2>
 
     <div class="row">
+		<?php
+		for ($y=0; $y < 6; $y++) {
+		 ?>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/InazumaEleven3LightningBolt.png" alt="http://placehold.it/700x400"></a>
+          <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$games[$y]];?>"><img class="card-img-top" src="<?php echo $fotos[$games[$y]] ?>" alt="http://placehold.it/700x400"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="portfolio-item.html">Inazuma Eleven 3 lightning bolt (3DS-ENG)</a>
+              <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$games[$y]];?>"><?php echo $producten[$games[$y]] ?> </a>
             </h4>
-            <p class="card-text">Deze game is gebaseerd op het verhaal van Fideo Ardena. Fideo wordt voornamelijk gebruikt tijdens de eerste scènes van het spel, in gesprek met Rushe en zijn teamgenoten. Met deze versie van het spel kun je alleen spelen tegen Tenkuu no Shito, in plaats van dat team dat bekend staat als Makai Gundan Z. Beide versies van Spark en Bomber zijn bijna hetzelfde, wat anders is, is het openingsscherm. Op de cover van Spark ontbreken Someoka Ryuugo en Sakuma Jirou tijdens de Aziatische kwalificaties naar het Inazuma Japan-team.</p>
+            <p class="card-text"><?php echo $beschrijvingen[$games[$y]]; ?></p>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/InazumaEleven.png" alt="http://placehold.it/700x400"></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="portfolio-item.html">Inazuma Eleven (DS-ENG)</a>
-            </h4>
-            <p class="card-text">Deze game is gebaseerd op het verhaal van Fideo Ardena. Fideo wordt voornamelijk gebruikt tijdens de eerste scènes van het spel, in gesprek met Rushe en zijn teamgenoten. Met deze versie van het spel kun je alleen spelen tegen Tenkuu no Shito, in plaats van dat team dat bekend staat als Makai Gundan Z. Beide versies van Spark en Bomber zijn bijna hetzelfde, wat anders is, is het openingsscherm. Op de cover van Spark ontbreken Someoka Ryuugo en Sakuma Jirou tijdens de Aziatische kwalificaties naar het Inazuma Japan-team.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/Inazuma_Eleven_2-_Kyoui_no_Shinryakusha_Fire_Cover.jpg" alt="http://placehold.it/700x400"></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="portfolio-item.html">Inazuma Eleven 2 Firestorm (DS-JAP)</a>
-            </h4>
-            <p class="card-text">Deze game is gebaseerd op het verhaal van Fideo Ardena. Fideo wordt voornamelijk gebruikt tijdens de eerste scènes van het spel, in gesprek met Rushe en zijn teamgenoten. Met deze versie van het spel kun je alleen spelen tegen Tenkuu no Shito, in plaats van dat team dat bekend staat als Makai Gundan Z. Beide versies van Spark en Bomber zijn bijna hetzelfde, wat anders is, is het openingsscherm. Op de cover van Spark ontbreken Someoka Ryuugo en Sakuma Jirou tijdens de Aziatische kwalificaties naar het Inazuma Japan-team.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/inazumaElevenGo_3_Galaxy_SUPERNOVA.jpg" alt="http://placehold.it/700x400"></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="portfolio-item.html">Inazuma Eleven GO Galaxy Supernova (3DS-JAP)</a>
-            </h4>
-            <p class="card-text">Deze game is gebaseerd op het verhaal van Fideo Ardena. Fideo wordt voornamelijk gebruikt tijdens de eerste scènes van het spel, in gesprek met Rushe en zijn teamgenoten. Met deze versie van het spel kun je alleen spelen tegen Tenkuu no Shito, in plaats van dat team dat bekend staat als Makai Gundan Z. Beide versies van Spark en Bomber zijn bijna hetzelfde, wat anders is, is het openingsscherm. Op de cover van Spark ontbreken Someoka Ryuugo en Sakuma Jirou tijdens de Aziatische kwalificaties naar het Inazuma Japan-team.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/inazumaElevenGo_3_Galaxy_BIGBANG.jpg" alt="http://placehold.it/700x400"></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="portfolio-item.html">Inazuma Eleven GO Galaxy Big Bang (3DS-JAP)</a>
-            </h4>
-            <p class="card-text">Deze game is gebaseerd op het verhaal van Fideo Ardena. Fideo wordt voornamelijk gebruikt tijdens de eerste scènes van het spel, in gesprek met Rushe en zijn teamgenoten. Met deze versie van het spel kun je alleen spelen tegen Tenkuu no Shito, in plaats van dat team dat bekend staat als Makai Gundan Z. Beide versies van Spark en Bomber zijn bijna hetzelfde, wat anders is, is het openingsscherm. Op de cover van Spark ontbreken Someoka Ryuugo en Sakuma Jirou tijdens de Aziatische kwalificaties naar het Inazuma Japan-team.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="portfolio-item.html"><img class="card-img-top" src="Pictures/PS_3DS_InazumaElevenGOChronoStonesWildfire_HOL.jpg" alt="http://placehold.it/700x400"></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="portfolio-item.html">Inazuma Eleven GO Chrono Stone Wildfire (3DS-ENG)</a>
-            </h4>
-            <p class="card-text">Deze game is gebaseerd op het verhaal van Fideo Ardena. Fideo wordt voornamelijk gebruikt tijdens de eerste scènes van het spel, in gesprek met Rushe en zijn teamgenoten. Met deze versie van het spel kun je alleen spelen tegen Tenkuu no Shito, in plaats van dat team dat bekend staat als Makai Gundan Z. Beide versies van Spark en Bomber zijn bijna hetzelfde, wat anders is, is het openingsscherm. Op de cover van Spark ontbreken Someoka Ryuugo en Sakuma Jirou tijdens de Aziatische kwalificaties naar het Inazuma Japan-team.</p>
-          </div>
-        </div>
-      </div>
+  <?php } ?>
     </div>
     <!-- /.row -->
 

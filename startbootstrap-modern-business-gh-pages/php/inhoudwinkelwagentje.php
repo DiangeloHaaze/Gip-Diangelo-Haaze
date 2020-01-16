@@ -4,7 +4,6 @@ while( $i < $_SESSION["count"]){
 	if($_SESSION["koopwaren"][$i] == $id) {
 		$erdoor = true;
 		$herhaling = $i;
-		echo 'hallo';
 	}
 	$i++;
 }

@@ -109,8 +109,8 @@ $totaal = 0;
         <h3><a class="shoplink" href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>"> <?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3><a>
         <p><?php echo $beschrijvingen[$i] ?></p>
         </a>
-		<h4>Aantal: <?php echo $aantalproducten[$i]; ?></h4>
-		<h4>Prijs Per Stuk: €<?php echo $prijzen[$i]; ?></h4>
+		<h4> <?php echo $aantalproducten[$i];?>" </h4>
+		<h4> Prijs Per Stuk: €<?php echo $prijzen[$i]; ?></h4>
 		<h4>Totaal prijs product: €<?php $totaalpp[$i] = $aantalproducten[$i] * $prijzen[$i]; echo $totaalpp[$i]; $totaal = $totaal + $totaalpp[$i]; ?></h4>
       </div>
     </div>
@@ -137,7 +137,7 @@ $totaal = 0;
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="js/scriptdiangelo.js"></script>
 </body>
 
 </html>

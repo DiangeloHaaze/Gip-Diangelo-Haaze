@@ -4,10 +4,7 @@ include('php/related.php');
 if(isset($_POST["voorkopen"])){
 	$kopen = true;
 }
-if(isset($_POST["aantal"])){
-	$aantalingevult = true;
 	include('php/inhoudwinkelwagentje.php');
-}
 
  ?>
 
@@ -29,56 +26,6 @@ if(isset($_POST["aantal"])){
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/Stylediangelo.css" rel="stylesheet">
-  <style>
-
-.overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
-  overflow-x: hidden;
-}
-
-.overlay-content {
-  position: relative;
-  top: 25%;
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #818181;
-  display: block;
-}
-
-.overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
-}
-
-.overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
-}
-
-@media screen and (max-height: 450px) {
-  .overlay a {font-size: 20px}
-  .overlay .closebtn {
-  font-size: 40px;
-  top: 15px;
-  right: 35px;
-  }
-}
-</style>
 
 </head>
 
@@ -162,24 +109,22 @@ if(isset($_POST["aantal"])){
 	  <?php } ?>
         </ul>
 		<hr>
-		<div id="myNav" class="overlay">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			  <div class="overlay-content">
-			    <a href="#">Blijven Winkelen</a>
-			    <a href="index.php">Naar Winkelwagentje</a>
-			  </div>
-			</div>
 			<form action="#"  method="post">
 			<?php if(!(isset($kopen))){?>
 				<button type="submit" name="voorkopen" class="btn btn-primary" id="sendMessageButton">Kopen</button>
 			<?php } ?>
 			<?php if(isset($kopen)){?>
-			<input type="number" name="aantal">
-		    <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton" <?php if(isset($_POST["aantal"])){ ?>onclick="openNav()" <?php } ?> >Kopen</button>
-			<?php if (isset($aantalingevult)) {?>
-				<p class="fout"> niets is ingevuld </p>
-			<?php }} ?>
+				<button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Kopen </button>
+				<select name="aantal">
+					<option value="1">--1--</option>
+					<option value="2">--2--</option>
+					<option value="3">--3--</option>
+					<option value="4">--4--</option>
+					<option value="5">--5--</option>
+				</select>
 
+
+			<?php } ?>
 		</form>
 
 	</div>

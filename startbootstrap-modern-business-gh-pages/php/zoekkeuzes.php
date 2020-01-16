@@ -33,7 +33,7 @@ else if ((isset($zoekterm)) && $categorie != 'start' && $soort != 'start'){
 else {
 	$sql = "SELECT * FROM tblproducten";
 }
-
+//zorgt dat er een rangorde is
 switch ($_POST["rangorde"]) {
 	case 'AZ':
 		$sql = $sql."ORDER BY p.productnaam";
@@ -42,10 +42,10 @@ switch ($_POST["rangorde"]) {
 		$sql = $sql."ORDER BY p.productnaam DESC";
 		break;
 	case 'HL':
-		$sql = $sql."ORDER BY p.prijs/stuk";
+		$sql = $sql."ORDER BY p.prijs/stuk' ASC";
 		break;
 	case 'LH':
-		$sql = $sql."ORDER BY p.prijs/stuk DESC";
+		$sql = $sql."ORDER BY p.'prijs/stuk' DESC";
 		break;
 }
 

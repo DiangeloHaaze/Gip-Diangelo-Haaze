@@ -7,8 +7,10 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 	if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 	else
 	{
+
 		$id = $_GET["productid"];
 		$tel = 0;
+		echo $id;
 
 		$sql = "SELECT * FROM tblproducten WHERE productid = '$id'";
 		$sql_t = "SELECT c.categorie FROM tblcategorieperproduct AS cap, tblcategorie AS c  WHERE cap.categorieid = c.categorieid AND cap.productid = '$id'";
