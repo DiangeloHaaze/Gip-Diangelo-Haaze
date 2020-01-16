@@ -143,7 +143,7 @@ if(isset($_POST["versturen"])){
       <div class="col-md-5">
         <h3><?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3>
         <p><?php echo $beschrijvingen[$i] ?></p>
-        <a class="btn btn-primary" href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">Zie product
+        <a class="btn btn-primary" href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>">Zie product
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
       </div>
