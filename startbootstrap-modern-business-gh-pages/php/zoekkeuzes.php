@@ -19,22 +19,38 @@
 			$sql = "SELECT p.* FROM tblproducten p, tblcategorieperproduct cap WHERE p.productid = cap.productid AND cap.categorieid = '$categorie'";
 			break;
 		case 10:
-			$sql = "SELECT";
+			$sql = "SELECT * FROM tblproducten WHERE soortid = '$soort'";
 			break;
 		case 11:
-			$sql = "";
+			$sql = "SELECT p.* FROM tblproducten p, tblcategorieperproduct cap WHERE p.productid = cap.productid AND cap.categorieid = '$categorie' AND soortid = '$soort'";
 			break;
 		case 100:
-			$sql = "";
+			$sql = "SELECT * FROM tblproducten WHERE productnaam LIKE '%$zoekterm%'";
 			break;
 		case 101:
-			$sql = "";
+			$sql = "SELECT p.* FROM tblproducten p, tblcategorieperproduct cap WHERE p.productid = cap.productid AND cap.categorieid = '$categorie' AND productnaam LIKE '%$zoekterm%'";
 			break;
 		case 110:
-			$sql = "";
+			$sql = "SELECT * FROM tblproducten WHERE soortid = '$soort' AND productnaam LIKE '%$zoekterm%'";
 			break;
 		case 111;
-			$sql = "";
+			$sql = "SELECT p.* FROM tblproducten p, tblcategorieperproduct cap WHERE p.productid = cap.productid AND cap.categorieid = '$categorie' AND productnaam LIKE '%$zoekterm%' AND soortid = '$soort'";
+			break;
+		default:
+			$sql = "SELECT * FROM tblproducten";
+	}
+	switch ($_POST['rangorde']) {
+		case 'AZ':
+			$sql = $sql.' ORDER BY productnaam ASC';
+			break;
+		case 'ZA':
+			$sql = $sql.' ORDER BY productnaam DESC';
+			break;
+		case 'HL':
+			$sql = $sql.' ORDER BY prijsPstuk ASC';
+			break;
+		case 'LH':
+			$sql = $sql.' ORDER BY prijsPstuk DESC';
 			break;
 	}
 	echo $sql." ".$ja;

@@ -6,7 +6,7 @@ if(isset($_POST["versturen"])){
     if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == "" && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
     $fout = true;
     }
-    if($fout == false){
+    if(!isset($fout)){
     include('php/productzoeker.php');
     }
 }
