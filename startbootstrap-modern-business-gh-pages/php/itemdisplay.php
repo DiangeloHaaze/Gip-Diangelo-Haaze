@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo $_SESSION['count'];
 if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["productid"])){
 
 	$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
@@ -10,7 +9,6 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 
 		$id = $_GET["productid"];
 		$tel = 0;
-		echo $id;
 
 		$sql = "SELECT * FROM tblproducten WHERE productid = '$id'";
 		$sql_t = "SELECT c.categorie FROM tblcategorieperproduct AS cap, tblcategorie AS c  WHERE cap.categorieid = c.categorieid AND cap.productid = '$id'";
