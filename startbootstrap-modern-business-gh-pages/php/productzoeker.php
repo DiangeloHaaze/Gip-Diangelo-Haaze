@@ -12,6 +12,7 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 
 else
 {
+	
     include('php/zoekkeuzes.php');
 
     if($stmt = $mysqli->prepare($sql)){

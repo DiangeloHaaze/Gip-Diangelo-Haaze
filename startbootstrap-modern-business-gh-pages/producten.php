@@ -1,12 +1,12 @@
 <?php
-
 include('php/productendisplay.php');
 include('php/categorien.php');
 if(isset($_POST["versturen"])){
-    if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == '' && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
+	//voor enige reden weigert hij de isset te doen als ik ze niet splits dus hou ik ze nu apart
+    if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == "" && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
     $fout = true;
     }
-    else{
+    if($fout == false){
     include('php/productzoeker.php');
     }
 }
