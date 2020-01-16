@@ -6,6 +6,8 @@ if(isset($_POST["voorkopen"])){
 }
 if(isset($_POST["aantal"])){
 	$aantalingevult = true;
+	include('php/inhoudwinkelwagentje.php');
+	echo $_SESSION["koopwaren"] = $id. " ". $_SESSION["aantal"];
 }
 
  ?>
@@ -21,9 +23,6 @@ if(isset($_POST["aantal"])){
   <meta name="author" content="">
 
   <title>athenagames</title>
-
-
-
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -1,6 +1,9 @@
 <?php
 session_start();
-include 'php/Checkadmin.php';
+if(!isset($_SESSION["count"])){
+	$_SESSION["count"] = 0;
+}
+include('php/Checkadmin.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +22,29 @@ include 'php/Checkadmin.php';
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
+  <link href="css/Stylediangelo.css" rel="stylesheet">
+<style>
+.notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 7px 13px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
 
+
+.notification .badge {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+</style>
 </head>
 
 <body>
@@ -66,7 +91,7 @@ include 'php/Checkadmin.php';
             }
             ?>
 		  <li class="nav-item">
-              <a class="nav-link" href=""><span class="glyphicon">&#x1f6d2;</span></a>
+              <a class="notification" href=""><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
           </li>
         </ul>
       </div>
