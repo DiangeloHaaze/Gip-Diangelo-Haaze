@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+echo $_SESSION['count'];
 if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["productid"])){
 
 	$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');

@@ -7,7 +7,6 @@ if(isset($_POST["voorkopen"])){
 if(isset($_POST["aantal"])){
 	$aantalingevult = true;
 	include('php/inhoudwinkelwagentje.php');
-	echo $_SESSION["koopwaren"] = $id. " ". $_SESSION["aantal"];
 }
 
  ?>
