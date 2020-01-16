@@ -5,19 +5,19 @@ include("php/postcodeid.php");
 
     If(isset($_POST["versturen"]) && isset($_POST["voornaam"]) && $_POST["voornaam"] != "" && isset($_POST["achternaam"]) && $_POST["achternaam"] != "" && isset($_POST["gebruikersnaam"]) && $_POST["gebruikersnaam"] != "" &&  isset($_POST["postcode"]) && $_POST["postcode"] != "" &&  isset($_POST["gemeente"]) && $_POST["gemeente"] != "" && isset($pcid)){
 
-   
+
 
     $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
       if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
            else {
-               
+
   	$username = $_POST['gebruikersnaam'];
   	$email = $_POST['email'];
   	$password = $_POST['paswoord'];
 
   	$sql_u = "SELECT * FROM tblklanten WHERE gebruikersnaam='$username'";
   	$sql_e = "SELECT * FROM tblklanten WHERE email='$email'";
-    
+
   	$res_u = mysqli_query($mysqli, $sql_u);
   	$res_e = mysqli_query($mysqli, $sql_e);
 
@@ -30,7 +30,7 @@ include("php/postcodeid.php");
   	}else{
 
 
-         $sql = "        
+         $sql = "
          INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, postcodeid, email, paswoord) VALUES ( ?,?,?,?,?,?)";
         if($stmt = $mysqli->prepare($sql))
         {
@@ -47,15 +47,15 @@ include("php/postcodeid.php");
             echo 'het uitvoeren van de query is mislukt:';
              }
              else
-                 { 
+                 {
                  $_SESSION["ingelogd"] = true;
                  ; }
                 $stmt->close();
                 }
          else{ echo 'Er zit een fout in de query'; }
                 }
-    
-        
+
+
  }
     }
 ?>
@@ -80,12 +80,12 @@ include("php/postcodeid.php");
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
 
-    
-    
+
+
 </head>
 
 <body>
-  
+
   <!-- navigatie -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -98,7 +98,10 @@ include("php/postcodeid.php");
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-          <li class="nav-item">
+		  <li class="nav-item">
+            <a class="nav-link" href="test.php">Test</a>
+          </li>
+		  <li class="nav-item">
             <a class="nav-link" href="producten.php">Producten</a>
           </li>
             <li class="nav-item">
@@ -127,6 +130,9 @@ include("php/postcodeid.php");
             <?php
             }
             ?>
+		  <li class="nav-item">
+              <a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
+          </li>
         </ul>
       </div>
     </div>
@@ -150,8 +156,8 @@ include("php/postcodeid.php");
       <li class="breadcrumb-item active">Registratie</li>
     </ol>
       <!-- Map Column -->
-      
-     
+
+
 
     <!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
@@ -249,7 +255,7 @@ include("php/postcodeid.php");
   <!-- Contact form JavaScript -->
   <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
   <script src="js/jqBootstrapValidation.js"></script>
-    
+
   <!-- Javascript voor paswoord -->
   <script src="js/paswoordvalidatie.js"></script>
 

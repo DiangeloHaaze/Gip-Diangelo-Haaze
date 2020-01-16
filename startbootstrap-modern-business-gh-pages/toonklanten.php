@@ -1,5 +1,5 @@
 <?php
-session_start();  
+session_start();
 if($_SESSION["adminkey"] == false){
     header('location:index.php');
 }
@@ -41,7 +41,10 @@ else{
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-          <li class="nav-item">
+		  <li class="nav-item">
+            <a class="nav-link" href="test.php">Test</a>
+          </li>
+		  <li class="nav-item">
             <a class="nav-link" href="producten.php">Producten</a>
           </li>
             <li class="nav-item">
@@ -70,6 +73,9 @@ else{
             <?php
             }
             ?>
+		  <li class="nav-item">
+              <a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
+          </li>
         </ul>
       </div>
     </div>
@@ -89,10 +95,10 @@ else{
       </li>
       <li class="breadcrumb-item active">Het opzoeken van klanten</li>
     </ol>
-      
-      
-      
-    
+
+
+
+
      <div class="col-lg-9 mb-4">
         <h3></h3>
         <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -101,11 +107,11 @@ else{
             <div class="controls">
               <label>Welk soort:</label><br>
               <input type="radio" name="keus" value="voornaam"> &nbsp; <label>Voornaam</label><br>
-              <input type="radio" name="keus" value="achternaam"> &nbsp; <label>Achternaam</label><br> 
+              <input type="radio" name="keus" value="achternaam"> &nbsp; <label>Achternaam</label><br>
               <input type="radio" name="keus" value="gebruikersnaam" <?php if(isset($_POST["versturen"]) && $_POST["keus"] == "gebruikersnaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>Gebruikersnaam</label><br>
-              <input type="radio" name="keus" value="email"> &nbsp; <label>Email</label><br>  
-              
-              <label>Zoekwaarde:</label>    
+              <input type="radio" name="keus" value="email"> &nbsp; <label>Email</label><br>
+
+              <label>Zoekwaarde:</label>
               <input type="text" class="form-control" name="zoekwaarde" id="zoekwaarde" required data-validation-required-message="Gelieve u zoekwaarde in te voeren.">
             </div>
           </div>
@@ -118,14 +124,14 @@ else{
           <p><b>gebruikersnaam: </b><?php echo $gebruikersnaam[$i]; ?> </p>
           <p><b>Email: </b><?php echo $email[$i]; ?> </p>
           <p><b>Postcode en gemeente </b><?php $postcodeid = $postcodeids[$i]; include('php/Rpostcodeid.php'); echo $pcid; ?> </p>
-                
-          <br />  
+
+          <br />
         </div>
             <?php }}; ?>
          </form>
       </div>
-      
-      
+
+
     </div>
 
   <footer class="py-5 bg-dark">
@@ -142,4 +148,3 @@ else{
 </body>
 
 </html>
-

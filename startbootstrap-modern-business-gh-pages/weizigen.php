@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("php/wijzig.php")
 
@@ -18,7 +18,7 @@ include("php/wijzig.php")
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link type="text/css" href="css/Stylediangelo.css" rel="stylesheet">
-    
+
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
 
@@ -37,7 +37,10 @@ include("php/wijzig.php")
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
-          <li class="nav-item">
+		  <li class="nav-item">
+            <a class="nav-link" href="test.php">Test</a>
+          </li>
+		  <li class="nav-item">
             <a class="nav-link" href="producten.php">Producten</a>
           </li>
             <li class="nav-item">
@@ -66,6 +69,9 @@ include("php/wijzig.php")
             <?php
             }
             ?>
+		  <li class="nav-item">
+              <a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
+          </li>
         </ul>
       </div>
     </div>
@@ -91,22 +97,22 @@ include("php/wijzig.php")
         <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
             <div class="control-group form-group">
-           
+
               <div class="controls">
               <label>Voornaam:</label>
               <input type="text" class="form-control" name="voornaam" id="voornaam" required data-validation-required-message="Gelieve een waarde te geven">
               </div>
-              
+
               <div class="controls">
               <label>Achternaam:</label>
               <input type="text" class="form-control" name="achternaam" id="achternaam" required data-validation-required-message="Gelieve een waarde te geven">
               </div>
-              
+
               <div class="controls">
               <label>email:</label>
               <input type="email" class="form-control" name="email" id="email" required data-validation-required-message="Gelieve een email in te voeren" >
               </div>
-             
+
               <div class="controls">
               <label>postcodeid:</label>
               <input type="text" class="form-control" name="postcodeid" id="postcodeid" pattern="[0-9]{4}" data-validation-pattern-message="Gelieve het juist patroon ingeven" required data-validation-required-message="Gelieve u postcode in te voeren">
@@ -116,7 +122,7 @@ include("php/wijzig.php")
              <?php if(isset($goedkeuring)){  ?>
                     <p class="goed">Je aanpassingen zijn opgeslagen</p>
                 <?php } ?>
-         
+
          </form>
       </div>
 
@@ -141,7 +147,7 @@ include("php/wijzig.php")
   <!-- Contact form JavaScript -->
   <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
   <script src="js/jqBootstrapValidation.js"></script>
-  
+
 
 </body>
 
