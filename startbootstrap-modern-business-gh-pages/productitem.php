@@ -4,7 +4,10 @@ include('php/related.php');
 if(isset($_POST["voorkopen"])){
 	$kopen = true;
 }
+if (isset($_POST['aantal'])){
 	include('php/inhoudwinkelwagentje.php');
+}
+
 
  ?>
 

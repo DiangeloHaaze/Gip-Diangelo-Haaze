@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $_SESSION["gebruikernaam"] = null;
 $_SESSION["ingelogd"] = null;
