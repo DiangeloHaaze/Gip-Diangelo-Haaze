@@ -1,6 +1,6 @@
 <?php
 include("php/itemsinwinkelwagen.php");
-
+$totaal = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +21,15 @@ include("php/itemsinwinkelwagen.php");
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/Stylediangelo.css" rel="stylesheet">
 
+<style>
+.shoplink{
+	color: black;
+}
+.shoplink:hover{
+	color: black;
+	text-decoration: none;
+}
+</style>
 </head>
 
 <body>
@@ -97,11 +106,12 @@ include("php/itemsinwinkelwagen.php");
         </a>
       </div>
       <div class="col-md-5">
-        <h3><?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3>
+        <h3><a class="shoplink" href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>"> <?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3><a>
         <p><?php echo $beschrijvingen[$i] ?></p>
-        <a class="btn btn-primary" href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">Zie product
-          <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
+		<h4>Aantal: <?php echo $aantalproducten[$i]; ?></h4>
+		<h4>Prijs Per Stuk: €<?php echo $prijzen[$i]; ?></h4>
+		<h4>Totaal prijs product: €<?php $totaalpp[$i] = $aantalproducten[$i] * $prijzen[$i]; echo $totaalpp[$i]; $totaal = $totaal + $totaalpp[$i]; ?></h4>
       </div>
     </div>
  </form>
@@ -109,6 +119,7 @@ include("php/itemsinwinkelwagen.php");
     <?php
         }
       ?>
+	  <h4>Totaalbedrag is: €<?php echo $totaal; ?></h4>
     <hr>
 
 

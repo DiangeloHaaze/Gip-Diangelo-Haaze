@@ -17,7 +17,4 @@ else{
 	$_SESSION["count"] = $_SESSION["count"] + 1;
 }
 
-
-
-
 ?>

@@ -94,7 +94,7 @@ include('php/Checkadmin.php');
             }
             ?>
 		  <li class="nav-item">
-              <a class="notification" href="testt.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
+              <a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
           </li>
         </ul>
       </div>
