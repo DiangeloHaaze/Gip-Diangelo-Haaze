@@ -24,28 +24,7 @@ include('php/featured.php');
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/Stylediangelo.css" rel="stylesheet">
-  <style>
-  .notification {
-    background-color: #555;
-    color: white;
-    text-decoration: none;
-    padding: 7px 13px;
-    position: relative;
-    display: inline-block;
-    border-radius: 2px;
-  }
-
-
-  .notification .badge {
-    position: absolute;
-    top: 20px;
-    right: -10px;
-    padding: 5px 10px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-  }
-</style>
+  <link href="css/diangelostyle.css" rel="stylesheet">
 </head>
 
 <body>

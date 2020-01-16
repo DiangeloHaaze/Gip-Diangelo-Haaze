@@ -1,34 +1,6 @@
 <?php
 session_start();
-
-If(isset($_POST["versturen"]) && isset($_POST["gebruikersnaam"]) && $_POST["gebruikersnaam"] != ""  && $_POST["paswoord"] && isset($_POST["paswoord"])){
-
-$mysqli= new MySQLi ("localhost","root","","athenagames");
-if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
-
-else
-{
-  	$gebruikersnaam = $_POST['gebruikersnaam'];
-  	$password = $_POST['paswoord'];
-
-  	$sql = "SELECT * FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$password'";
-
-  	$res = mysqli_query($mysqli, $sql);
-        if(mysqli_num_rows($res) == 1){
-                $_SESSION["ingelogd"] = true;
-                $_SESSION["gebruikernaam"] = $gebruikersnaam;
-                $_SESSION["paswoord"] = $paswoord;
-    }
-       else
-       {
-           $fout = true;
-       }
-}
-}
-
-
-
-
+include('php/inlog.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,10 +16,8 @@ else
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link type="text/css" href="css/Stylediangelo.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-
+  <link href="css/diangelostyle.css" rel="stylesheet">
 </head>
 
 <body>

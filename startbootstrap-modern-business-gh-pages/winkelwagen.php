@@ -19,24 +19,8 @@ $totaal = 0;
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-  <link href="css/Stylediangelo.css" rel="stylesheet">
+  <link href="css/diangelostyle.css" rel="stylesheet">
 
-<style>
-.shoplink{
-	color: black;
-}
-.shoplink:hover{
-	color: black;
-	text-decoration: none;
-}
-.link{
-	color: red;
-}
-.link:hover{
-	color: red;
-	text-decoration: none;
-}
-</style>
 </head>
 
 <body>
