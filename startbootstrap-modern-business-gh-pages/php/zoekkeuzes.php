@@ -19,7 +19,7 @@
 			$sql = "SELECT p.* FROM tblproducten p, tblcategorieperproduct cap WHERE p.productid = cap.productid AND cap.categorieid = '$categorie'";
 			break;
 		case 10:
-			$sql = "";
+			$sql = "SELECT";
 			break;
 		case 11:
 			$sql = "";
