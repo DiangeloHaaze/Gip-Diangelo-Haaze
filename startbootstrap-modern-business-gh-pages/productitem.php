@@ -1,6 +1,13 @@
 <?php
 include('php/itemdisplay.php');
 include('php/related.php');
+if(isset($_POST["voorkopen"])){
+	$kopen = true;
+}
+if(isset($_POST["aantal"])){
+	$aantalingevult = true;
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -15,12 +22,65 @@ include('php/related.php');
 
   <title>athenagames</title>
 
+
+
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/Stylediangelo.css" rel="stylesheet">
+  <style>
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+</style>
 
 </head>
 
@@ -103,29 +163,48 @@ include('php/related.php');
 		  <li class="tags"> &nbsp; &nbsp; <?php echo $tags[$i] ?></li>
 	  <?php } ?>
         </ul>
-      </div>
+		<hr>
+		<div id="myNav" class="overlay">
+			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			  <div class="overlay-content">
+			    <a href="#">Blijven Winkelen</a>
+			    <a href="index.php">Naar Winkelwagentje</a>
+			  </div>
+			</div>
+			<form action="#"  method="post">
+			<?php if(!(isset($kopen))){?>
+				<button type="submit" name="voorkopen" class="btn btn-primary" id="sendMessageButton">Kopen</button>
+			<?php } ?>
+			<?php if(isset($kopen)){?>
+			<input type="number" name="aantal">
+		    <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton" <?php if(isset($_POST["aantal"])){ ?>onclick="openNav()" <?php } ?> >Kopen</button>
+			<?php if (isset($aantalingevult)) {?>
+				<p class="fout"> niets is ingevuld </p>
+			<?php }} ?>
 
-    </div>
+		</form>
+
+	</div>
+	  <div>
     <!-- /.row -->
 <!--  -->
-    <!-- Related Projects Row -->
     <h3 class="my-4">gerelateerde producten</h3>
 
     <div class="row">
 	<?php for ($i=0; $i < 4; $i++) {
 	 ?>
       <div class="col-md-3 col-sm-6 mb-4">
-        <a href="">
+        <a href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">
           <img class="img-fluid" src="<?php echo $link[$i]; ?>" alt="">
         </a>
       </div>
   <?php } ?>
     </div>
     <!-- /.row -->
-
+</div>
   </div>
+</div>
   <!-- /.container -->
-
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -137,6 +216,7 @@ include('php/related.php');
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js\scriptdiangelo.js"></script>
 
 </body>
 
