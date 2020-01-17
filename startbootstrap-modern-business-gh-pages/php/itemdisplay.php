@@ -46,7 +46,7 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 								while($stmt_t->fetch()){
 								$tags[$tel] = $categorie;
 								$tel++;
-
+								$size = sizeof($tags);
 								}
 
 								$stmt_t->close();
@@ -63,6 +63,4 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 
 
 }
-else{echo 'boe';}
-
  ?>

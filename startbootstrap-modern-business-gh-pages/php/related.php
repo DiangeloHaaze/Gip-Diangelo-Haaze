@@ -1,5 +1,7 @@
 <?php
 $teller = 0;
+
+if(isset($tags)){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 else
@@ -28,9 +30,7 @@ else
 					}
 				}
 			}
-
-			$stmt->close();
 		}
 }
-
+}
  ?>
