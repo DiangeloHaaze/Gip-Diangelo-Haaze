@@ -6,6 +6,9 @@ if($_SESSION['count'] != 0){
 if(isset($_POST["allesverwijderen"])){
 	include("php/allesverwijderen.php");
 }
+if(isset($_POST["itemverwijderen"])){
+	include("php/itemverwijderen.php");
+}
 $totaal = 0;
 ?>
 <!DOCTYPE html>
@@ -116,6 +119,9 @@ $totaal = 0;
 		<h4 > Aantallen: <?php echo $aantalproducten[$i];?> </h4>
 		<h4> Prijs Per Stuk: €<?php echo $prijzen[$i]; ?></h4>
 		<h4>Totaal prijs product: €<?php $totaalpp[$i] = $aantalproducten[$i] * $prijzen[$i]; echo $totaalpp[$i]; $totaal = $totaal + $totaalpp[$i]; ?></h4>
+		<form action="php/itemverwijderen.php?actieverwijderen&productid=<?php echo $productiden["$i"];?>" method="post">
+		<button type="submit" name="itemverwijderen" class="btn btn-primary" id="sendMessageButton"> Verwijder </button>
+		</form>
       </div>
     </div>
  </form>
@@ -125,7 +131,7 @@ $totaal = 0;
       ?>
 	  <h1>Totaalbedrag is: €<?php echo $totaal; ?></h1>
 	  <?php if(isset($_SESSION["ingelogd"])){ ?>
-      <form action="" method="post">
+      <form action="#" method="post">
 	  <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Bevestigen </button>
 	  <button type="submit" name="allesverwijderen" class="btn btn-primary" id="sendMessageButton"> Alles Verwijderen </button>
   	  </form>
