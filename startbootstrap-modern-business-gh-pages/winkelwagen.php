@@ -3,12 +3,10 @@ session_start();
 if($_SESSION['count'] != 0){
 	include("php/itemsinwinkelwagen.php");
 }
-if(isset($_POST["allesverwijderen"])){
+if(isset($_POST["actie"]) && $_POST["actie"] == 'allesverwijderen'){
 	include("php/allesverwijderen.php");
 }
-if(isset($_POST["itemverwijderen"])){
-	include("php/itemverwijderen.php");
-}
+include("php/itemverwijderen.php");
 $totaal = 0;
 ?>
 <!DOCTYPE html>
@@ -105,23 +103,23 @@ $totaal = 0;
 	  if($_SESSION["count"] != 0){
         for($i = 0; $i < $teller; $i++){
         ?>
-	<form action="productitem.php?actie=" method="post">
+	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="row">
       <div class="col-md-7">
-        <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>">
+        <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$i];?>">
           <img class="fotos" src="<?php echo $fotos[$i];  ?>" alt="http://placehold.it/700x300">
         </a>
       </div>
       <div class="col-md-5">
-        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>"> <?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3><a>
+        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$i];?>"> <?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3><a>
         <p><?php echo $beschrijvingen[$i] ?></p>
         </a>
 		<h4 > Aantallen: <?php echo $aantalproducten[$i];?> </h4>
 		<h4> Prijs Per Stuk: €<?php echo $prijzen[$i]; ?></h4>
 		<h4>Totaal prijs product: €<?php $totaalpp[$i] = $aantalproducten[$i] * $prijzen[$i]; echo $totaalpp[$i]; $totaal = $totaal + $totaalpp[$i]; ?></h4>
-		<form action="php/itemverwijderen.php?actieverwijderen&productid=<?php echo $productiden["$i"];?>" method="post">
-		<button type="submit" name="itemverwijderen" class="btn btn-primary" id="sendMessageButton"> Verwijder </button>
-		</form>
+		<form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']?>?actiep=wis&productid=<?php echo $productiden[$i] ; ?>">
+  	  <input type="submit" name="btnwissen" id="wis" value="wis">
+  	  </form>
       </div>
     </div>
  </form>
@@ -131,9 +129,11 @@ $totaal = 0;
       ?>
 	  <h1>Totaalbedrag is: €<?php echo $totaal; ?></h1>
 	  <?php if(isset($_SESSION["ingelogd"])){ ?>
-      <form action="#" method="post">
+		  <form  method="post" action="<?php echo
+		  $_SERVER['PHP_SELF']?>?actie=allesverwijderen&artikelid=<?php echo $productiden[$i] ; ?>">
 	  <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Bevestigen </button>
-	  <button type="submit" name="allesverwijderen" class="btn btn-primary" id="sendMessageButton"> Alles Verwijderen </button>
+	  <button type="submit" name="allesverwijderen" class="btn btn-primary" id="sendMessageButton">
+		   Alles Verwijderen </button>
   	  </form>
   <?php } else{ ?>
 	  <a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om te kunnen kopen.</a>
