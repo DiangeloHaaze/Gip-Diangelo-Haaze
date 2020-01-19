@@ -2,7 +2,10 @@
 $foutreg = 0;
 session_start();
 include("php/postcodeid.php");
+include("php/postcodeid.php");
+if($gekeurt == true){
 include('php/registratie.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,8 +105,6 @@ include('php/registratie.php');
 
 
 
-    <!-- Contact Form -->
-    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
       <div class="col-lg-9 mb-4">
         <h3></h3>
@@ -111,7 +112,7 @@ include('php/registratie.php');
           <div class="control-group form-group">
             <div class="controls">
               <label>Voornaam:</label>
-              <input type="text" class="form-control" name="voornaam" id="voornaam" required data-validation-required-message="Gelieve u voornaam in te voeren.">
+              <input type="text" class="form-control" name="voornaam" id="voornaam">
               <p class="help-block"></p>
             </div>
           </div>
@@ -130,25 +131,25 @@ include('php/registratie.php');
             <div class="control-group form-group">
             <div class="controls">
               <label>Postcode:</label>
-              <input type="text" class="form-control" name="postcode" id="postcode" pattern="[0-9]{4}" required data-validation-required-message="Gelieve u postcode in te voeren.">
+              <input type="text" class="form-control" name="postcode" id="postcode" pattern="[0-9]{4}">
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Gebruikersnaam:</label>
-              <input type="text" class="form-control" name="gebruikersnaam" id="gebruikersnaam" required data-validation-required-message="Gelieve u gebruikersnaam in te voeren.">
+              <input type="text" class="form-control" name="gebruikersnaam" id="gebruikersnaam" >
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Email:</label>
-              <input type="email" class="form-control" name="email" id="email"  required data-validation-required-message="Gelieve u email in te voeren.">
+              <input type="email" class="form-control" name="email" id="email">
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Paswoord:</label>
-               <input type="password" class="form-control" name="paswoord" id="paswoord" required data-validation-required-message="Gelieve u paswoord in te voeren." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Moet minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en moet minstens 8 letters groot zijn">
+               <input type="password" class="form-control" name="paswoord" id="paswoord" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Moet minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en moet minstens 8 letters groot zijn">
             </div>
             </div>
             <div id="message">
@@ -157,6 +158,12 @@ include('php/registratie.php');
               <p id="capital" class="fout">Een <b>Hoofdletter</b></p>
               <p id="number" class="fout">Een <b>nummer</b></p>
               <p id="length" class="fout">Minimum <b>8 karakters</b></p>
+            </div>
+			<div class="control-group form-group">
+            <div class="controls">
+              <label>Bevestiging Paswoord:</label>
+               <input type="password" class="form-control" name="confirmpaswoord" id="confirmpaswoord">
+            </div>
             </div>
             <?php
                  switch($foutreg){
@@ -171,9 +178,11 @@ include('php/registratie.php');
                         <?php  break;
                  }
                  ?>
+			<?php
+
+			 ?>
           <div id="success"></div>
-          <!-- For success/fail messages -->
-          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+          <button type="submit" name="versturen" onclick="wijzig" class="btn btn-primary" id="sendMessageButton">Versturen</button>
          </form>
       </div>
 
@@ -201,7 +210,7 @@ include('php/registratie.php');
 
   <!-- Javascript voor paswoord -->
   <script src="js/paswoordvalidatie.js"></script>
-
+  <script src="js/foutcontrole.js"></script>
 </body>
 
 </html>

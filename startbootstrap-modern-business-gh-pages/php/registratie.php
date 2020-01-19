@@ -1,7 +1,4 @@
 <?php
-if(isset($_POST["versturen"]) && isset($_POST["voornaam"]) && $_POST["voornaam"] != "" && isset($_POST["achternaam"]) && $_POST["achternaam"] != "" && isset($_POST["gebruikersnaam"]) && $_POST["gebruikersnaam"] != "" &&  isset($_POST["postcode"]) && $_POST["postcode"] != "" &&  isset($_POST["gemeente"]) && $_POST["gemeente"] != "" && isset($pcid)){
-
-
 
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
   if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
@@ -23,8 +20,9 @@ if (mysqli_num_rows($res_u) > 0 && mysqli_num_rows($res_e) > 0) {
 	$foutreg = 2;
 }else if(mysqli_num_rows($res_e) > 0){
    $foutreg = 3;
-}else{
+}
 
+else{
 
 	 $sql = "
 	 INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, postcodeid, email, paswoord) VALUES ( ?,?,?,?,?,?)";
@@ -52,7 +50,6 @@ if (mysqli_num_rows($res_u) > 0 && mysqli_num_rows($res_e) > 0) {
 			}
 
 
-}
 }
 
  ?>
