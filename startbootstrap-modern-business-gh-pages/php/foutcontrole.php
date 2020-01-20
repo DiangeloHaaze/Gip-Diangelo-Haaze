@@ -9,6 +9,13 @@ if (!(isset($_POST['pasword'])) && $_POST['password'] == ""){
 	$foutpaswoord = true;
 	$gekeurt = false;
 }
+else{
+	$patroon = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
+	$paswoorddoor = preg_match($pattern, $_POST["password"]);
+	if(!isset($paswoorddoor)){
+		$foutpatroonpasswoord = true;
+	}
+}
 if (!(isset($_POST['voornaam'])) && $_POST['voornaam'] == ""){
 	$foutvoornaam = true;
 	$gekeurt = false;
@@ -22,13 +29,16 @@ if(!(isset($_POST["gemeente"]) && $_POST['gemeente'] == ""){
 	$gekeurt = false;
 }
 $pattern = "[0-9]{4}";
-preg_match($pattern, $_POST["Postcode"], $matches);
+$postcodedoor =  preg_match($pattern, $_POST["Postcode"]);
+
 if(!(isset($_POST["postcode"])) && $_POST['postcode'] == ""){
 	$foutingevuldpostcode = true;
 	$gekeurt = false;
-}
-else if(isset($matches)){
+}else
+if(!(isset($postcodedoor))){
 	$foutpatroonpostcode = true;
 	$gekeurt = false;
+}
+
 }
 ?>
