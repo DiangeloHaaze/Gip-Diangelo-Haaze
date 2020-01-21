@@ -2,10 +2,11 @@
 $foutreg = 0;
 session_start();
 include("php/postcodeid.php");
-include("php/postcodeid.php");
-if($gekeurt == true){
+if(isset($_POST["versturen"])){
 include('php/registratie.php');
 }
+
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -182,7 +183,7 @@ include('php/registratie.php');
 
 			 ?>
           <div id="success"></div>
-          <button type="submit" name="versturen" onclick="wijzig" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
          </form>
       </div>
 
