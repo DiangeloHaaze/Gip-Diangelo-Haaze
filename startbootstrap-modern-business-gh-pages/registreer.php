@@ -1,10 +1,11 @@
 <?php
-//de pagina die ervoor zorgt dat een klant zich kan registreren en deze nieuwe klant dan ook opslaat in de databank. 
+//de pagina die ervoor zorgt dat een klant zich kan registreren en deze nieuwe klant dan ook opslaat in de databank.
 $foutreg = 0;
 session_start();
-if(isset($_POST["versturen"]) && isset($goed)){
-include('php/registratie.php');
+include('php/foutcontrole.php');
+if(isset($_POST["versturen"]) && $gekeurt == true){
 include("php/postcodeid.php");
+include('php/registratie.php');
 }
 ?>
 <!DOCTYPE html>
@@ -119,38 +120,38 @@ include("php/postcodeid.php");
           <div class="control-group form-group">
             <div class="controls">
               <label>Voornaam:</label>
-              <input type="text" class="form-control" name="voornaam" id="voornaam">
+              <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} ?>">
               <p class="help-block"></p>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls">
               <label>Achternaam:</label>
-              <input type="text" class="form-control" name="achternaam" id="achternaam" required data-validation-required-message="Gelieve u achternaam in te voeren.">
+              <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} ?>" required data-validation-required-message="Gelieve u achternaam in te voeren.">
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Gemeente:</label>
-              <input type="text" class="form-control" name="gemeente" id="gemeente" required data-validation-required-message="Gelieve u gemeente in te voeren.">
+              <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>" required data-validation-required-message="Gelieve u gemeente in te voeren.">
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Postcode:</label>
-              <input type="text" class="form-control" name="postcode" id="postcode" pattern="[0-9]{4}">
+              <input type="text" class="form-control" name="postcode" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" pattern="[0-9]{4}">
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Gebruikersnaam:</label>
-              <input type="text" class="form-control" name="gebruikersnaam" id="gebruikersnaam" >
+              <input type="text" class="form-control" name="gebruikersnaam" value="<?php if(isset($_POST['gebruikersnaam'])){echo $_POST['gebruikersnaam'];} ?>" id="gebruikersnaam" >
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Email:</label>
-              <input type="email" class="form-control" name="email" id="email">
+              <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" id="email">
             </div>
           </div>
             <div class="control-group form-group">

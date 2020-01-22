@@ -1,5 +1,11 @@
 <?php
 //Pagina dient om de gegevens in te dienen als alle andere stappen gelukt zijn. Hierin wordt bekeken of de gebruiker een al bestaande gebruikersnaam of email heeft ingevoerd sinds ik zowel unieke emails als unieke gebruikersnamen wil in mijn databank. Als een van de voorwaarden overeenkomt krijgt de gebruiker de toegepaste foutboodschap.
+$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+
+else
+{
+
 $username = mysqli_real_escape_string($mysqli,$_POST['gebruikersnaam']);
 $email = mysqli_real_escape_string($mysqli,$_POST['email']);
 
