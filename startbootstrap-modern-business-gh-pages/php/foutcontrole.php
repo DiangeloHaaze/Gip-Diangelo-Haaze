@@ -36,7 +36,7 @@ if(!(isset($_POST["gemeente"])) && $_POST['gemeente'] == ""){
 
 
 if(!(isset($_POST["postcode"])) && $_POST['postcode'] == ""){
-	$foutingevuldpostcode = true;
+	$foutingpostcode = true;
 	$gekeurt = false;
 }
 //Hierbij word gecontroleerd of de gebruikersnaam is ingevult later in registratie.php word bekeken of dit wel een unieke voorwaarde is ingegeven.

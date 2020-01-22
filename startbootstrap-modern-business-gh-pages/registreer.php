@@ -121,43 +121,63 @@ include('php/registratie.php');
             <div class="controls">
               <label>Voornaam:</label>
               <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} ?>">
-              <p class="help-block"></p>
+			  <?php if(isset($foutvoornaam)){ ?>
+				  <p class="fout">Er is een fout bij voornaam</p>
+			  <?php } ?>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls">
               <label>Achternaam:</label>
-              <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} ?>" required data-validation-required-message="Gelieve u achternaam in te voeren.">
+              <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} ?>">
+			  <?php if(isset($foutachternaam)){ ?>
+				  <p class="fout">Er is een fout bij achternaam</p>
+			  <?php } ?>
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Gemeente:</label>
-              <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>" required data-validation-required-message="Gelieve u gemeente in te voeren.">
+              <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>">
+			  <?php if(isset($foutgemeente)){ ?>
+				  <p class="fout">Er is een fout bij gemeente</p>
+			  <?php } ?>
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Postcode:</label>
-              <input type="text" class="form-control" name="postcode" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" pattern="[0-9]{4}">
+              <input type="text" class="form-control" name="postcode" title="Moet bestaan uit 4 cijfers" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" pattern="[0-9]{4}">
+			  <?php if(isset($foutingpostcode)){ ?>
+				  <p class="fout">Er is een fout bij postcode</p>
+			  <?php } ?>
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Gebruikersnaam:</label>
               <input type="text" class="form-control" name="gebruikersnaam" value="<?php if(isset($_POST['gebruikersnaam'])){echo $_POST['gebruikersnaam'];} ?>" id="gebruikersnaam" >
+			  <?php if(isset($foutgebruiker)){ ?>
+				  <p class="fout">Er is een fout bij gebruikersnaam</p>
+			  <?php } ?>
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Email:</label>
               <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" id="email">
+			  <?php if(isset($foutemail)){ ?>
+				  <p class="fout">Er is een fout bij e-mail</p>
+			  <?php } ?>
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Paswoord:</label>
                <input type="password" class="form-control" name="paswoord" id="paswoord" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Moet minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en moet minstens 8 letters groot zijn">
+			   <?php if(isset($foutpaswoord)){ ?>
+ 				  <p class="fout">Er is een fout bij Paswoord</p>
+ 			  <?php } ?>
             </div>
             </div>
             <div id="message">
@@ -171,6 +191,9 @@ include('php/registratie.php');
             <div class="controls">
               <label>Bevestiging Paswoord:</label>
                <input type="password" class="form-control" name="confirmpaswoord" id="confirmpaswoord">
+			   <?php if(isset($foutconfirmpasswoord)){ ?>
+ 				  <p class="fout">Er is een fout bij Bevestiging Paswoord</p>
+ 			  <?php } ?>
             </div>
             </div>
             <?php
