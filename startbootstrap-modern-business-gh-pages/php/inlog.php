@@ -17,6 +17,7 @@ else
                 $_SESSION["ingelogd"] = true;
                 $_SESSION["gebruikernaam"] = $gebruikersnaam;
                 $_SESSION["paswoord"] = $paswoord;
+				$_SESSION["soortklant"] = $row["soortklant"];
     }
        else
        {
