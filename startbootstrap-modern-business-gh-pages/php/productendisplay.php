@@ -1,4 +1,5 @@
 <?php
+//
 session_start();
 $teller = 0;
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');

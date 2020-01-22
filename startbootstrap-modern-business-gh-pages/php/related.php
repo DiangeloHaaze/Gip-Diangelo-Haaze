@@ -1,4 +1,5 @@
 <?php
+//
 $teller = 0;
 
 if(isset($tags)){

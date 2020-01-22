@@ -1,4 +1,5 @@
 <?php
+//
 $teller = 0;
 $productiden = NULL;
 $producten= NULL;
@@ -12,7 +13,7 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 
 else
 {
-	
+
     include('php/zoekkeuzes.php');
 
     if($stmt = $mysqli->prepare($sql)){

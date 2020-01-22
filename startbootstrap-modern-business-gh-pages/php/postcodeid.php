@@ -1,19 +1,19 @@
 <?php
-if(isset($_POST["versturen"])){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
       if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
            else {
+                $postcode = mysqli_real_escape_string($mysqli, $_POST["postcode"]);
+                $gemeente = mysqli_real_escape_string($mysqli, $_POST["gemeente"]);
 
-                $sql = "SELECT postcodeid FROM tblgemeente where postcode = ? AND gemeente = ?";
+                $sql = "SELECT * FROM tblgemeente where postcode = '$postcode' AND gemeente = '$gemeente'";
 
-				if($stmt = $mysqli->prepare($sql)){
-					$stmt->bind_param('ss', $postcode, $gemeente);
-					$postcode = $_POST['postcode'];
-					$gemeente = $_POST['gemeente'];
-					$stmt->bind_result($pcid);
-					while($stmt->fetch()){echo $pcid;}
+                $res = mysqli_query($mysqli, $sql);
 
-				}
+                if ($res->num_rows == 1) {
+                while($row = $res->fetch_assoc()){
+
+                $pcid = $row["postcodeid"];}
+
            }
-
+	   }
 ?>

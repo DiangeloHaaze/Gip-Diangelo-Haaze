@@ -1,4 +1,5 @@
 <?php
+//houd bij wat men in de winkelwagen heeft gestoken en wenst te kopen. Het houdt het aantal van 1 soort product bij en de naam van het koopwaar. Deze worden dan in de winkelwagen getoont.
 $i = 0;
 while( $i < $_SESSION["count"]){
 	if($_SESSION["koopwaren"][$i] == $id) {

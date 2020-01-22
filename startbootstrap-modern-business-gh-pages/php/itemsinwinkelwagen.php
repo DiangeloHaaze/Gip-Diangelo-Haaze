@@ -1,4 +1,5 @@
 <?php
+//
 $teller = 0;
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }

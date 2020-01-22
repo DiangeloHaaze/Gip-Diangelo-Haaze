@@ -1,5 +1,5 @@
 <?php
-
+//
     $categorie = $_POST["categorie"];
     $zoekterm = $_POST["zoekterm"];
 	$soort = $_POST["soort"];

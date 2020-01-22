@@ -1,4 +1,5 @@
 <?php
+/
 $aantal = 1;
 $counter = 1;
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');

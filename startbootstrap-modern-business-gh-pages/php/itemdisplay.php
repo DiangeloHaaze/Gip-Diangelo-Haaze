@@ -1,4 +1,5 @@
 <?php
+// Het weergeven van een product op aanvraag van de klant. Als de klant op een linkt heeft geklikt gaat hij naar de hoofdpagina. Dit word specifiek gebruikt om de item zelf op de gepaste plaatsen te laten verschijnen. Het toont ook de categorieen van de producten bij zodat deze ook kunnen getoont worden. De categorien worden dan ook nog eens gebruikt om gerelateerde producten te kunnen tonen.
 session_start();
 if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["productid"])){
 
@@ -7,7 +8,7 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 	else
 	{
 
-		$id = $_GET["productid"];
+		$id = mysqli_real_escape_string($mysqli, $_GET["productid"]);
 		$tel = 0;
 
 		$sql = "SELECT * FROM tblproducten WHERE productid = '$id'";

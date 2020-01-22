@@ -1,12 +1,11 @@
 <?php
+//de pagina die ervoor zorgt dat een klant zich kan registreren en deze nieuwe klant dan ook opslaat in de databank. 
 $foutreg = 0;
 session_start();
+if(isset($_POST["versturen"]) && isset($goed)){
+include('php/registratie.php');
 include("php/postcodeid.php");
-//if(isset($_POST["versturen"])){
-//include('php/registratie.php');
-//}
-
-//}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +32,7 @@ include("php/postcodeid.php");
 
 <body>
 
-  <!-- navigatie -->
+  <!-- De navigatie balk bovenaan de pagina op elke pagina. -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.php">Athena's Game</a>
@@ -54,14 +53,19 @@ include("php/postcodeid.php");
             <li class="nav-item">
             <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
           </li>
-             <?php if(!isset($_SESSION["ingelogd"])){ ?>
+             <?php
+			 //kijkt of de gebruiker is ingelogd en indien ja komt dit tevoorschijn.
+			 if(!isset($_SESSION["ingelogd"])){
+				 ?>
           <li class="nav-item">
             <a class="nav-link" href="registreer.php">Registreer</a>
           </li>
             <li class="nav-item">
             <a class="nav-link" href="Inloggen.php">inloggen</a>
           </li>
-            <?php } else{ ?>
+            <?php }
+			// en als je niet ingelogd ben krijg je dit te zien.
+			else{ ?>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <?php echo $_SESSION["gebruikernaam"]; ?>
@@ -69,13 +73,16 @@ include("php/postcodeid.php");
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
               <a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
-                <?php if($_SESSION["adminkey"] == true){?>
+                <?php
+				// dit is alleen zichtbaar waneer de gebruiker een admin is.
+				if($_SESSION["adminkey"] == true){?>
               <a class="dropdown-item" href="toonklanten.php">Gebruikers bekijken</a>
                 <?php } ?>
             </div>
           </li>
             <?php
             }
+			//hierna word het winkelwagentje getoont. Als er niets is ingevuld dan toont hij niet het aantel prodcuten maar als dit wel zo is geeft hij weer hoeveel er van 1 product aanwezig is in de winkelwagentje.
             ?>
 		  <li class="nav-item">
               <a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
@@ -85,7 +92,7 @@ include("php/postcodeid.php");
     </div>
   </nav>
 <?php
-    //gaan naar start na het inloggen
+    //bij succesvol inloggen komt de gebruiker terug naar de beginpagina.
     if(isset($_SESSION["ingelogd"])){header("location:index.php");}
     ?>
   <!-- Page Content -->
@@ -102,7 +109,6 @@ include("php/postcodeid.php");
       </li>
       <li class="breadcrumb-item active">Registratie</li>
     </ol>
-      <!-- Map Column -->
 
 
 
@@ -167,6 +173,7 @@ include("php/postcodeid.php");
             </div>
             </div>
             <?php
+			//toont weer welke foutboodschap er moet komen als men een al bestaande gebruikersnaam of email invoerden. Ook is er een boodschap als allebij al bestaan.
                  switch($foutreg){
                      case 1: ?>
                           <p class="fout"> Je hebt een email en gebruikersnaam ingegeven die al bestaan </p>
