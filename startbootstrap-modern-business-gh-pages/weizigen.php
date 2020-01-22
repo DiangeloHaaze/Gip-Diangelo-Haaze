@@ -92,40 +92,31 @@ include("php/wijzig.php")
     </ol>
 
     <div class="row">
-      <div class="col-lg-9 mb-4">
-        <h3></h3>
-        <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+		<div class="col-lg-9 mb-4">
+           <h3></h3>
+           <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+               <?php if(!isset($goedkeuring)){ ?>
+               <div class="control-group form-group">
+               <div class="controls">
+                 <label>Wat wilt u weizigen soort:</label><br>
+                 <input type="radio" name="keus" value="voornaam"> &nbsp; <label>Voornaam</label><br>
+                 <input type="radio" name="keus" value="achternaam" <?php if(isset($_POST["versturen"]) && $_POST["keus"] == "achternaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>achternaam</label><br>
 
-            <div class="control-group form-group">
-
-              <div class="controls">
-              <label>Voornaam:</label>
-              <input type="text" class="form-control" name="voornaam" id="voornaam" required data-validation-required-message="Gelieve een waarde te geven">
-              </div>
-
-              <div class="controls">
-              <label>Achternaam:</label>
-              <input type="text" class="form-control" name="achternaam" id="achternaam" required data-validation-required-message="Gelieve een waarde te geven">
-              </div>
-
-              <div class="controls">
-              <label>email:</label>
-              <input type="email" class="form-control" name="email" id="email" required data-validation-required-message="Gelieve een email in te voeren" >
-              </div>
-
-              <div class="controls">
-              <label>postcodeid:</label>
-              <input type="text" class="form-control" name="postcodeid" id="postcodeid" pattern="[0-9]{4}" data-validation-pattern-message="Gelieve het juist patroon ingeven" required data-validation-required-message="Gelieve u postcode in te voeren">
-              </div>
-          </div>
+                 <label>Waarde:</label>
+                 <input type="text" class="form-control" name="waarde" value="<?php if(isset($_POST["waarde"])){echo $_POST["waarde"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
+               </div>
+             </div>
+             <div id="success"></div>
              <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-             <?php if(isset($goedkeuring)){  ?>
-                    <p class="goed">Je aanpassingen zijn opgeslagen</p>
-                <?php } ?>
+               <?php } else{  ?>
+               <div class="list-group">
+             <p class="goed">Het wijzigen is gelukt </p>
 
-         </form>
-      </div>
-
+             <br />
+           </div>
+               <?php } ?>
+            </form>
+         </div>
     </div>
     <!-- /.row -->
 

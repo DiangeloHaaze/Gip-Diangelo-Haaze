@@ -76,7 +76,7 @@ include('php/registratie.php');
               <a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
                 <?php
 				// dit is alleen zichtbaar waneer de gebruiker een admin is.
-				if($_SESSION["adminkey"] == true){?>
+				if(isset($_SESSION["adminkey"])){?>
               <a class="dropdown-item" href="toonklanten.php">Gebruikers bekijken</a>
                 <?php } ?>
             </div>

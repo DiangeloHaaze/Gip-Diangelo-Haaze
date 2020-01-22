@@ -32,8 +32,8 @@ if (isset($_POST['aantal'])){
 </head>
 
 <body>
-    <!-- navigatie  -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<!-- De navigatie balk bovenaan de pagina op elke pagina. -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="index.php">Athena's Game</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,14 +53,19 @@ if (isset($_POST['aantal'])){
               <li class="nav-item">
               <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
             </li>
-               <?php if(!isset($_SESSION["ingelogd"])){ ?>
+               <?php
+  			 //kijkt of de gebruiker is ingelogd en indien ja komt dit tevoorschijn.
+  			 if(!isset($_SESSION["ingelogd"])){
+  				 ?>
             <li class="nav-item">
               <a class="nav-link" href="registreer.php">Registreer</a>
             </li>
               <li class="nav-item">
               <a class="nav-link" href="Inloggen.php">inloggen</a>
             </li>
-              <?php } else{ ?>
+              <?php }
+  			// en als je niet ingelogd ben krijg je dit te zien.
+  			else{ ?>
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php echo $_SESSION["gebruikernaam"]; ?>
@@ -68,13 +73,16 @@ if (isset($_POST['aantal'])){
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
                 <a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
-                  <?php if($_SESSION["adminkey"] == true){?>
+                  <?php
+  				// dit is alleen zichtbaar waneer de gebruiker een admin is.
+  				if(isset($_SESSION["adminkey"])){?>
                 <a class="dropdown-item" href="toonklanten.php">Gebruikers bekijken</a>
                   <?php } ?>
               </div>
             </li>
               <?php
               }
+  			//hierna word het winkelwagentje getoont. Als er niets is ingevuld dan toont hij niet het aantel prodcuten maar als dit wel zo is geeft hij weer hoeveel er van 1 product aanwezig is in de winkelwagentje.
               ?>
   		  <li class="nav-item">
                 <a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>

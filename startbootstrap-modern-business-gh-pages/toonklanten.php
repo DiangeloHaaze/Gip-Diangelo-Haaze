@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION["adminkey"] == false){
+if(!isset($_SESSION["adminkey"])){
     header('location:index.php');
 }
 else{
@@ -112,7 +112,7 @@ else{
               <input type="radio" name="keus" value="email"> &nbsp; <label>Email</label><br>
 
               <label>Zoekwaarde:</label>
-              <input type="text" class="form-control" name="zoekwaarde" id="zoekwaarde" required data-validation-required-message="Gelieve u zoekwaarde in te voeren.">
+              <input type="text" class="form-control" name="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>" id="zoekwaarde" required data-validation-required-message="Gelieve u zoekwaarde in te voeren.">
             </div>
           </div>
           <div id="success"></div>

@@ -1,5 +1,5 @@
 <?php
-/
+//
 $aantal = 1;
 $counter = 1;
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
@@ -44,5 +44,5 @@ else
 		            }
 
 }
-
+//behoort to de pagina producten.php
 ?>

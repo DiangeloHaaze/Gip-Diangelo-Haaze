@@ -4,4 +4,5 @@ $_SESSION["aantal"] = null;
 $_SESSION["koopwaren"] = null;
 $_SESSION["count"] = null;
 header('location:index.php');
+//behoort bij de webpagina winkelwagen.php
  ?>

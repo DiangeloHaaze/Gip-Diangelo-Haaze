@@ -1,8 +1,8 @@
 <?php
 //
-    $categorie = $_POST["categorie"];
-    $zoekterm = $_POST["zoekterm"];
-	$soort = $_POST["soort"];
+    $categorie = mysqli_real_escape_string($mysqli,$_POST["categorie"]);
+    $zoekterm = mysqli_real_escape_string($mysqli,$_POST["zoekterm"]);
+	$soort = mysqli_real_escape_string($mysqli,$_POST["soort"]);
 
 	$ja = 0;
 	if($categorie != 'start'){
@@ -53,5 +53,5 @@
 			$sql = $sql.' ORDER BY prijsPstuk DESC';
 			break;
 	}
-	echo $sql." ".$ja;
+//behoort tot de webpagina producten.php
  ?>

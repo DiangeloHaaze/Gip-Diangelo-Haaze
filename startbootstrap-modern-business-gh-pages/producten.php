@@ -1,13 +1,13 @@
 <?php
-include('php/productendisplay.php');
+
 include('php/categorien.php');
 if(isset($_POST["versturen"])){
-	//voor enige reden weigert hij de isset te doen als ik ze niet splits dus hou ik ze nu apart
+
     if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == "" && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
     $fout = true;
     }
     if(!isset($fout)){
-    include('php/productzoeker.php');
+    $zoeker = true;
     }
 }
 ?>
@@ -131,19 +131,38 @@ if(isset($_POST["versturen"])){
         </form>
 
       <?php
-        for($i = 0; $i < $teller; $i++){
+	  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+	  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+
+	  else
+	  {
+
+		  if(isset($zoeker)){
+			  include('php/zoekkeuzes.php');
+		  }
+		  else{
+			  $sql = "SELECT * FROM tblproducten";
+		  }
+
+	      if($stmt = $mysqli->prepare($sql)){
+	                  if(!$stmt->execute()){
+	                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+	                  }
+	                  else{
+	                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+	                      while($stmt->fetch()){
         ?>
 	<form action="productitem.php?actie=" method="post">
     <div class="row">
       <div class="col-md-7">
-        <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>">
-          <img class="fotos" src="<?php echo $fotos[$i];  ?>" alt="http://placehold.it/700x300">
+        <a href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>">
+          <img class="fotos" src="<?php echo $linkfoto ?>" alt="http://placehold.it/700x300">
         </a>
       </div>
       <div class="col-md-5">
-        <h3><?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3>
-        <p><?php echo $beschrijvingen[$i] ?></p>
-        <a class="btn btn-primary" href="productitem.php?actie=doorgang&productid=<?php echo $productiden["$i"];?>">Zie product
+        <h3><?php echo $productnaam . " (" . $producttaal.")"; ?></h3>
+        <p><?php echo $beschrijving ?></p>
+        <a class="btn btn-primary" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>">Zie product
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
       </div>
@@ -151,7 +170,17 @@ if(isset($_POST["versturen"])){
  </form>
     <hr>
     <?php
-        }
+						}
+
+						$stmt->close();
+					}
+
+				}
+				else{
+					echo "fout";
+				}
+
+	}
       ?>
     <hr>
 

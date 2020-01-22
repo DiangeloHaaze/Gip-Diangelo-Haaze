@@ -47,5 +47,5 @@ if ($result->num_rows > 0) {
 }
 }
 }
-
+//gebruikt op web pagina toonklanten.php
 ?>
