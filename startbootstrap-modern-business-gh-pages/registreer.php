@@ -2,9 +2,9 @@
 $foutreg = 0;
 session_start();
 include("php/postcodeid.php");
-if(isset($_POST["versturen"])){
-include('php/registratie.php');
-}
+//if(isset($_POST["versturen"])){
+//include('php/registratie.php');
+//}
 
 //}
 ?>
