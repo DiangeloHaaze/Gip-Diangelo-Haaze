@@ -1,5 +1,6 @@
 <?php
 //de pagina die ervoor zorgt dat een klant zich kan registreren en deze nieuwe klant dan ook opslaat in de databank.
+session_start();
 $foutreg = 0;
 session_start();
 include('php/foutcontrole.php');

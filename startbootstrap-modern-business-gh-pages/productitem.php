@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('php/itemdisplay.php');
 include('php/related.php');
 if(isset($_POST["voorkopen"])){
