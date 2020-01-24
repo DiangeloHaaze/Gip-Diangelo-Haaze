@@ -1,14 +1,14 @@
 <?php
 //
 $teller = 0;
-
 if(isset($tags)){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 else
 {
 	for ($i=0; $i < $tel; $i++) {
-		$querries[$i] = "SELECT p.linkfoto, p.productid From tblcategorieperproduct AS cap, tblproducten AS p, tblcategorie as c WHERE p.productid = cap.productid AND c.categorieid = cap.categorieid Group by p.linkfoto, p.productid, c.categorie HAVING c.categorie = '$tags[$i]' AND NOT p.productid = '$productid'";
+		$querries[$i] = "SELECT p.linkfoto, p.productid From tblcategorieperproduct AS cap, tblproducten AS p, tblcategorie as c WHERE p.productid = cap.productid AND c.categorieid = cap.categorieid Group by p.linkfoto, p.productid, c.categorie HAVING c.categorie = '$tags[$i]' AND NOT p.productid = '$productid'";}
+
 	}
 	foreach ($querries as $querrie) {
 
@@ -32,6 +32,5 @@ else
 				}
 			}
 		}
-}
 }
  ?>

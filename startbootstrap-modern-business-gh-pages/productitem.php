@@ -8,7 +8,6 @@ if(isset($_POST["voorkopen"])){
 if (isset($_POST['aantal'])){
 	include('php/inhoudwinkelwagentje.php');
 }
-
  ?>
 
 <!DOCTYPE html>
@@ -151,39 +150,14 @@ if (isset($_POST['aantal'])){
     <h3 class="my-4">gerelateerde producten</h3>
 
     <div class="row">
-	<?php
-		//
-		$tellt = 0;
-		if(isset($tags)){
-		$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
-		if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
-		else
-		{
-			for ($i=0; $i < $tel; $i++) {
-				$querries[$i] = "SELECT p.linkfoto, p.productid From tblcategorieperproduct AS cap, tblproducten AS p, tblcategorie as c WHERE p.productid = cap.productid AND c.categorieid = cap.categorieid Group by p.linkfoto, p.productid, c.categorie HAVING c.categorie = '$tags[$i]' AND NOT p.productid = '$productid'";
-			}
-			foreach ($querries as $querrie) {
-
-				if($stmt = $mysqli->prepare($querrie)){
-					if (!$stmt->execute()) {
-						$error = "Fout";
-					}
-					else{
-						$stmt->bind_result($linkfoto, $productid);
-						while($stmt->fetch()){
-								$link[$tellt] = $linkfoto;
-								$productiden[$tellt] = $productid;
-								$link = array_unique($link);
-								$productiden = array_unique($productiden);
-								if ( sizeof($link) != $tellt) {
-									$tellt++;
-	 ?>
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="productitem.php?actie=doorgang&productid= <?php echo $productid;?>">
-          <img class="img-fluid" src="<?php echo $linkfoto; ?>" alt="">
-        </a>
-      </div>
-  <?php}}}}}}}?>
+		<?php for ($i=0; $i < 4; $i++) {
+			?>
+		 <div class="col-md-3 col-sm-6 mb-4">
+			 <a href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">
+  	 		<img class="img-fluid" src="<?php echo $link[$i]; ?>" alt="">
+			</a>
+		 </div>
+		 <?php } ?>
     </div>
     <!-- /.row -->
 </div>
