@@ -119,15 +119,41 @@ if(isset($_POST["versturen"])){
         </select>
 		  <select name="soort">
           <option value="start">--Kies een Soort--</option>
-          <?php for($z = 1; $z < $counter; $z++){ ?>
-          <option value="<?php echo $z; ?>">--<?php echo $soorten[$z]; ?>--</option>
-          <?php } ?>
+          <?php
+			  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+			  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+
+			  else
+			  {
+
+			      $sql = "SELECT categorie FROM tblcategorie";
+			  	$sql_s = "SELECT s.soorten FROM tblproducten AS p, tblsoorten AS s WHERE s.soortid = p.soortid GROUP BY s.soortid";
+			  			if($stmt_s = $mysqli->prepare($sql_s)){
+			  		                if(!$stmt_s->execute()){
+			  		                    echo 'Het uitvoeren van de query is mislukt: '.$stmt_s->error.' in query: '.$sql_s;
+			  		                }
+			  		                else{
+			  		                    $stmt_s->bind_result($soort);
+			  		                    while($stmt_s->fetch()){
+											$z++;
+			  ?>
+          <option value="<?php echo $z; ?>">--<?php echo $soort; ?>--</option>
+          <?php }}} ?>
         </select>
         <select name="categorie">
         <option value="start">--Kies een Categorie--</option>
-        <?php for($y = 1; $y < $aantal; $y++){ ?>
-        <option value="<?php echo $y; ?>">--<?php echo $categorien[$y]; ?>--</option>
-        <?php } ?>
+        <?php
+			if($stmt = $mysqli->prepare($sql)){
+						if(!$stmt->execute()){
+							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+						}
+						else{
+							$stmt->bind_result($categorie);
+							while($stmt->fetch()){
+								$y++;
+			?>
+        <option value="<?php echo $y; ?>">--<?php echo $categorie; ?>--</option>
+	<?php }}}} ?>
         </select>
           &nbsp;
           <input type="text" name="zoekterm" id="zoekterm" value="<?php if(isset($_POST['zoekterm'])){echo $_POST['zoekterm']; } ?>">
