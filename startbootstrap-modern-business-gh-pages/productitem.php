@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('php/itemdisplay.php');
-include('php/related.php');
 if(isset($_POST["voorkopen"])){
 	$kopen = true;
 }
@@ -102,27 +101,66 @@ if (isset($_POST['aantal'])){
       <li class="breadcrumb-item">
         <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active"><?php echo $product;?></li>
-    </ol>
+	  <?php
+	  if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["productid"])){
 
-    <!-- Portfolio Item Row -->
+	  	$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+	  	if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+	  	else
+	  	{
+
+	  		$id = mysqli_real_escape_string($mysqli, $_GET["productid"]);
+			$tel = 0;
+
+	  		$sql = "SELECT * FROM tblproducten WHERE productid = '$id'";
+	  		$sql_t = "SELECT c.categorie FROM tblcategorieperproduct AS cap, tblcategorie AS c  WHERE cap.categorieid = c.categorieid AND cap.productid = '$id'";
+
+	  	    if($stmt = $mysqli->prepare($sql)){
+	  	                if(!$stmt->execute()){
+	  	                    echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+	  	                }
+	  	                else{
+	  	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+	  	                    while($stmt->fetch()){}
+	   ?>
+      <li class="breadcrumb-item active"><?php echo $productnaam;?></li>
+    </ol>
     <div class="row">
 
       <div class="col-md-8">
-        <img class="img-fluid" src="<?php echo $foto; ?>" alt="http://placehold.it/750x500">
+        <img class="img-fluid" src="<?php echo $linkfoto; ?>" alt="http://placehold.it/750x500">
       </div>
 
       <div class="col-md-4">
-        <h3 class="my-3"><?php echo $product;?></h3>
+        <h3 class="my-3"><?php echo $productnaam;?></h3>
         <p><?php echo $beschrijving; ?></p>
         <h3 class="my-3">Details</h3>
         <ul>
-          <li class="tags">Taal: <?php echo $taal; ?></li>
-          <li class="tags">Prijs: €<?php echo $prijs; ?></li>
+          <li class="tags">Taal: <?php echo $producttaal; ?></li>
+          <li class="tags">Prijs: €<?php echo $prijsPstuk; ?></li>
 		  <li class="tagt"> Tags: </li>
-		  <?php for ($i=0; $i < $tel ; $i++) { ?>
-		  <li class="tags"> &nbsp; &nbsp; <?php echo $tags[$i] ?></li>
-	  <?php } ?>
+		  <?php
+	  }
+  }
+
+if($stmt_t = $mysqli->prepare($sql_t)){
+			if(!$stmt_t->execute()){
+				echo 'Het uitvoeren van de query is mislukt: '.$stmt_t->error.' in query: '.$sql_t;
+			}
+			else{
+				$stmt_t->bind_result($categorie);
+				while($stmt_t->fetch()){
+					$tags[$tel] = $categorie;
+					$tel++;
+		   ?>
+		  <li class="tags"> &nbsp; &nbsp; <?php echo $categorie ?></li>
+	  <?php
+  }
+}
+}
+}
+}
+	   ?>
         </ul>
 		<hr>
 			<form action="#"  method="post">
@@ -150,7 +188,10 @@ if (isset($_POST['aantal'])){
     <h3 class="my-4">gerelateerde producten</h3>
 
     <div class="row">
-		<?php for ($i=0; $i < 4; $i++) {
+		<?php
+		include('php/related.php');
+		for ($i=0; $i < 4; $i++) {
+
 			?>
 		 <div class="col-md-3 col-sm-6 mb-4">
 			 <a href="productitem.php?actie=doorgang&productid= <?php echo $productiden["$i"];?>">

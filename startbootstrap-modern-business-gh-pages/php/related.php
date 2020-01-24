@@ -9,7 +9,6 @@ else
 	for ($i=0; $i < $tel; $i++) {
 		$querries[$i] = "SELECT p.linkfoto, p.productid From tblcategorieperproduct AS cap, tblproducten AS p, tblcategorie as c WHERE p.productid = cap.productid AND c.categorieid = cap.categorieid Group by p.linkfoto, p.productid, c.categorie HAVING c.categorie = '$tags[$i]' AND NOT p.productid = '$productid'";}
 
-	}
 	foreach ($querries as $querrie) {
 
 		if($stmt = $mysqli->prepare($querrie)){
@@ -33,6 +32,7 @@ else
 				}
 			}
 		}
+}
 }
 //behoort to de pagina productitem.php
  ?>
