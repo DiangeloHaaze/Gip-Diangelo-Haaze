@@ -16,4 +16,5 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 
            }
 	   }
+//behoort to de pagina registratie.php
 ?>

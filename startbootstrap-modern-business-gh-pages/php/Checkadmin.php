@@ -20,4 +20,5 @@ if(isset($_SESSION["gebruikernaam"]) && isset($_SESSION["soortklant"]) ){
 					break;
 			}
 }
+// Behoort tot de pagina index.php.
 ?>

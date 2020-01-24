@@ -25,4 +25,5 @@ else
        }
 }
 }
+// Behoort tot de pagina Inloggen.php.
  ?>

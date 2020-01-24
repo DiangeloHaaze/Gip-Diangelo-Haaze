@@ -1,5 +1,5 @@
 <?php
-//
+//Kijkt naar welke categorien de game heeft en kijkt dan per categorie welke andere games ermee overeenstemmen. Bij een spel die meerdere tags heeft word uitgesloten sinds anders men twee keer hetzelfde spel zou kunnen zien en dit is niet een gewenst resultaat.
 $teller = 0;
 if(isset($tags)){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
@@ -21,6 +21,7 @@ else
 				while($stmt->fetch()){
 						$link[$teller] = $linkfoto;
 						$productiden[$teller] = $productid;
+//Maakt de array variabelen uniek en kijkt dan of de array in formaat is verandert zoniet gaat hij door zonder de teller te verhogen.
 						$link = array_unique($link);
 						$productiden = array_unique($productiden);
 						if ( sizeof($link) != $teller) {
@@ -33,4 +34,5 @@ else
 			}
 		}
 }
+//behoort to de pagina productitem.php
  ?>

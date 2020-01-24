@@ -41,4 +41,5 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 				$i++;
 			}
 		   }
+// Behoort tot de pagina productitem.php.
  ?>

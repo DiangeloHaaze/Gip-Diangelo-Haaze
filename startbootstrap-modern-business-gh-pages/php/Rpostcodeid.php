@@ -16,4 +16,5 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
            }
 }
 }
+// Behoort tot de pagina weizigen.php.
 ?>

@@ -42,4 +42,5 @@ foreach ($querries as $querrie) {
 }
 
 }
+// Behoort tot de pagina winkelwagen.php.
 ?>

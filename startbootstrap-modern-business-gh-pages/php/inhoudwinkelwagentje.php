@@ -16,5 +16,5 @@ else{
 	$_SESSION["koopwaren"][$_SESSION["count"]] = $id;
 	$_SESSION["count"] = $_SESSION["count"] + 1;
 }
-
+// Behoort tot de pagina winkelwagen.php.
 ?>

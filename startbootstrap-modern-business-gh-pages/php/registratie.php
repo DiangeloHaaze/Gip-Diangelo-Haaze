@@ -5,17 +5,18 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 
 else
 {
-
+//verandert de ingegeven waardes om naar stukken text
 $username = mysqli_real_escape_string($mysqli,$_POST['gebruikersnaam']);
 $email = mysqli_real_escape_string($mysqli,$_POST['email']);
 
-
+//sqlen die moeten kijken of de gebruikersnaam of email al bestaan of niet.
 $sql_u = "SELECT * FROM tblklanten WHERE gebruikersnaam='$username'";
 $sql_e = "SELECT * FROM tblklanten WHERE email='$email'";
 
+//de resultaten van de sqls
 $res_u = mysqli_query($mysqli, $sql_u);
 $res_e = mysqli_query($mysqli, $sql_e);
-
+//Het gewenste resultaat voor de resultaten van de twee vorige arrays.
 if (mysqli_num_rows($res_u) > 0 && mysqli_num_rows($res_e) > 0) {
 	$foutreg = 1;
 }else if(mysqli_num_rows($res_u) > 0){
@@ -24,6 +25,7 @@ if (mysqli_num_rows($res_u) > 0 && mysqli_num_rows($res_e) > 0) {
    $foutreg = 3;
 }
 else{
+// de sql en resultaat voor het invoegen van een gebruiker nadat hij zich correct heeft geregistreerd
 
 	 $sql = "
 	 INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, postcodeid, email, paswoord) VALUES ( ?,?,?,?,?,?)";
@@ -49,8 +51,6 @@ else{
 			}
 	 else{ echo 'Er zit een fout in de query'; }
 			}
-
-
 }
-
+//behoort to de pagina registratie.php
  ?>
