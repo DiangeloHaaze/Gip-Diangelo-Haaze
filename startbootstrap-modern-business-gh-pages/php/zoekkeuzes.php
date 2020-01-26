@@ -46,10 +46,10 @@
 		case 'ZA':
 			$sql = $sql.' ORDER BY productnaam DESC';
 			break;
-		case 'HL':
+		case 'LH':
 			$sql = $sql.' ORDER BY prijsPstuk ASC';
 			break;
-		case 'LH':
+		case 'HL':
 			$sql = $sql.' ORDER BY prijsPstuk DESC';
 			break;
 	}
