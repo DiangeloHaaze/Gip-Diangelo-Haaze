@@ -79,6 +79,7 @@ if(isset($_POST["versturen"])){
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
   			if(isset($_SESSION["adminkey"])){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers bekijken</a>
+			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
   			  <?php } ?>
   		  </div>
   		</li>
@@ -117,8 +118,8 @@ if(isset($_POST["versturen"])){
           <option value="HL">--Prijzen van hoog naar laag--</option>
 		  <option value="LH">--Prijzen van laag naar hoog--</option>
         </select>
-		  <select name="soort">
-          <option value="start">--Kies een Soort--</option>
+		<select name="soort">
+		<option value="start">--Kies een Soort--</option>
           <?php
 			  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 			  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }

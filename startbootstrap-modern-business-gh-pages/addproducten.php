@@ -1,16 +1,11 @@
 <?php
-//de pagina die ervoor zorgt dat een klant zich kan registreren en deze nieuwe klant dan ook opslaat in de databank.
 session_start();
-$foutreg = 0;
-include('php/foutcontrole.php');
-if(isset($_POST["versturen"]) && $gekeurt == true){
-include("php/postcodeid.php");
-include('php/registratie.php');
+if(isset($_POST["versturen"])){
+	include("php/controleadd.php");
 }
-?>
+ ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="utf-8">
@@ -26,8 +21,6 @@ include('php/registratie.php');
   <link href="css/diangelostyle.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-
-
 
 </head>
 
@@ -93,10 +86,7 @@ include('php/registratie.php');
   	</div>
     </div>
     </nav>
-<?php
-    //bij succesvol inloggen komt de gebruiker terug naar de beginpagina.
-    if(isset($_SESSION["ingelogd"])){header("location:index.php");}
-    ?>
+
   <!-- Page Content -->
   <div class="container">
 
@@ -120,101 +110,101 @@ include('php/registratie.php');
         <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
           <div class="control-group form-group">
             <div class="controls">
-              <label>Voornaam:</label>
-              <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} ?>">
-			  <?php if(isset($foutvoornaam)){ ?>
-				  <p class="fout">Er is een fout bij voornaam</p>
-			  <?php } ?>
+              <label>Productnaam:</label>
+              <input type="text" class="form-control" name="productnaam" id="voornaam" value="<?php if(isset($_POST["productnaam"])){echo $_POST["productnaam"];} ?>">
             </div>
           </div>
-          <div class="control-group form-group">
+		  <div class="control-group form-group">
             <div class="controls">
-              <label>Achternaam:</label>
-              <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} ?>">
-			  <?php if(isset($foutachternaam)){ ?>
-				  <p class="fout">Er is een fout bij achternaam</p>
-			  <?php } ?>
+              <label>Producttaal:</label>
+              <input type="text" class="form-control" name="producttaal" id="producttaal" value="<?php if(isset($_POST["producttaal"])){echo $_POST["producttaal"];} ?>">
             </div>
           </div>
-            <div class="control-group form-group">
+		  <div class="control-group form-group">
             <div class="controls">
-              <label>Gemeente:</label>
-              <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>">
-			  <?php if(isset($foutgemeente)){ ?>
-				  <p class="fout">Er is een fout bij gemeente</p>
-			  <?php } ?>
+              <label>Beschrijving:</label>
+              <input type="text" class="form-control" name="beschrijving" id="beschrijving" value="<?php if(isset($_POST["beschrijving"])){echo $_POST["beschrijving"];} ?>">
             </div>
           </div>
-            <div class="control-group form-group">
+		  <div class="control-group form-group">
             <div class="controls">
-              <label>Postcode:</label>
-              <input type="text" class="form-control" name="postcode" title="Moet bestaan uit 4 cijfers" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" pattern="[0-9]{4}">
-			  <?php if(isset($foutingpostcode)){ ?>
-				  <p class="fout">Er is een fout bij postcode</p>
-			  <?php } ?>
+              <label>Prijs Per Stuk:</label>
+              <input type="text" class="form-control" name="prijsPstuk" id="prijsPstuk" value="<?php if(isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];} ?>">
             </div>
           </div>
-            <div class="control-group form-group">
+		  <div class="control-group form-group">
             <div class="controls">
-              <label>Gebruikersnaam:</label>
-              <input type="text" class="form-control" name="gebruikersnaam" value="<?php if(isset($_POST['gebruikersnaam'])){echo $_POST['gebruikersnaam'];} ?>" id="gebruikersnaam" >
-			  <?php if(isset($foutgebruiker)){ ?>
-				  <p class="fout">Er is een fout bij gebruikersnaam</p>
-			  <?php } ?>
+              <label>Link naar foto:</label>
+              <input type="text" class="form-control" name="linkfoto" id="linkfoto" value="<?php if(isset($_POST["linkfoto"])){echo $_POST["linkfoto"];} ?>">
             </div>
           </div>
-            <div class="control-group form-group">
-            <div class="controls">
-              <label>Email:</label>
-              <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" id="email">
-			  <?php if(isset($foutemail)){ ?>
-				  <p class="fout">Er is een fout bij e-mail</p>
-			  <?php } ?>
-            </div>
-          </div>
-            <div class="control-group form-group">
-            <div class="controls">
-              <label>Paswoord:</label>
-               <input type="password" class="form-control" name="paswoord" id="paswoord" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Moet minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en moet minstens 8 letters groot zijn">
-			   <?php if(isset($foutpaswoord)){ ?>
- 				  <p class="fout">Er is een fout bij Paswoord</p>
- 			  <?php } ?>
-            </div>
-            </div>
-            <div id="message">
-              <h3>Het wachtwoord moet minstens :</h3>
-              <p id="letter" class="fout">Een <b>Kleine</b> letter</p>
-              <p id="capital" class="fout">Een <b>Hoofdletter</b></p>
-              <p id="number" class="fout">Een <b>nummer</b></p>
-              <p id="length" class="fout">Minimum <b>8 karakters</b></p>
-            </div>
-			<div class="control-group form-group">
-            <div class="controls">
-              <label>Bevestiging Paswoord:</label>
-               <input type="password" class="form-control" name="confirmpaswoord" id="confirmpaswoord">
-			   <?php if(isset($foutconfirmpasswoord)){ ?>
- 				  <p class="fout">Er is een fout bij Bevestiging Paswoord</p>
- 			  <?php } ?>
-            </div>
-            </div>
-            <?php
-			//toont weer welke foutboodschap er moet komen als men een al bestaande gebruikersnaam of email invoerden. Ook is er een boodschap als allebij al bestaan.
-                 switch($foutreg){
-                     case 1: ?>
-                          <p class="fout"> Je hebt een email en gebruikersnaam ingegeven die al bestaan </p>
-                         <?php break;
-                     case 2: ?>
-                         <p class="fout"> Je hebt een gebruikersnaam ingegeven die al bestaat</p>
-                         <?php break;
-                     case 3: ?>
-                         <p class="fout"> Je hebt een email ingegeven die al bestaat</p>
-                        <?php  break;
-                 }
-                 ?>
-			<?php
+		  <select name="soort">
+          <option value="start">--Kies een Soort--</option>
+		  <?php
+			  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+			  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 
-			 ?>
-          <div id="success"></div>
+			  else
+			  {
+
+			      $sql = "SELECT * FROM tblcategorie";
+			  	$sql_s = "SELECT * FROM tblsoorten";
+			  			if($stmt_s = $mysqli->prepare($sql_s)){
+			  		                if(!$stmt_s->execute()){
+			  		                    echo 'Het uitvoeren van de query is mislukt: '.$stmt_s->error.' in query: '.$sql_s;
+			  		                }
+			  		                else{
+			  		                    $stmt_s->bind_result($soortid, $soort);
+			  		                    while($stmt_s->fetch()){
+			  ?>
+          <option value="<?php echo $soortid; ?>" <?php if($soortid == $_POST["soort"]){?> selected <?php } ?> >--<?php echo $soort; ?>--</option>
+          <?php }}} ?>
+        </select>
+		<br><br>
+        <select name="categorie1">
+        <option value="start">--Kies een Categorie--</option>
+        <?php
+			if($stmt = $mysqli->prepare($sql)){
+						if(!$stmt->execute()){
+							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+						}
+						else{
+							$stmt->bind_result($categorieid, $categorie);
+							while($stmt->fetch()){
+			?>
+        <option value="<?php echo $categorieid; ?>" <?php if($categorieid == $_POST["categorie1"]){?> selected <?php } ?> >--<?php echo $categorie; ?>--</option>
+	<?php }}} ?>
+        </select>
+		<select name="categorie2">
+        <option value="start">--Kies een Categorie--</option>
+        <?php
+			if($stmt = $mysqli->prepare($sql)){
+						if(!$stmt->execute()){
+							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+						}
+						else{
+							$stmt->bind_result($categorieid, $categorie);
+							while($stmt->fetch()){
+			?>
+        <option value="<?php echo $categorieid; ?>" <?php if($categorieid == $_POST["categorie2"]){?> selected <?php } ?> >--<?php echo $categorie; ?>--</option>
+	<?php }}} ?>
+        </select>
+		<select name="categorie3">
+        <option value="start">--Kies een Categorie--</option>
+        <?php
+			if($stmt = $mysqli->prepare($sql)){
+						if(!$stmt->execute()){
+							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+						}
+						else{
+							$stmt->bind_result($categorieid, $categorie);
+							while($stmt->fetch()){
+			?>
+        <option value="<?php echo $categorieid; ?>" <?php if($categorieid == $_POST["categorie3"]){?> selected <?php } ?> >--<?php echo $categorie; ?>--</option>
+	<?php }}}} ?>
+        </select>
+
+          <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
          </form>
       </div>

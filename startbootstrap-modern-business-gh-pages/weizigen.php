@@ -70,6 +70,7 @@ include("php/wijzig.php")
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
   			if(isset($_SESSION["adminkey"])){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers bekijken</a>
+			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
   			  <?php } ?>
   		  </div>
   		</li>
