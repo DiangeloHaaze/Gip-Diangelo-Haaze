@@ -160,6 +160,7 @@ $totaal = 0;
  </form>
     <hr>
     <?php
+	$tel++;
 }
 $stmt->close();
 }
