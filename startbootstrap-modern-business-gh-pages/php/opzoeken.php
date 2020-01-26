@@ -8,9 +8,9 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 else
 {
 
-$zoekwaarde = mysqli_real_escape_string($mysqli, $_POST["zoekwaarde"]);
+ $zoekwaarde = mysqli_real_escape_string($mysqli, $_POST["zoekwaarde"]);
 
-switch($_POST["keus"]){
+switch($_POST['keus']){
     case "voornaam":
         $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email FROM tblklanten WHERE  voornaam LIKE '%$zoekwaarde%'";
         break;

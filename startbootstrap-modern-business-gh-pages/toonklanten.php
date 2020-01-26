@@ -116,7 +116,7 @@ else{
               <label>Welk soort:</label><br>
               <input type="radio" name="keus" value="voornaam"> &nbsp; <label>Voornaam</label><br>
               <input type="radio" name="keus" value="achternaam"> &nbsp; <label>Achternaam</label><br>
-              <input type="radio" name="keus" value="gebruikersnaam" <?php if(isset($_POST["versturen"]) && $_POST["keus"] == "gebruikersnaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>Gebruikersnaam</label><br>
+              <input type="radio" name="keus" value="gebruikersnaam" <?php if(isset($_POST["versturen"]) && $_POST["zoekwaarde"] == "gebruikersnaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>Gebruikersnaam</label><br>
               <input type="radio" name="keus" value="email"> &nbsp; <label>Email</label><br>
 
               <label>Zoekwaarde:</label>
