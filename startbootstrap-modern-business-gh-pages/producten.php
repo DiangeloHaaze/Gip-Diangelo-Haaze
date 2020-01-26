@@ -1,4 +1,5 @@
 <?php
+$leeg = 0;
 session_start();
 if(isset($_POST["versturen"])){
 
@@ -125,18 +126,17 @@ if(isset($_POST["versturen"])){
 			  else
 			  {
 
-			      $sql = "SELECT categorie FROM tblcategorie";
-			  	$sql_s = "SELECT s.soorten FROM tblproducten AS p, tblsoorten AS s WHERE s.soortid = p.soortid GROUP BY s.soortid";
+			      $sql = "SELECT * FROM tblcategorie";
+			  	$sql_s = "SELECT * FROM tblsoorten";
 			  			if($stmt_s = $mysqli->prepare($sql_s)){
 			  		                if(!$stmt_s->execute()){
 			  		                    echo 'Het uitvoeren van de query is mislukt: '.$stmt_s->error.' in query: '.$sql_s;
 			  		                }
 			  		                else{
-			  		                    $stmt_s->bind_result($soort);
+			  		                    $stmt_s->bind_result($soortid, $soort);
 			  		                    while($stmt_s->fetch()){
-											$z++;
 			  ?>
-          <option value="<?php echo $z; ?>">--<?php echo $soort; ?>--</option>
+          <option value="<?php echo $soortid; ?>">--<?php echo $soort; ?>--</option>
           <?php }}} ?>
         </select>
         <select name="categorie">
@@ -147,12 +147,11 @@ if(isset($_POST["versturen"])){
 							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 						}
 						else{
-							$stmt->bind_result($categorie);
+							$stmt->bind_result($categorieid, $categorie);
 							while($stmt->fetch()){
-								$y++;
 			?>
-        <option value="<?php echo $y; ?>">--<?php echo $categorie; ?>--</option>
-	<?php }}}} ?>
+        <option value="<?php echo $categorieid; ?>">--<?php echo $categorie; ?>--</option>
+	<?php }}} ?>
         </select>
           &nbsp;
           <input type="text" name="zoekterm" id="zoekterm" value="<?php if(isset($_POST['zoekterm'])){echo $_POST['zoekterm']; } ?>">
@@ -164,11 +163,6 @@ if(isset($_POST["versturen"])){
         </form>
 
       <?php
-	  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
-	  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
-
-	  else
-	  {
 
 		  if(isset($zoeker)){
 			  include('php/zoekkeuzes.php');
@@ -183,7 +177,7 @@ if(isset($_POST["versturen"])){
 	                  }
 	                  else{
 	                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
-	                      while($stmt->fetch()){
+	                      while($stmt->fetch()){ $leeg++;
         ?>
 	<form action="productitem.php?actie=" method="post">
     <div class="row">
@@ -203,6 +197,9 @@ if(isset($_POST["versturen"])){
  </form>
     <hr>
     <?php
+						}
+						if($leeg == 0){
+?> <p class="fout">Er zijn geen producten die je wenst beschikbaar.</p> <?php
 						}
 
 						$stmt->close();
