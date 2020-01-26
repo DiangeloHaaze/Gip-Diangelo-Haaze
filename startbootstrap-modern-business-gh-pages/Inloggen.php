@@ -110,7 +110,7 @@ include('php/inlog.php')
             <div class="control-group form-group">
             <div class="controls">
               <label>Gebruikersnaam:</label>
-              <input type="text" class="form-control" name="gebruikersnaam" id="gebruikersnaam" required data-validation-required-message="Gelieve u gebruikersnaam in te voeren.">
+              <input type="text" class="form-control" value="<?php if(isset($_POST["gebruikersnaam"])){echo $_POST["gebruikersnaam"]; } ?>" name="gebruikersnaam" id="gebruikersnaam" required data-validation-required-message="Gelieve u gebruikersnaam in te voeren.">
             </div>
           </div>
 
@@ -120,31 +120,25 @@ include('php/inlog.php')
                <input type="password" class="form-control" name="paswoord" id="paswoord" required data-validation-required-message="Gelieve u paswoord in te voeren.">
             </div>
             </div>
-            <?php
-            if(isset($fout)){ ?>
-               <p class="fout">Je Wachtwoord of Gebruikersnaam is verkeerd probeer nog een keer</p>
-            <?php }?>
           <div id="success"></div>
           <!-- For success/fail messages -->
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+		  <?php if(isset($_POST["versturen"]) && isset($_POST["gebruikersnaam"]) && $_POST["gebruikersnaam"] != ""  && $_POST["paswoord"] && isset($_POST["paswoord"]) && !isset($_SESSION["ingelogd"])){ ?>
+			  <p class="fout">Je hebt de foute combinatie van gebruikersnaam en paswoord gebruikt</p>
+		  <?php }  ?>
          </form>
       </div>
 
     </div>
-    <!-- /.row -->
 
   </div>
-  <!-- /.container -->
 
-  <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Athena's Game 2019</p>
     </div>
-    <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

@@ -1,8 +1,5 @@
 <?php
 session_start();
-if($_SESSION['count'] != 0){
-	include("php/itemsinwinkelwagen.php");
-}
 if(isset($_POST["actie"]) && $_POST["actie"] == 'allesverwijderen'){
 	include("php/allesverwijderen.php");
 }
@@ -109,23 +106,46 @@ $totaal = 0;
 
       <?php
 	  if($_SESSION["count"] != 0){
-        for($i = 0; $i < $teller; $i++){
+		  $tel = 0;
+		  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+		  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+		  else
+		  {
+		  	for ($y=0; $y < $_SESSION['count']; $y++) {
+		  		$aantalproducten[$y] = $_SESSION["aantal"][$y];
+		  		$productiden[$y] = $_SESSION["koopwaren"][$y];
+		  	}
+
+
+		  	for ($i=0; $i < $_SESSION['count']; $i++) {
+		  		$querries[$i] = "SELECT * FROM tblproducten WHERE productid = '$productiden[$i]'";
+		  	}
+
+		  foreach ($querries as $querrie) {
+		  	if($stmt = $mysqli->prepare($querrie)){
+		                  if(!$stmt->execute()){
+		                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$querrie;
+		                  }
+		                  else{
+		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+		                      while($stmt->fetch()){
+
         ?>
 	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="row">
       <div class="col-md-7">
-        <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$i];?>">
-          <img class="fotos" src="<?php echo $fotos[$i];  ?>" alt="http://placehold.it/700x300">
+        <a href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>">
+          <img class="fotos" src="<?php echo $linkfoto;  ?>" alt="http://placehold.it/700x300">
         </a>
       </div>
       <div class="col-md-5">
-        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$i];?>"> <?php echo $producten[$i] . " (" . $talen[$i].")"; ?></h3><a>
-        <p><?php echo $beschrijvingen[$i] ?></p>
+        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>"> <?php echo $productnaam . " (" . $producttaal.")"; ?></h3><a>
+        <p><?php echo $beschrijving ?></p>
         </a>
-		<h4 > Aantallen: <?php echo $aantalproducten[$i];?> </h4>
-		<h4> Prijs Per Stuk: €<?php echo $prijzen[$i]; ?></h4>
-		<h4>Totaal prijs product: €<?php $totaalpp[$i] = $aantalproducten[$i] * $prijzen[$i]; echo $totaalpp[$i]; $totaal = $totaal + $totaalpp[$i]; ?></h4>
-		<form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']?>?actiep=wis&productid=<?php echo $productiden[$i] ; ?>">
+		<h4 > Aantallen: <?php echo $aantalproducten[$tel];?> </h4>
+		<h4> Prijs Per Stuk: €<?php echo $prijsPstuk; ?></h4>
+		<h4>Totaal prijs product: €<?php $totaalpp = $aantalproducten[$tel] * $prijsPstuk; echo $totaalpp; $totaal = $totaal + $totaalpp; ?></h4>
+		<form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']?>?actiep=wis&productid=<?php echo $productid; ?>">
   	  <input type="submit" name="btnwissen" id="wis" value="wis">
   	  </form>
       </div>
@@ -133,6 +153,14 @@ $totaal = 0;
  </form>
     <hr>
     <?php
+}
+
+$stmt->close();
+}
+
+}
+}
+
 }
       ?>
 	  <h1>Totaalbedrag is: €<?php echo $totaal; ?></h1>

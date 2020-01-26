@@ -10,19 +10,22 @@ else
   	$gebruikersnaam = mysqli_real_escape_string($mysqli, $_POST['gebruikersnaam']);
   	$password = mysqli_real_escape_string($mysqli, $_POST['paswoord']);
 
-  	$sql = "SELECT * FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$password'";
-
-  	$res = mysqli_query($mysqli, $sql);
-        if(mysqli_num_rows($res) == 1){
+  	$sql = "SELECT soortklant FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$password'";
+	if($stmt = $mysqli->prepare($sql)){
+				if(!$stmt->execute()){
+					echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+				}
+				else{
+					$stmt->bind_result($soortklant);
+					while($stmt->fetch()){
                 $_SESSION["ingelogd"] = true;
                 $_SESSION["gebruikernaam"] = $gebruikersnaam;
                 $_SESSION["paswoord"] = $paswoord;
-				$_SESSION["soortklant"] = $row["soortklant"];
-    }
-       else
-       {
-           $fout = true;
-       }
+				$_SESSION["soortklant"] = $soortklant;
+			}
+		}
+
+}
 }
 }
 // Behoort tot de pagina Inloggen.php.

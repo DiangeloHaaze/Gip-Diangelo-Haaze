@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('php/categorien.php');
 if(isset($_POST["versturen"])){
 
     if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == "" && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){

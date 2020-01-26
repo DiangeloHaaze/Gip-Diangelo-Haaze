@@ -74,7 +74,7 @@ include('php/featured.php');
   			  <a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
   				<?php
   			  // dit is alleen zichtbaar waneer de gebruiker een admin is.
-  			  if(isset($_SESSION["adminkey"])){?>
+  			  if($_SESSION["adminkey"]){?>
   			  <a class="dropdown-item" href="toonklanten.php">Gebruikers bekijken</a>
   				<?php } ?>
   			</div>
