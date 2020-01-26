@@ -161,15 +161,11 @@ $totaal = 0;
     <hr>
     <?php
 }
-
 $stmt->close();
 }
-
 }
 }
-
-}
-      ?>
+}  ?>
 	  <h1>Totaalbedrag is: €<?php echo $totaal; ?></h1>
 	  <?php if(isset($_SESSION["ingelogd"])){ ?>
 		  <form id="form2" name="form2" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
