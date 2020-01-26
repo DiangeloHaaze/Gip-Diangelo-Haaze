@@ -161,51 +161,13 @@ if(isset($_POST["versturen"])){
           <?php }}} ?>
         </select>
 		<br><br>
-        <select name="categorie1">
-        <option value="start">--Kies een Categorie--</option>
-        <?php
-			if($stmt = $mysqli->prepare($sql)){
-						if(!$stmt->execute()){
-							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
-						}
-						else{
-							$stmt->bind_result($categorieid, $categorie);
-							while($stmt->fetch()){
-			?>
-        <option value="<?php echo $categorieid; ?>" <?php if($categorieid == $_POST["categorie1"]){?> selected <?php } ?> >--<?php echo $categorie; ?>--</option>
-	<?php }}} ?>
-        </select>
-		<select name="categorie2">
-        <option value="start">--Kies een Categorie--</option>
-        <?php
-			if($stmt = $mysqli->prepare($sql)){
-						if(!$stmt->execute()){
-							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
-						}
-						else{
-							$stmt->bind_result($categorieid, $categorie);
-							while($stmt->fetch()){
-			?>
-        <option value="<?php echo $categorieid; ?>" <?php if($categorieid == $_POST["categorie2"]){?> selected <?php } ?> >--<?php echo $categorie; ?>--</option>
-	<?php }}} ?>
-        </select>
-		<select name="categorie3">
-        <option value="start">--Kies een Categorie--</option>
-        <?php
-			if($stmt = $mysqli->prepare($sql)){
-						if(!$stmt->execute()){
-							echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
-						}
-						else{
-							$stmt->bind_result($categorieid, $categorie);
-							while($stmt->fetch()){
-			?>
-        <option value="<?php echo $categorieid; ?>" <?php if($categorieid == $_POST["categorie3"]){?> selected <?php } ?> >--<?php echo $categorie; ?>--</option>
-	<?php }}}} ?>
-        </select>
-
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+		  <?php
+		  if (isset($goedkeuring)){
+		  	?>
+			<p class="goed">Het product is successvol toegevoegd</p>
+		  <?php }?>
          </form>
       </div>
 

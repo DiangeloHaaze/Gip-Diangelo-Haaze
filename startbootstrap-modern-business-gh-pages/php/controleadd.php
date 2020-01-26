@@ -18,10 +18,12 @@ if(!(isset($_POST["linkfoto"]) && $_POST["linkfoto"] != "")){
 if(!($_POST["soort"] != "start")){
 	$foutief = false;
 }
+//if(!($_POST["categorie1"] != "start" || $_POST["categorie2"] != "start" || $_POST["categorie3"] != "start")){
+//	$foutief = false;
+//}
 
 
-
-if ($foutief == false) {
-	echo "hallo";
+if ($foutief == true) {
+	include("voegproducttoe.php");
 }
 ?>
