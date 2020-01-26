@@ -4,6 +4,9 @@ include('php/itemdisplay.php');
 if(isset($_POST["voorkopen"])){
 	$kopen = true;
 }
+if(isset($_POST["kopen"])){
+	$compleet = true;
+}
 if (isset($_POST['aantal'])){
 	include('php/inhoudwinkelwagentje.php');
 }
@@ -178,6 +181,10 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 				</select>
 
 
+			<?php } if(isset($compleet)){ ?>
+				<p class='goed'> Wat wilt u vervolgens doen: <br>
+			<a href="producten.php" class="aankoopboodschap">doorshoppen</a> <br> of <br>
+			<a href="winkelwagen.php" class="aankoopboodschap"> winkelwagen </a>
 			<?php } ?>
 		</form>
 

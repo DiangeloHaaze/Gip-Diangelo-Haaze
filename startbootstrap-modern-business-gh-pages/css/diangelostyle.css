@@ -77,3 +77,10 @@
 	color: red;
 	text-decoration: none;
 }
+.aankoopboodschap{
+	color:lawngreen;
+}
+.aankoopboodschap:hover{
+	color:lawngreen;
+	text-decoration: none;
+}
