@@ -1,9 +1,15 @@
 <?php
 session_start();
-if(isset($_POST["actie"]) && $_POST["actie"] == 'allesverwijderen'){
+if(isset($_POST["allesverwijderen"]) && $_POST["allesverwijderen"] == 'allesverwijderen'){
 	include("php/allesverwijderen.php");
 }
-include("php/itemverwijderen.php");
+if(isset($_GET['actiep']) && $_GET['actiep'] == 'wis' && isset($_GET['productid'])){
+	$id = $_GET['productid'];
+	include('php/verwijder.php');
+}
+
+
+
 $totaal = 0;
 ?>
 <!DOCTYPE html>
@@ -145,9 +151,10 @@ $totaal = 0;
 		<h4 > Aantallen: <?php echo $aantalproducten[$tel];?> </h4>
 		<h4> Prijs Per Stuk: €<?php echo $prijsPstuk; ?></h4>
 		<h4>Totaal prijs product: €<?php $totaalpp = $aantalproducten[$tel] * $prijsPstuk; echo $totaalpp; $totaal = $totaal + $totaalpp; ?></h4>
-		<form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']?>?actiep=wis&productid=<?php echo $productid; ?>">
-  	  <input type="submit" name="btnwissen" id="wis" value="wis">
-  	  </form>
+		<h4><a class="zwartelink" href="<?php echo $_SERVER['PHP_SELF']; ?>?actiep=wis&productid=<?php echo $productid; ?>">
+			<i>Verwijderen?</i>
+		</a>
+	</h4>
       </div>
     </div>
  </form>
@@ -165,12 +172,11 @@ $stmt->close();
       ?>
 	  <h1>Totaalbedrag is: €<?php echo $totaal; ?></h1>
 	  <?php if(isset($_SESSION["ingelogd"])){ ?>
-		  <form  method="post" action="<?php echo
-		  $_SERVER['PHP_SELF']?>?actie=allesverwijderen&artikelid=<?php echo $productiden[$i] ; ?>">
-	  <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Bevestigen </button>
-	  <button type="submit" name="allesverwijderen" class="btn btn-primary" id="sendMessageButton">
-		   Alles Verwijderen </button>
-  	  </form>
+		  <form id="form2" name="form2" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+			  <button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Bevestigen
+			  </button>
+	   </form>
+
   <?php } else{ ?>
 	  <a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om te kunnen kopen.</a>
   <?php }} else { ?>

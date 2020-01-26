@@ -14,7 +14,7 @@ if (isset($erdoor)) {
 else{
 	$_SESSION["aantal"][$_SESSION["count"]] = $_POST["aantal"];
 	$_SESSION["koopwaren"][$_SESSION["count"]] = $id;
-	$_SESSION["count"] = $_SESSION["count"] + 1;
+	$_SESSION["count"]++;
 }
 // Behoort tot de pagina winkelwagen.php.
 ?>
