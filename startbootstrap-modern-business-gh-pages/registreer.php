@@ -94,6 +94,7 @@ include('php/registratie.php');
   	</div>
     </div>
     </nav>
+
 <?php
     //bij succesvol inloggen komt de gebruiker terug naar de beginpagina.
     if(isset($_SESSION["ingelogd"])){header("location:index.php");}
