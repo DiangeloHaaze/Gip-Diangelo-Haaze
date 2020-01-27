@@ -16,8 +16,9 @@ else
 				$beschrijving = mysqli_real_escape_string($mysqli,$_POST["beschrijving"]);
 				$prijsPstuk = mysqli_real_escape_string($mysqli,$_POST["prijsPstuk"]);
 				$linkfoto = mysqli_real_escape_string($mysqli,$_POST["linkfoto"]);
-				$goedkeuring = true;
+				$goedkeuring_a = true;
 			}
+
 
 }
  ?>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION["adminkey"])){
+    header('location:index.php');
+}
 if(isset($_POST["versturen"])){
 	include("php/controleadd.php");
 }
@@ -146,8 +149,6 @@ if(isset($_POST["versturen"])){
 
 			  else
 			  {
-
-			      $sql = "SELECT * FROM tblcategorie";
 			  	$sql_s = "SELECT * FROM tblsoorten";
 			  			if($stmt_s = $mysqli->prepare($sql_s)){
 			  		                if(!$stmt_s->execute()){
@@ -158,7 +159,8 @@ if(isset($_POST["versturen"])){
 			  		                    while($stmt_s->fetch()){
 			  ?>
           <option value="<?php echo $soortid; ?>" <?php if($soortid == $_POST["soort"]){?> selected <?php } ?> >--<?php echo $soort; ?>--</option>
-          <?php }}} ?>
+	  <?php }}}}
+		  ?>
         </select>
 		<br><br>
           <div id="success"></div><hr>
