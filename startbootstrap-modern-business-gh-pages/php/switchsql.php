@@ -1,23 +1,25 @@
 <?php
+
 switch ($_POST["keuze"]) {
 	case 'productnaam':
-		// code...
+		$sql = "
+		UPDATE tblproducten SET productnaam = '$zoekwaarde' WHERE  productid = '$productid'";
 		break;
-
 	case 'producttaal':
-		// code...
+		$sql = "
+		UPDATE tblproducten SET producttaal = '$zoekwaarde' WHERE  productid = '$productid'" ;
 		break;
 	case 'beschrijving':
-		// code...
+		$sql = "
+		UPDATE tblproducten SET beschrijving = '$zoekwaarde' WHERE  productid = '$productid'";
 		break;
 	case 'prijsPstuk':
-		// code...
+		$sql = "
+		UPDATE tblproducten SET prijsPstuk = '$zoekwaarde' WHERE  productid = '$productid'";
 		break;
 	case 'linkfoto':
 		$sql = "
-		UPDATE tblproducten";
+		UPDATE tblproducten SET linkfoto = '$zoekwaarde' WHERE  productid = '$productid'";
 		break;
 }
-
-
  ?>

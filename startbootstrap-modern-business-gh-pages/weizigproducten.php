@@ -107,7 +107,9 @@ include("php/weizigproduct.php");
       <div class="col-lg-9 mb-4">
         <h3></h3>
         <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-			<input type="text" class="form-control" name="productid" id="productid" > <br>
+			<label>Productid:</label>
+			<input type="text" class="form-control" value="<?php if(isset($_POST["productid"])){ echo $_POST["productid"]; } ?>" name="productid" id="productid" > <br>
+			<label>Wat moet worden gewijzigd:</label><br>
 			<input type="radio" name="keuze" value="productnaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "productnaam"){?> checked <?php } if(!(isset($_POST["keuze"]))){?> checked <?php } ?>> Productnaam <br>
 			<input type="radio" name="keuze" value="producttaal" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "producttaal"){?> checked <?php } ?>> Producttaal <br>
 			<input type="radio" name="keuze" value="beschrijving" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "beschrijving"){?> checked <?php } ?>> Beschrijving <br>
@@ -118,7 +120,7 @@ include("php/weizigproduct.php");
 		  <div class="control-group form-group">
             <div class="controls">
               <label>Zoekwaarde:</label>
-              <input type="text" class="form-control" name="zoekwaarde" id="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>">
+              <input type="text" class="form-control" value="<?php if(isset($_POST["zoekwaarde"])){ echo $_POST["zoekwaarde"]; } ?>" name="zoekwaarde" id="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>">
             </div>
           </div>
 
@@ -128,7 +130,12 @@ include("php/weizigproduct.php");
 		  <?php
 		  if (isset($foutzoekwaarde) && isset($_POST["versturen"])){
 		  	?>
-			<p class="fout">Het product heeft geen zoekwaarde</p>
+			<p class="fout">Niet alles is ingevuld. Wilt u dit aub doen.</p>
+		  <?php }?>
+		  <?php
+		  if (isset($goedkeuring) && isset($_POST["versturen"])){
+		  	?>
+			<p class="goed">Het updaten is geslaagd.</p>
 		  <?php }?>
          </form>
       </div>
