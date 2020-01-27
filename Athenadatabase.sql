@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 10 jan 2020 om 00:37
+-- Gegenereerd op: 27 jan 2020 om 21:17
 -- Serverversie: 5.7.17
 -- PHP-versie: 5.6.30
 
@@ -62,7 +62,9 @@ INSERT INTO `tblcategorie` (`categorieid`, `categorie`) VALUES
 (22, 'Survival'),
 (23, 'Open Wereld'),
 (24, 'Sandbox'),
-(25, 'Jump\'n\'Run');
+(25, 'Jump\'n\'Run'),
+(26, 'Fighting'),
+(27, 'Muziek');
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,7 @@ INSERT INTO `tblcategorie` (`categorieid`, `categorie`) VALUES
 CREATE TABLE `tblcategorieperproduct` (
   `categorieid` int(11) NOT NULL,
   `productid` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tblcategorieperproduct`
@@ -87,75 +89,56 @@ INSERT INTO `tblcategorieperproduct` (`categorieid`, `productid`) VALUES
 (3, 3),
 (1, 4),
 (3, 4),
+(1, 5),
+(3, 5),
+(1, 6),
+(3, 6),
+(1, 7),
+(3, 7),
+(1, 8),
+(3, 8),
+(1, 9),
+(3, 9),
+(1, 10),
+(3, 10),
+(1, 11),
+(3, 11),
 (5, 12),
 (8, 12),
+(1, 13),
+(5, 13),
+(21, 13),
+(1, 14),
 (12, 15),
-(5, 17),
 (23, 17),
-(13, 32),
+(21, 18),
+(26, 18),
+(5, 43),
+(8, 43),
+(10, 44),
+(16, 44),
+(5, 45),
+(15, 45),
+(16, 46),
+(21, 46),
+(4, 47),
+(5, 47),
+(23, 47),
 (5, 48),
 (20, 48),
 (22, 48),
 (23, 48),
 (7, 49),
-(12, 49),
-(23, 49);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `tblconsoleperconsole`
---
-
-CREATE TABLE `tblconsoleperconsole` (
-  `consoleid` int(11) NOT NULL,
-  `productid` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `tblconsoleperconsole`
---
-
-INSERT INTO `tblconsoleperconsole` (`consoleid`, `productid`) VALUES
-(1, 1),
-(1, 9),
-(1, 10),
-(2, 3),
-(2, 4),
-(2, 5),
-(2, 6),
-(2, 7),
-(2, 8),
-(2, 11),
-(7, 2),
-(8, 2);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `tblconsoles`
---
-
-CREATE TABLE `tblconsoles` (
-  `consoleid` int(11) NOT NULL,
-  `console` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `tblconsoles`
---
-
-INSERT INTO `tblconsoles` (`consoleid`, `console`) VALUES
-(1, 'Nintedo DS'),
-(2, 'Nintendo 3DS'),
-(3, 'Nintendo Switch'),
-(4, 'Nintendo WII'),
-(5, 'Nintendo WII U'),
-(6, 'Playstation 3'),
-(7, 'Playstation 4'),
-(8, 'Microsoft Xbox One'),
-(9, 'Microsoft Xbox 360'),
-(10, 'PC');
+(10, 49),
+(23, 49),
+(3, 50),
+(4, 50),
+(5, 50),
+(21, 50),
+(22, 50),
+(23, 50),
+(24, 50),
+(20, 51);
 
 -- --------------------------------------------------------
 
@@ -179,7 +162,7 @@ CREATE TABLE `tblfactuurlijnen` (
   `productid` int(11) NOT NULL,
   `factuurid` int(11) NOT NULL,
   `Prijsbijaankoop` int(11) NOT NULL,
-  `Aantal` int(11) NOT NULL
+  `aantal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -193,7 +176,7 @@ CREATE TABLE `tblgemeente` (
   `postcode` varchar(8) NOT NULL,
   `gemeente` varchar(255) NOT NULL,
   `ucgemeente` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tblgemeente`
@@ -3119,31 +3102,26 @@ CREATE TABLE `tblklanten` (
   `gebruikersnaam` varchar(20) NOT NULL,
   `postcodeid` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `paswoord` varchar(20) NOT NULL
+  `paswoord` varchar(20) NOT NULL,
+  `soortklant` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tblklanten`
 --
 
-INSERT INTO `tblklanten` (`klantid`, `voornaam`, `achternaam`, `gebruikersnaam`, `postcodeid`, `email`, `paswoord`) VALUES
-(1, 'Diangelo', 'Haaze', 'BaXtabR', 1621, 'diangelohaaze@gmail.com', 'Athena'),
-(2, 'Jordy', 'Van Den Bossche', 'VDBJordy', 1621, 'JordyVDB@gmail.com', 'Athena'),
-(3, 'Sander', 'dedeutsche', 'Samurai101', 861, 'SanderSamurai@gmail.com', 'Athena'),
-(4, 'Raj', 'Puri', 'AzianKing', 861, 'RajPuriRICHMAN@gmail.com', 'Athena'),
-(5, 'Senne', 'Schokkaert', 'WitteFaction', 861, 'SenneFactions@gmail.com', 'Athena'),
-(6, 'Jaron', 'Devrieze', 'Csharp', 861, 'Jarondevries@gmail.com', 'Athena'),
-(7, 'Alyssa', 'Haaze', 'DolfijnMeid', 1621, 'Alyssadolfijn@gmail.com', 'Athena'),
-(8, 'Jarno', 'Basket', 'Basketbril', 861, 'jarnobasket@gmail.com', 'Athena'),
-(9, 'Tuncay', 'Schokkaert', 'tuncay', 861, 'Tucaytuncay@gmail.com', 'Athena'),
-(10, 'Zeno', 'boomkhalifa', 'FRED', 861, 'ZenoFRED@gmail.com', 'Athena'),
-(11, 'Sven ', 'Haaze', 'Svenrendier', 1548, 'svenhaaze@gmail.com', 'Athena'),
-(21, 'Elize', 'Thompson', 'Boeklover21', 1548, 'elizethompson21@gmail.com', 'Athena'),
-(22, 'Sander ', 'Haaze', 'decooleresander', 1548, 'sander.haaze@gmail.com', 'Athena'),
-(23, 'Sander ', 'Haaze', 'decooleresander', 1548, 'sander.haaze@gmail.com', 'Athena'),
-(24, 'Sven ', 'Haaze', 'Svenrendier', 1548, 'elizethompson@gmail.com', 'Fiona'),
-(25, 'Sven ', 'Haaze', 'Svenrendier', 1548, 'elizethompson@gmail.com', 'Fiona'),
-(26, 'Sven ', 'Haaze', 'Svenrendier', 1548, 'elizethompson@gmail.com', 'Fiona');
+INSERT INTO `tblklanten` (`klantid`, `voornaam`, `achternaam`, `gebruikersnaam`, `postcodeid`, `email`, `paswoord`, `soortklant`) VALUES
+(1, 'Diangelo', 'Haaze', 'BaXtabR', 1621, 'diangelo.haaze@gmail.com', 'Wachtw00rd', 1),
+(2, 'Jordy ', 'VanDenBosche', 'JordyVDB', 1621, 'JordyVDB@gmail.com', 'Wachtw00rd', 1),
+(3, 'Mvr', 'Vandamme', 'MvrVandamme', 1000, 'MvrVandamme@gmail.com', 'Wachtw00rd', 1),
+(4, 'Senne', 'Schokeart', 'Centjeuh', 816, 'Senne.Schokeart@gmail.com', 'Wachtw00rd', 0),
+(5, 'Jaron', 'Devrieze', 'JaronDev', 1000, 'JaronDev@gmail.com', 'Wachtw00rd', 0),
+(6, 'Sander', 'Detus', 'German', 816, 'dabder.boo@gmail.com', 'Wachtw00rd', 0),
+(7, 'Jarno', 'kool', 'koolikben', 816, 'koolikben@gmail.com', 'Wachtw00rd', 0),
+(8, 'zeno', 'boomer', 'YeetusFeetus', 816, 'YeetusFeetus@gmail.com', 'Wachtw00rd', 0),
+(9, 'Tuncay', 'Tony', 'Tony', 816, 'Tuncay.Tony@gmail.com', 'Wachtw00rd', 0),
+(10, 'Ray', 'Puri', 'Asianking', 821, 'Asianking.', 'Wachtw00rd', 0),
+(11, 'Elize', 'Thompson', 'Boeklover', 1621, 'ElizeThompson21@gmail.com', 'Wachtw00rd', 0);
 
 -- --------------------------------------------------------
 
@@ -3154,10 +3132,10 @@ INSERT INTO `tblklanten` (`klantid`, `voornaam`, `achternaam`, `gebruikersnaam`,
 CREATE TABLE `tblproducten` (
   `productid` int(11) NOT NULL,
   `productnaam` varchar(40) NOT NULL,
-  `producttaal` varchar(3) NOT NULL,
+  `producttaal` varchar(2) NOT NULL,
   `soortid` int(11) NOT NULL,
   `beschrijving` text NOT NULL,
-  `prijs/stuk` int(11) NOT NULL,
+  `prijsPstuk` int(11) NOT NULL,
   `linkfoto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -3165,7 +3143,7 @@ CREATE TABLE `tblproducten` (
 -- Gegevens worden geëxporteerd voor tabel `tblproducten`
 --
 
-INSERT INTO `tblproducten` (`productid`, `productnaam`, `producttaal`, `soortid`, `beschrijving`, `prijs/stuk`, `linkfoto`) VALUES
+INSERT INTO `tblproducten` (`productid`, `productnaam`, `producttaal`, `soortid`, `beschrijving`, `prijsPstuk`, `linkfoto`) VALUES
 (1, 'Inazuma Eleven', 'NL', 1, 'Het is een Voetbalgame', 25, 'Pictures/InazumaEleven.png'),
 (2, 'Call Of Duty Modern Warfare', 'EN', 1, 'Het is een first person shooter', 20, 'Pictures/ModernWarfare.jpg'),
 (3, 'Inazuma Eleven Go Galaxy Big Bang', 'JP', 1, 'Het is een voetbalgame', 20, 'Pictures/inazumaElevenGo3GalaxyBIGBANG.jpg'),
@@ -3177,7 +3155,7 @@ INSERT INTO `tblproducten` (`productid`, `productnaam`, `producttaal`, `soortid`
 (9, 'Inazuma Eleven 2 Blizzard', 'NL', 1, 'Het is een Voetbalgame', 20, 'Pictures/InazumaEleven2Blizzard.png'),
 (10, 'Inazuma Eleven 2 Firestorm', 'NL', 1, 'Het is een Voetbalgame', 20, 'Pictures/InazumaEleven2Firestorm.png'),
 (11, 'Inazuma Eleven 3 Bomb Blast', 'EN', 1, 'Het is een Voetbalgame', 25, 'Pictures/InazumaEleven3BombBlast.png'),
-(12, 'Pokémon Epée', 'FR', 1, 'Het is een franse pokemongame', 45, 'Pictures/NA.jpg'),
+(12, 'Pokemon Epee', 'FR', 1, 'Het is een franse pokemongame', 45, 'Pictures/NA.jpg'),
 (13, 'Ring Fit Adventure ', 'EN', 1, 'Een sport game die u fit moet houden', 80, 'Pictures/NA.jpg'),
 (14, 'Fifa 20', 'EN', 1, 'Fifa', 55, 'Pictures/NA.jpg'),
 (15, 'Just Dance 2020', 'EN', 1, 'Dance game', 35, 'Pictures/NA.jpg'),
@@ -3257,16 +3235,16 @@ ALTER TABLE `tblcategorieperproduct`
   ADD PRIMARY KEY (`productid`,`categorieid`);
 
 --
--- Indexen voor tabel `tblconsoleperconsole`
+-- Indexen voor tabel `tblfactuurlijnen`
 --
-ALTER TABLE `tblconsoleperconsole`
-  ADD PRIMARY KEY (`consoleid`,`productid`);
+ALTER TABLE `tblfactuurlijnen`
+  ADD PRIMARY KEY (`productid`,`factuurid`);
 
 --
--- Indexen voor tabel `tblconsoles`
+-- Indexen voor tabel `tblklanten`
 --
-ALTER TABLE `tblconsoles`
-  ADD PRIMARY KEY (`consoleid`);
+ALTER TABLE `tblklanten`
+  ADD PRIMARY KEY (`klantid`);
 
 --
 -- Indexen voor tabel `tblproducten`
@@ -3288,12 +3266,12 @@ ALTER TABLE `tblsoorten`
 -- AUTO_INCREMENT voor een tabel `tblcategorie`
 --
 ALTER TABLE `tblcategorie`
-  MODIFY `categorieid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `categorieid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
--- AUTO_INCREMENT voor een tabel `tblconsoles`
+-- AUTO_INCREMENT voor een tabel `tblklanten`
 --
-ALTER TABLE `tblconsoles`
-  MODIFY `consoleid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `tblklanten`
+  MODIFY `klantid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT voor een tabel `tblproducten`
 --
@@ -3303,7 +3281,7 @@ ALTER TABLE `tblproducten`
 -- AUTO_INCREMENT voor een tabel `tblsoorten`
 --
 ALTER TABLE `tblsoorten`
-  MODIFY `soortid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
+  MODIFY `soortid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
