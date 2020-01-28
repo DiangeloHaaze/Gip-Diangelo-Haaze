@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("php/wijzig.php")
+include("php/Keuzeweizig.php");
+include("php/wijzig.php");
 
 ?>
 <!DOCTYPE html>
@@ -109,22 +110,22 @@ include("php/wijzig.php")
                <div class="control-group form-group">
                <div class="controls">
                  <label>Wat wilt u weizigen soort:</label><br>
-                 <input type="radio" name="keus" value="voornaam"> &nbsp; <label>Voornaam</label><br>
+                 <input type="radio" name="keus" value="voornaam"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "voornaam"){ ?>checked <?php}?>> &nbsp; <label>Voornaam</label><br>
                  <input type="radio" name="keus" value="achternaam" <?php if(isset($_POST["versturen"]) && $_POST["keus"] == "achternaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>achternaam</label><br>
+				 <input type="radio" name="keus" value="gebruikersnaam"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "gebruikersnaam"){ ?>checked <?php}?>> &nbsp; <label>Gebruikersnaam</label><br>
+				 <input type="radio" name="keus" value="email"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "email"){ ?>checked <?php}?>> &nbsp; <label>Email</label><br>
+				 <input type="radio" name="keus" value="postcodeEnGemeente"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "postcodeEnGemeente"){ ?>checked <?php}?>> &nbsp; <label>Postcode En Gemeente</label><br>
 
+				 <?php if(isset($peg)){ ?>
+				<input type="text" class="form-control" name="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
+				<input type="text" class="form-control" name="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
+				 <?php }else{ ?>
                  <label>Waarde:</label>
                  <input type="text" class="form-control" name="waarde" value="<?php if(isset($_POST["waarde"])){echo $_POST["waarde"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
                </div>
              </div>
              <div id="success"></div>
              <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-               <?php } else{  ?>
-               <div class="list-group">
-             <p class="goed">Het wijzigen is gelukt </p>
-
-             <br />
-           </div>
-               <?php } ?>
             </form>
          </div>
     </div>
