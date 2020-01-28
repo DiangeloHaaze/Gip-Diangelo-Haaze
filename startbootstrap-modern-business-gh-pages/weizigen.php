@@ -1,12 +1,20 @@
 <?php
 session_start();
-include("php/Keuzeweizig.php");
-include("php/wijzig.php");
-
-?>
+if(isset($_POST['versturen']) && $_POST["keuze"] == 'postegem'){
+	$peg = true;
+}
+if(isset($_POST['zoekwaarde']) && $_POST['zoekwaarde'] != ""){
+	$def = true;
+}
+if (isset($_POST['postcode']) && isset($_POST['gemeente']) && $_POST['gemeente'] != "" && $_POST['postcode'] != "") {
+	$def = true;
+}
+if(isset($def)){
+	echo "hey";
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="utf-8">
@@ -14,18 +22,19 @@ include("php/wijzig.php");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Athena's game</title>
+  <title>Athena's Game</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <!-- opmaak gemaakt door diangelo -->
   <link href="css/diangelostyle.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
 
 </head>
 
 <body>
+
 	<!-- De navigatie balk bovenaan de pagina op elke pagina. -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -90,47 +99,66 @@ include("php/wijzig.php");
   	</div>
     </div>
     </nav>
+
   <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Wijzigen
+    <h1 class="mt-4 mb-3">Registreren
       <small>Gegevens</small>
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active">Log In</li>
+      <li class="breadcrumb-item active">Registratie</li>
     </ol>
 
-    <div class="row">
-		<div class="col-lg-9 mb-4">
-           <h3></h3>
-           <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-               <?php if(!isset($goedkeuring)){ ?>
-               <div class="control-group form-group">
-               <div class="controls">
-                 <label>Wat wilt u weizigen soort:</label><br>
-                 <input type="radio" name="keus" value="voornaam"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "voornaam"){ ?>checked <?php}?>> &nbsp; <label>Voornaam</label><br>
-                 <input type="radio" name="keus" value="achternaam" <?php if(isset($_POST["versturen"]) && $_POST["keus"] == "achternaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>achternaam</label><br>
-				 <input type="radio" name="keus" value="gebruikersnaam"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "gebruikersnaam"){ ?>checked <?php}?>> &nbsp; <label>Gebruikersnaam</label><br>
-				 <input type="radio" name="keus" value="email"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "email"){ ?>checked <?php}?>> &nbsp; <label>Email</label><br>
-				 <input type="radio" name="keus" value="postcodeEnGemeente"<?php if(isset($_POST["versturen"]) && $_POST["keus"] == "postcodeEnGemeente"){ ?>checked <?php}?>> &nbsp; <label>Postcode En Gemeente</label><br>
 
-				 <?php if(isset($peg)){ ?>
-				<input type="text" class="form-control" name="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
-				<input type="text" class="form-control" name="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
-				 <?php }else{ ?>
-                 <label>Waarde:</label>
-                 <input type="text" class="form-control" name="waarde" value="<?php if(isset($_POST["waarde"])){echo $_POST["waarde"];} ?>" id="waarde" required data-validation-required-message="Gelieve u waarde in te voeren.">
-               </div>
-             </div>
-             <div id="success"></div>
-             <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-            </form>
-         </div>
+
+    <div class="row">
+      <div class="col-lg-9 mb-4">
+        <h3></h3>
+        <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+			<label>Wat moet worden gewijzigd:</label><br>
+			<input type="radio" name="keuze" value="voornaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "voornaam"){?> checked <?php } if(!(isset($_POST["keuze"]))){?> checked <?php } ?>> Voornaam <br>
+			<input type="radio" name="keuze" value="achternaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "achternaam"){?> checked <?php } ?>> Achternaam <br>
+			<input type="radio" name="keuze" value="gebruikersnaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "gebruikersnaam"){?> checked <?php } ?>> Gebruikersnaam <br>
+			<input type="radio" name="keuze" value="email" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "email"){?> checked <?php } ?>> Email <br>
+			<input type="radio" name="keuze" value="postegem" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "postegem"){?> checked <?php } ?>> Postcode en Gemeente <br>
+
+
+		  <div class="control-group form-group">
+            <div class="controls">
+			 <?php if(isset($peg)){ ?>
+				 <label>Postcode:</label>
+                 <input type="text" class="form-control" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} ?>">
+				 <label>Gemeente:</label>
+                 <input type="text" class="form-control"  name="gemeente" id="zoekwaarde" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>">
+			 <?php } else{ ?>
+              <label>Zoekwaarde:</label>
+              <input type="text" class="form-control"  name="zoekwaarde" id="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>">
+		  <?php } ?>
+            </div>
+          </div>
+
+		<br><br>
+          <div id="success"></div><hr>
+          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+		  <?php
+		  if (isset($foutzoekwaarde) && isset($_POST["versturen"])){
+		  	?>
+			<p class="fout">Niet alles is ingevuld. Wilt u dit aub doen.</p>
+		  <?php }?>
+		  <?php
+		  if (isset($goedkeuring) && isset($_POST["versturen"])){
+		  	?>
+			<p class="goed">Het updaten is geslaagd.</p>
+		  <?php }?>
+         </form>
+      </div>
+
     </div>
     <!-- /.row -->
 
@@ -153,7 +181,9 @@ include("php/wijzig.php");
   <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
   <script src="js/jqBootstrapValidation.js"></script>
 
-
+  <!-- Javascript voor paswoord -->
+  <script src="js/paswoordvalidatie.js"></script>
+  <script src="js/foutcontrole.js"></script>
 </body>
 
 </html>
