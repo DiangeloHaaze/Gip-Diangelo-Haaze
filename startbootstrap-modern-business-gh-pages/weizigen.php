@@ -3,13 +3,8 @@ session_start();
 if(isset($_POST['versturen']) && $_POST["keuze"] == 'postegem'){
 	$peg = true;
 }
-if(isset($_POST['zoekwaarde']) && $_POST['zoekwaarde'] != ""){
-	$def = true;
-}
-if (isset($_POST['postcode']) && isset($_POST['gemeente']) && $_POST['gemeente'] != "" && $_POST['postcode'] != "") {
-	$def = true;
-}
-if(isset($def)){
+include("php/wijzig.php");
+if(!(isset($def))){
 	echo "hey";
 }
  ?>
@@ -147,14 +142,14 @@ if(isset($def)){
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
 		  <?php
-		  if (isset($foutzoekwaarde) && isset($_POST["versturen"])){
+		  if (isset($foutzoek)){
 		  	?>
-			<p class="fout">Niet alles is ingevuld. Wilt u dit aub doen.</p>
+			<p class="fout">Je moet een waarde geven.</p>
 		  <?php }?>
 		  <?php
-		  if (isset($goedkeuring) && isset($_POST["versturen"])){
+		  if (isset($foutpeg)){
 		  	?>
-			<p class="goed">Het updaten is geslaagd.</p>
+			<p class="fout">Je moet een gemeente en een postcode schrijven</p>
 		  <?php }?>
          </form>
       </div>
