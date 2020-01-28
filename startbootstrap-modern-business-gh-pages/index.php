@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(!isset($_SESSION["count"])){
 	$_SESSION["count"] = 0;
 }
@@ -77,7 +76,7 @@ include('php/featured.php');
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
   			  <?php
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
-  			if(isset($_SESSION["adminkey"])){?>
+  			if($_SESSION["adminkey"] == true){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>
 			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
 			<a class="dropdown-item" href="weizigproducten.php"> Producten Weizigen</a>

@@ -1,7 +1,7 @@
 <?php
 //
 
-if(isset($_POST["versturen"]) && !(isset($peg))){
+if(isset($_POST["versturen"]) && !(isset($peg)) ){
 
 
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
@@ -35,10 +35,6 @@ if($stmt = $mysqli->prepare($sql))
 else{
 echo 'Er zit een fout in de query';
 }
-
-
-
-
 }
 // behoort to de webpagina weizigen.php
 ?>

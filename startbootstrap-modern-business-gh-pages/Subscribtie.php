@@ -35,6 +35,9 @@ session_start();
   		<li class="nav-item">
   		  <a class="nav-link" href="contact.php">Contact</a>
   		</li>
+		<li class="nav-item">
+  		  <a class="nav-link" href="testt.php">Testt</a>
+  		</li>
   	  <li class="nav-item">
   		  <a class="nav-link" href="test.php">Test</a>
   		</li>
@@ -66,7 +69,7 @@ session_start();
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
   			  <?php
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
-  			if(isset($_SESSION["adminkey"])){?>
+  			if($_SESSION["adminkey"] == true){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>
 			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
 			<a class="dropdown-item" href="weizigproducten.php"> Producten Weizigen</a>
@@ -84,6 +87,9 @@ session_start();
   	</div>
     </div>
     </nav>
+
+
+	
   <!-- Page Content -->
   <div class="container">
 
