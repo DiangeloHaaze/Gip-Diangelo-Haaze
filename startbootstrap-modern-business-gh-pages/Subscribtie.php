@@ -88,8 +88,6 @@ session_start();
     </div>
     </nav>
 
-
-	
   <!-- Page Content -->
   <div class="container">
 
