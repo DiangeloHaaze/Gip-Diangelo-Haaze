@@ -3,10 +3,8 @@ session_start();
 if(isset($_POST['versturen']) && $_POST["keuze"] == 'postegem'){
 	$peg = true;
 }
+if()
 include("php/wijzig.php");
-if(!(isset($def))){
-	echo "hey";
-}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +105,7 @@ if(!(isset($def))){
       <li class="breadcrumb-item">
         <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active">Registratie</li>
+      <li class="breadcrumb-item active">Weizigen</li>
     </ol>
 
 
@@ -126,12 +124,12 @@ if(!(isset($def))){
 
 		  <div class="control-group form-group">
             <div class="controls">
-			 <?php if(isset($peg)){ ?>
+			 <?php if($peg == 1){ ?>
 				 <label>Postcode:</label>
                  <input type="text" class="form-control" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} ?>">
 				 <label>Gemeente:</label>
                  <input type="text" class="form-control"  name="gemeente" id="zoekwaarde" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>">
-			 <?php } else{ ?>
+			 <?php } elseif($peg == 0){ ?>
               <label>Zoekwaarde:</label>
               <input type="text" class="form-control"  name="zoekwaarde" id="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>">
 		  <?php } ?>
@@ -140,17 +138,14 @@ if(!(isset($def))){
 
 		<br><br>
           <div id="success"></div><hr>
-          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-		  <?php
-		  if (isset($foutzoek)){
-		  	?>
-			<p class="fout">Je moet een waarde geven.</p>
-		  <?php }?>
-		  <?php
-		  if (isset($foutpeg)){
-		  	?>
-			<p class="fout">Je moet een gemeente en een postcode schrijven</p>
-		  <?php }?>
+          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
+		  <button type="submit" name="wisselen" class="btn btn-primary" id="sendMessageButton">Wisselen</button><br><br>
+		  <?php if (isset($foutnuniek)) { ?>
+		  <span class="fout"><?php echo $waarde; ?> bestaat al. </span><br>
+	  <?php } ?>
+	  <?php if (isset($foutzoekenleeg)) { ?>
+	  <span class="fout">je hebt niets ingevuld. Gelieve dit te doen. </span><br>
+  <?php } ?>
          </form>
       </div>
 

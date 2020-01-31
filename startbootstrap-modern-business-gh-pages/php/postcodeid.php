@@ -15,6 +15,9 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
                 $pcid = $row["postcodeid"];}
 
            }
+		   else{
+			   $foutgpostid = true;
+		   }
 	   }
 //behoort to de pagina registratie.php
 ?>

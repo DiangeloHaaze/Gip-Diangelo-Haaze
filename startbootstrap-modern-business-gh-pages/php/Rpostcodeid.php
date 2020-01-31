@@ -4,7 +4,8 @@ if(isset($_POST["versturen"])){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
       if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
            else {
-                $sql = "SELECT * FROM tblgemeente where postcodeid = '$postcodeid'";
+			    $pid = mysqli_real_escape_string($mysqli,$postcodeid);
+                $sql = "SELECT * FROM tblgemeente where postcodeid = '$pid'";
 
                 $res = mysqli_query($mysqli, $sql);
 
