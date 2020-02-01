@@ -1,5 +1,6 @@
 <?php
 session_start();
+if(!(isset($_SESSION['ingelogd']))){header("location:index.php");}
 if(isset($_POST["versturen"])){
 include("php/Keuzeweizig.php");
 if($goedkeuring == true){
@@ -126,16 +127,15 @@ if($goedkeuring == true){
 				else
 				{
 					$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
-					$sql = "SELECT voornaam, achternaam, postcodeid, email FROM tblklanten where gebruikersnaam = '$username'";
+					$sql = "SELECT voornaam, achternaam, postcodeid FROM tblklanten where gebruikersnaam = '$username'";
 					if($stmt = $mysqli->prepare($sql)){
 								if(!$stmt->execute()){
 									echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 								}
 								else{
-									$stmt->bind_result($voornaam, $achternaam, $postcodeid, $email);
+									$stmt->bind_result($voornaam, $achternaam, $postcodeid);
 									while($stmt->fetch()){
 										include("php/Rpostcodeid2.php");
-										$_SESSION["email"] = $email;
 				 ?>
 				 <span>Voornaam:</span>
 				 <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} else{echo $voornaam;} ?>">
@@ -143,17 +143,12 @@ if($goedkeuring == true){
 				 <span>Achternaam:</span>
 				 <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} else{echo $achternaam;} ?>">
 				 <br>
-				 <span>Gebruikernaam:</span>
-				 <input type="text" class="form-control" name="gebruikernaam" id="gebruikernaam" value="<?php if(isset($_POST["gebruikernaam"])){echo $_POST["gebruikernaam"];} else{echo $_SESSION["gebruikernaam"];} ?>">
-				 <br>
 				 <span>Gemeente:</span>
 				 <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} else{echo $gemeente;} ?>">
 				 <br>
 				 <span>Postcode:</span>
-				 <input type="text" class="form-control" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} else{echo $postcode;} ?>">
+				 <input type="text" class="form-control" pattern="[0-9]{4}" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} else{echo $postcode;} ?>">
 				 <br>
-				 <span>Email:</span>
-				 <input type="text" class="form-control" name="email" id="email" value="<?php if(isset($_POST["email"])){echo $_POST["email"];} else{echo $email;} ?>">
 	  <?php }}}} ?>
 		<br><br>
           <div id="success"></div><hr>
