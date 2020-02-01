@@ -1,10 +1,9 @@
 <?php
 session_start();
-if(isset($_POST['versturen']) && $_POST["keuze"] == 'postegem'){
-	$peg = true;
-}
-if()
+if(isset($_POST["versturen"])){
+	if()
 include("php/wijzig.php");
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,34 +111,50 @@ include("php/wijzig.php");
 
     <div class="row">
       <div class="col-lg-9 mb-4">
-        <h3></h3>
-        <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-			<label>Wat moet worden gewijzigd:</label><br>
-			<input type="radio" name="keuze" value="voornaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "voornaam"){?> checked <?php } if(!(isset($_POST["keuze"]))){?> checked <?php } ?>> Voornaam <br>
-			<input type="radio" name="keuze" value="achternaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "achternaam"){?> checked <?php } ?>> Achternaam <br>
-			<input type="radio" name="keuze" value="gebruikersnaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "gebruikersnaam"){?> checked <?php } ?>> Gebruikersnaam <br>
-			<input type="radio" name="keuze" value="email" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "email"){?> checked <?php } ?>> Email <br>
-			<input type="radio" name="keuze" value="postegem" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "postegem"){?> checked <?php } ?>> Postcode en Gemeente <br>
+        <h3>Wat wilt u weizigen?</h3>
 
-
-		  <div class="control-group form-group">
+		<form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+          <div class="control-group form-group">
             <div class="controls">
-			 <?php if($peg == 1){ ?>
-				 <label>Postcode:</label>
-                 <input type="text" class="form-control" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} ?>">
-				 <label>Gemeente:</label>
-                 <input type="text" class="form-control"  name="gemeente" id="zoekwaarde" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} ?>">
-			 <?php } elseif($peg == 0){ ?>
-              <label>Zoekwaarde:</label>
-              <input type="text" class="form-control"  name="zoekwaarde" id="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>">
-		  <?php } ?>
-            </div>
-          </div>
+				<?php
 
+				$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+				if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+
+				else
+				{
+					$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+					$sql = "SELECT voornaam, achternaam, postcodeid, email FROM tblklanten where gebruikersnaam = '$username'";
+					if($stmt = $mysqli->prepare($sql)){
+								if(!$stmt->execute()){
+									echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+								}
+								else{
+									$stmt->bind_result($voornaam, $achternaam, $postcodeid, $email);
+									while($stmt->fetch()){
+										include("php/Rpostcodeid2.php");
+				 ?>
+				 <span>Voornaam:</span>
+				 <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} else{echo $voornaam;} ?>">
+				 <br>
+				 <span>Achternaam:</span>
+				 <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} else{echo $achternaam;} ?>">
+				 <br>
+				 <span>Gebruikernaam:</span>
+				 <input type="text" class="form-control" name="gebruikernaam" id="gebruikernaam" value="<?php if(isset($_POST["gebruikernaam"])){echo $_POST["gebruikernaam"];} else{echo $_SESSION["gebruikernaam"];} ?>">
+				 <br>
+				 <span>Gemeente:</span>
+				 <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} else{echo $gemeente;} ?>">
+				 <br>
+				 <span>Postcode:</span>
+				 <input type="text" class="form-control" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} else{echo $postcode;} ?>">
+				 <br>
+				 <span>Email:</span>
+				 <input type="text" class="form-control" name="email" id="email" value="<?php if(isset($_POST["email"])){echo $_POST["email"];} else{echo $email;} ?>">
+	  <?php }}}} ?>
 		<br><br>
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
-		  <button type="submit" name="wisselen" class="btn btn-primary" id="sendMessageButton">Wisselen</button><br><br>
 		  <?php if (isset($foutnuniek)) { ?>
 		  <span class="fout"><?php echo $waarde; ?> bestaat al. </span><br>
 	  <?php } ?>
@@ -150,9 +165,11 @@ include("php/wijzig.php");
       </div>
 
     </div>
+	</div>
     <!-- /.row -->
 
   </div>
+</div>
   <!-- /.container -->
 
   <!-- Footer -->

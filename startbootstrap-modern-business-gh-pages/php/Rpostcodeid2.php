@@ -1,6 +1,4 @@
 <?php
-//
-if(isset($_POST["versturen"])){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
       if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
            else {
@@ -11,10 +9,10 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
                 if ($res->num_rows == 1) {
                 while($row = $res->fetch_assoc()){
 
-                $pcid = "De Postcode is ".$row["postcode"]." en de gemeente is ".$row["gemeente"];
+            	$postcode = $row["postcode"];
+				$gemeente = $row["gemeente"];
+
                 }
            }
 }
-}
-// Behoort tot de pagina weizigen.php.
-?>
+ ?>
