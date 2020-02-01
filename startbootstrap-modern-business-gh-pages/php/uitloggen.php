@@ -2,6 +2,7 @@
 //
 session_start();
 $_SESSION["gebruikernaam"] = null;
+$_SESSION["email"] = null;
 $_SESSION["ingelogd"] = null;
 $_SESSION["adminkey"] = false;
 header("location:../index.php");

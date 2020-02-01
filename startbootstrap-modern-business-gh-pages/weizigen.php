@@ -1,8 +1,10 @@
 <?php
 session_start();
 if(isset($_POST["versturen"])){
-	if()
-include("php/wijzig.php");
+include("php/Keuzeweizig.php");
+if($goedkeuring == true){
+	include("php/wijzig.php");
+}
 }
  ?>
 <!DOCTYPE html>
@@ -133,6 +135,7 @@ include("php/wijzig.php");
 									$stmt->bind_result($voornaam, $achternaam, $postcodeid, $email);
 									while($stmt->fetch()){
 										include("php/Rpostcodeid2.php");
+										$_SESSION["email"] = $email;
 				 ?>
 				 <span>Voornaam:</span>
 				 <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} else{echo $voornaam;} ?>">

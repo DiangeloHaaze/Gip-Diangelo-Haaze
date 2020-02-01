@@ -3,22 +3,20 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 else
 {
+	if(isset($cats)){
+		$waarde = mysqli_real_escape_string($mysqli,$_POST['gebruikernaam']);
+	}else {
+		$waarde = mysqli_real_escape_string($mysqli,$_POST['email']);
+	}
 
-		$waarde = mysqli_real_escape_string($mysqli,$_POST['zoekwaarde']);
-		if (isset($cat)) {
 			$sql ="
-			SELECT * FROM tblklanten WHERE gebruikersnaam='$waarde'";
-		}
-		else {
-			$sql ="
-			SELECT * FROM tblklanten WHERE email='$waarde'";
-		}
+			SELECT * FROM tblklanten WHERE gebruikersnaam='$waarde' OR email = '$waarde'";
+
 
 		$res = mysqli_query($mysqli, $sql);
 
 		if(mysqli_num_rows($res) > 0){
 			$foutnuniek = true;
-			$totfout = true;
 		}
 }
  ?>
