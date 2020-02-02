@@ -1,8 +1,11 @@
 <?php
 session_start();
-if(isset($_POST["versturen"])){
+if(!(isset($_SESSION['ingelogd']))){header("location:index.php");}
+if(isset($_POST["versturentwee"])){
 	include("php/controleupdateprod.php");
-	include("php/weizigproduct.php");
+	if ($goedkeuring){
+		include("php/weizigproduct.php");
+	}
 }
  ?>
 <!DOCTYPE html>
@@ -104,63 +107,71 @@ if(isset($_POST["versturen"])){
       <li class="breadcrumb-item">
         <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active">Registratie</li>
+      <li class="breadcrumb-item active">Weizigen</li>
     </ol>
 
 
 
     <div class="row">
       <div class="col-lg-9 mb-4">
-        <h3></h3>
-        <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-			<?php
-		if(isset($_POST["versturen"]) && isset($_POST["productid"]) && $_POST["productid"] != ""){
+        <h3>Wat wilt u weizigen?</h3>
+
+		<form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+          <div class="control-group form-group">
+            <div class="controls">
+				<?php
+		if(isset($_POST["versturen"]) && $_POST["productid"] != "" && isset($_POST["productid"])){
+				$_SESSION['productid'] = $_POST["productid"];
+				echo $_SESSION['productid'];
 				$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 				if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+
 				else
 				{
+					$prodid = mysqli_real_escape_string($mysqli, $_SESSION['productid']);
+					$sql = "SELECT productnaam, producttaal, beschrijving, prijsPstuk, linkfoto FROM tblproducten where productid = '$prodid'";
+					if($stmt = $mysqli->prepare($sql)){
+								if(!$stmt->execute()){
+									echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+								}
+								else{
+									$stmt->bind_result($productnaam, $producttaal, $beschrijving, $prijsPstuk, $linkfoto);
+									while($stmt->fetch()){
+				 ?>
+				 <span>Productnaam:</span>
+				 <input type="text" class="form-control" name="productnaam" id="productnaam" value="<?php if(isset($_POST["productnaam"])){echo $_POST["productnaam"];} else{echo $productnaam;} ?>">
+				 <br>
+				 <span>Producttaal:</span>
+				 <input type="text" class="form-control" name="producttaal" id="producttaal" value="<?php if(isset($_POST["producttaal"])){echo $_POST["producttaal"];} else{echo $producttaal;} ?>">
+				 <br>
+				 <span>Beschrijving:</span>
+				 <input type="text" class="form-control" name="beschrijving" id="beschrijving" value="<?php if(isset($_POST["beschrijving"])){echo $_POST["beschrijving"];} else{echo $beschrijving;} ?>">
+				 <br>
+				 <span>Prijs per Stuk:</span>
+				 <input type="text" class="form-control" name="prijsPstuk" id="prijsPstuk" value="<?php if(isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];} else{echo '€'.$prijsPstuk;} ?>">
+				 <br>
+				 <span>Link naar de foto:</span>
+				 <input type="text" class="form-control" name="linkfoto" id="linkfoto" value="<?php if(isset($_POST["linkfotos"])){echo $_POST["linkfoto"];} else{echo $linkfoto;} ?>">
 
-					$sql = "
-					"
-				?>
-			<span>Productnaam :</span>
-			<input type="text" class="form-control" name="productnaam" id="productnaam" value="<?php if(isset($_POST["productnaam"])){echo $_POST["productnaam"];} else{echo "cool";} ?>">
-			<br>
-			<span>Producttaal :</span>
-			<input type="text" class="form-control" name="producttaal" id="producttaal" value="<?php if(isset($_POST["producttaal"])){echo $_POST["producttaal"];} else{echo "cool";} ?>">
-			<br>
-			<span>Beschrijving :</span>
-			<input type="text" class="form-control" name="beschrijving" id="beschrijving" value="<?php if(isset($_POST["beschrijving"])){echo $_POST["beschrijving"];} else{ echo "cool";} ?>">
-			<br>
-			<span>Prijs per Stuk:</span>
-			<input type="text" class="form-control" name="prijsPstuk" id="prijsPstukprijsPstuk" value="<?php if(isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];} else{ echo "cool";} ?>">
-			<br>
-			<span>linkFoto:</span>
-			<input type="text" class="form-control" name="linkfoto" id="linkfoto" value="<?php if(isset($_POST["linkfoto"])){echo $_POST["linkfoto"];} else{ echo "Picture/";} ?>">
-			<br>
-		<?php }}else{ ?>
-			<span>Productid:</span>
-			<input type="text" class="form-control" name="productid" id="productid" value="<?php if(isset($_POST["productid"])){echo $_POST["productid"];} ?>">
-		<?php } ?>
-          <div id="success"></div><hr>
-          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-		  <?php
-		  if (isset($foutzoekwaarde) && isset($_POST["versturen"])){
-		  	?>
-			<p class="fout">Niet alles is ingevuld. Wilt u dit aub doen.</p>
-		  <?php }?>
-		  <?php
-		  if (isset($goedkeuring) && isset($_POST["versturen"])){
-		  	?>
-			<p class="goed">Het updaten is geslaagd.</p>
-		  <?php }?>
+				 <div id="success"></div><hr>
+	             <button type="submit" name="versturentwee" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
+
+	  <?php }}}}}else{ ?>
+		  <span>Productid:</span>
+		  <input type="text" class="form-control" name="productid" id="productid" value="<?php if(isset($_POST["productid"])){echo $_POST["productid"];} else{echo $_SESSION['productid'];} ?>">
+		  <div id="success"></div><hr>
+		  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
+  <?php $terug = false;} ?>
+
          </form>
       </div>
 
     </div>
+	</div>
     <!-- /.row -->
 
   </div>
+</div>
   <!-- /.container -->
 
   <!-- Footer -->
