@@ -122,7 +122,6 @@ if(isset($_POST["versturentwee"])){
 				<?php
 		if(isset($_POST["versturen"]) && $_POST["productid"] != "" && isset($_POST["productid"])){
 				$_SESSION['productid'] = $_POST["productid"];
-				echo $_SESSION['productid'];
 				$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 				if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 
@@ -148,7 +147,7 @@ if(isset($_POST["versturentwee"])){
 				 <input type="text" class="form-control" name="beschrijving" id="beschrijving" value="<?php if(isset($_POST["beschrijving"])){echo $_POST["beschrijving"];} else{echo $beschrijving;} ?>">
 				 <br>
 				 <span>Prijs per Stuk:</span>
-				 <input type="text" class="form-control" name="prijsPstuk" id="prijsPstuk" value="<?php if(isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];} else{echo '€'.$prijsPstuk;} ?>">
+				 <input type="text" class="form-control" name="prijsPstuk" id="prijsPstuk" value="<?php if(isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];} else{echo $prijsPstuk;} ?>">
 				 <br>
 				 <span>Link naar de foto:</span>
 				 <input type="text" class="form-control" name="linkfoto" id="linkfoto" value="<?php if(isset($_POST["linkfotos"])){echo $_POST["linkfoto"];} else{echo $linkfoto;} ?>">
@@ -162,7 +161,11 @@ if(isset($_POST["versturentwee"])){
 		  <div id="success"></div><hr>
 		  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
   <?php $terug = false;} ?>
-
+  <?php if(isset($gelukt)){ ?>
+			<span class="goed">Het Updaten was een success.</span>
+		<?php } if(isset($gefaalt)){ ?>
+			<span class="goed">Het Updaten was een faal.</span>
+		<?php } ?>
          </form>
       </div>
 
