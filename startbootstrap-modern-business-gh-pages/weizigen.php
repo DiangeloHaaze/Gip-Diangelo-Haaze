@@ -3,7 +3,7 @@ session_start();
 if(!(isset($_SESSION['ingelogd']))){header("location:index.php");}
 if(isset($_POST["versturen"])){
 include("php/Keuzeweizig.php");
-if($goedkeuring == true){
+if($goedkeuring){
 	include("php/wijzig.php");
 }
 }
@@ -153,12 +153,15 @@ if($goedkeuring == true){
 		<br><br>
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
-		  <?php if (isset($foutnuniek)) { ?>
-		  <span class="fout"><?php echo $waarde; ?> bestaat al. </span><br>
-	  <?php } ?>
-	  <?php if (isset($foutzoekenleeg)) { ?>
-	  <span class="fout">je hebt niets ingevuld. Gelieve dit te doen. </span><br>
-  <?php } ?>
+		<?php if (!($goedkeuring)) { ?>
+		<span class="fout">Je hebt iets niet ingevuld. Gelieve dit te doen. </span><br>
+		<?php } ?>
+		<?php if (!(isset($pcid))) { ?>
+		<span class="fout">De gemeente samen met de postcode bestaan niet samen. Kijk of je de waarden correct hebt ingegeven. </span><br>
+		<?php } ?>
+		<?php if ($allesgoed) { ?>
+		<span class="goed">Alles is geupdate.</span><br>
+	<?php }?>
          </form>
       </div>
 
