@@ -153,7 +153,7 @@ if($goedkeuring){
 		<br><br>
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
-		<?php if (!($goedkeuring)) { ?>
+		<?php if(isset($_POST["versturen"])){ if(!($goedkeuring)) { ?>
 		<span class="fout">Je hebt iets niet ingevuld. Gelieve dit te doen. </span><br>
 		<?php } ?>
 		<?php if (!(isset($pcid))) { ?>
@@ -161,7 +161,7 @@ if($goedkeuring){
 		<?php } ?>
 		<?php if ($allesgoed) { ?>
 		<span class="goed">Alles is geupdate.</span><br>
-	<?php }?>
+	<?php }}?>
          </form>
       </div>
 
