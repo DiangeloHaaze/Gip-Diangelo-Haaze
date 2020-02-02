@@ -1,6 +1,9 @@
 <?php
 session_start();
-include("php/weizigproduct.php");
+if(isset($_POST["versturen"])){
+	include("php/controleupdateprod.php");
+	include("php/weizigproduct.php");
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +91,7 @@ include("php/weizigproduct.php");
   	</div>
     </div>
     </nav>
-	
+
   <!-- Page Content -->
   <div class="container">
 
@@ -110,24 +113,35 @@ include("php/weizigproduct.php");
       <div class="col-lg-9 mb-4">
         <h3></h3>
         <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-			<label>Productid:</label>
-			<input type="text" class="form-control" value="<?php if(isset($_POST["productid"])){ echo $_POST["productid"]; } ?>" name="productid" id="productid" > <br>
-			<label>Wat moet worden gewijzigd:</label><br>
-			<input type="radio" name="keuze" value="productnaam" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "productnaam"){?> checked <?php } if(!(isset($_POST["keuze"]))){?> checked <?php } ?>> Productnaam <br>
-			<input type="radio" name="keuze" value="producttaal" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "producttaal"){?> checked <?php } ?>> Producttaal <br>
-			<input type="radio" name="keuze" value="beschrijving" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "beschrijving"){?> checked <?php } ?>> Beschrijving <br>
-			<input type="radio" name="keuze" value="prijsPstuk" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "prijsPstuk"){?> checked <?php } ?>> Prijs per Stuk <br>
-			<input type="radio" name="keuze" value="linkfoto" <?php if(isset($_POST['keuze']) && $_POST['keuze'] == "linkfoto"){?> checked <?php } ?>> Link Foto <br>
+			<?php
+		if(isset($_POST["versturen"]) && isset($_POST["productid"]) && $_POST["productid"] != ""){
+				$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+				if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+				else
+				{
 
-
-		  <div class="control-group form-group">
-            <div class="controls">
-              <label>Zoekwaarde:</label>
-              <input type="text" class="form-control" value="<?php if(isset($_POST["zoekwaarde"])){ echo $_POST["zoekwaarde"]; } ?>" name="zoekwaarde" id="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>">
-            </div>
-          </div>
-
-		<br><br>
+					$sql = "
+					"
+				?>
+			<span>Productnaam :</span>
+			<input type="text" class="form-control" name="productnaam" id="productnaam" value="<?php if(isset($_POST["productnaam"])){echo $_POST["productnaam"];} else{echo "cool";} ?>">
+			<br>
+			<span>Producttaal :</span>
+			<input type="text" class="form-control" name="producttaal" id="producttaal" value="<?php if(isset($_POST["producttaal"])){echo $_POST["producttaal"];} else{echo "cool";} ?>">
+			<br>
+			<span>Beschrijving :</span>
+			<input type="text" class="form-control" name="beschrijving" id="beschrijving" value="<?php if(isset($_POST["beschrijving"])){echo $_POST["beschrijving"];} else{ echo "cool";} ?>">
+			<br>
+			<span>Prijs per Stuk:</span>
+			<input type="text" class="form-control" name="prijsPstuk" id="prijsPstukprijsPstuk" value="<?php if(isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];} else{ echo "cool";} ?>">
+			<br>
+			<span>linkFoto:</span>
+			<input type="text" class="form-control" name="linkfoto" id="linkfoto" value="<?php if(isset($_POST["linkfoto"])){echo $_POST["linkfoto"];} else{ echo "Picture/";} ?>">
+			<br>
+		<?php }}else{ ?>
+			<span>Productid:</span>
+			<input type="text" class="form-control" name="productid" id="productid" value="<?php if(isset($_POST["productid"])){echo $_POST["productid"];} ?>">
+		<?php } ?>
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
 		  <?php
