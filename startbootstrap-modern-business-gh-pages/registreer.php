@@ -45,12 +45,6 @@ include('php/registratie.php');
   		<li class="nav-item">
   		  <a class="nav-link" href="contact.php">Contact</a>
   		</li>
-		<li class="nav-item">
-  		  <a class="nav-link" href="testt.php">Testt</a>
-  		</li>
-  	  <li class="nav-item">
-  		  <a class="nav-link" href="test.php">Test</a>
-  		</li>
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>

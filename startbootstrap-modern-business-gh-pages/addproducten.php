@@ -41,12 +41,6 @@ if(isset($_POST["versturen"])){
   		<li class="nav-item">
   		  <a class="nav-link" href="contact.php">Contact</a>
   		</li>
-		<li class="nav-item">
-  		  <a class="nav-link" href="testt.php">Testt</a>
-  		</li>
-  	  <li class="nav-item">
-  		  <a class="nav-link" href="test.php">Test</a>
-  		</li>
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
@@ -106,7 +100,7 @@ if(isset($_POST["versturen"])){
       <li class="breadcrumb-item">
         <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active">Registratie</li>
+      <li class="breadcrumb-item active">Producten toevoegen</li>
     </ol>
 
 

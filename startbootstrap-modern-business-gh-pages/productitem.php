@@ -46,12 +46,6 @@ if (isset($_POST['aantal'])){
   		<li class="nav-item">
   		  <a class="nav-link" href="contact.php">Contact</a>
   		</li>
-		<li class="nav-item">
-  		  <a class="nav-link" href="testt.php">Testt</a>
-  		</li>
-  	  <li class="nav-item">
-  		  <a class="nav-link" href="test.php">Test</a>
-  		</li>
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
@@ -188,7 +182,7 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 
 			<?php } if(isset($compleet)){ ?>
 				<p class='goed'> Wat wilt u vervolgens doen: <br>
-			<a href="producten.php" class="aankoopboodschap">doorshoppen</a> <br> of <br>
+			<a href="producten.php" class="aankoopboodschap">doorshoppen</a> of naar uw
 			<a href="winkelwagen.php" class="aankoopboodschap"> winkelwagen </a>
 			<?php } ?>
 		</form>

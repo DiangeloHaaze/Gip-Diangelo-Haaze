@@ -47,12 +47,6 @@ $totaal = 0;
   		<li class="nav-item">
   		  <a class="nav-link" href="contact.php">Contact</a>
   		</li>
-		<li class="nav-item">
-  		  <a class="nav-link" href="testt.php">Testt</a>
-  		</li>
-  	  <li class="nav-item">
-  		  <a class="nav-link" href="test.php">Test</a>
-  		</li>
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
@@ -156,7 +150,7 @@ $totaal = 0;
 		<h4 > Aantallen: <?php echo $aantalproducten[$tel];?> </h4>
 		<h4> Prijs Per Stuk: €<?php echo $prijsPstuk; ?></h4>
 		<h4>Totaal prijs product: €<?php $totaalpp = $aantalproducten[$tel] * $prijsPstuk; echo $totaalpp; $totaal = $totaal + $totaalpp; ?></h4>
-		<h4><a class="zwartelink" href="<?php echo $_SERVER['PHP_SELF']; ?>?actiep=wis&productid=<?php echo $productid; ?>">
+		<h4><a class="rodelink" href="<?php echo $_SERVER['PHP_SELF']; ?>?actiep=wis&productid=<?php echo $productid; ?>">
 			<i>Verwijderen?</i>
 		</a>
 	</h4>
