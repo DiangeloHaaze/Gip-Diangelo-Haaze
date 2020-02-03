@@ -1,5 +1,7 @@
 <?php
-$counts = 0;
+if (!(isset($counts))){
+	$counts = 0;
+}
 do{
 if($_SESSION["koopwaren"][$counts] == $id){
 	$goed = true;

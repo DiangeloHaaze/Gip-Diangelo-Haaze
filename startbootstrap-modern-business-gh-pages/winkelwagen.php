@@ -75,7 +75,7 @@ $totaal = 0;
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
   			  <?php
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
-  			if($_SESSION["adminkey"] == true){?>
+  			if($_SESSION["adminkey"]){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>
 			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
 			<a class="dropdown-item" href="weizigproducten.php"> Producten Weizigen</a>
@@ -120,13 +120,12 @@ $totaal = 0;
 		  		$aantalproducten[$y] = $_SESSION["aantal"][$y];
 		  		$productiden[$y] = $_SESSION["koopwaren"][$y];
 		  	}
-
+			$querries = array();
 
 		  	for ($i=0; $i < $_SESSION['count']; $i++) {
 		  		$querries[$i] = "SELECT * FROM tblproducten WHERE productid = '$productiden[$i]'";
 		  	}
-
-		  foreach ($querries as $querrie) {
+		  foreach ($querries as $querrie){
 		  	if($stmt = $mysqli->prepare($querrie)){
 		                  if(!$stmt->execute()){
 		                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$querrie;
@@ -159,6 +158,7 @@ $totaal = 0;
  </form>
     <hr>
     <?php
+	unset($querrie);
 	$tel++;
 }
 $stmt->close();
