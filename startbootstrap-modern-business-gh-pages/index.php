@@ -88,8 +88,7 @@ include('php/featured.php');
   	</div>
     </div>
     </nav>
-
-
+	
  <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
