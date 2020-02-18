@@ -45,6 +45,9 @@ include('php/featured.php');
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
+		<li class="nav-item">
+    		  <a class="nav-link" href="testt.php">testt</a>
+    		</li>
   		  <li class="nav-item">
   		  <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
   		</li>
@@ -88,7 +91,7 @@ include('php/featured.php');
   	</div>
     </div>
     </nav>
-	
+
  <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
