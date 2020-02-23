@@ -10,7 +10,6 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>Athena's Game</title>
 
   <!-- Bootstrap core CSS -->
@@ -20,59 +19,7 @@ session_start();
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
 
-  <script type="text/javascript">
-
-   function wijzig()
-  {
-  var ok = true;
-  if (document.getElementById("naam").value==""){
-      document.getElementById("naamVerplicht").innerHTML="Gelieve een naam in te vullen";
-      ok=false;
-          }
-      else{
-          document.getElementById("naamVerplicht").innerHTML="";
-      }
-
-   if (document.getElementById("paswoord").value==""){
-      document.getElementById("paswoordVerplicht").innerHTML="Gelieve een paswoord in te vullen";
-      ok=false;
-          }
-      else{
-          document.getElementById("paswoordVerplicht").innerHTML="";
-      }
-
-  if (document.getElementById("paswoord").value != "") {
-     var string=document.getElementById("paswoord").value;
-
-  	var filter=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-
-       if ( filter.test(string)){
-       document.getElementById("paswoordControle").innerHTML="";
-      }
-      else{
-           document.getElementById("paswoordControle").innerHTML="Ongeldig paswoord, bevat minstens 1 cijfer en 1 hoofdletter en kleine letter, minimum 8 characters";
-          ok=false;
-      }
-   }
-    if (document.getElementById("paswoordConfirm").value==""){
-      document.getElementById("paswoordConfirmVerplicht").innerHTML="Gelieve een bevestigingspaswoord in te vullen";
-      ok=false;
-          }
-      else{
-          document.getElementById("paswoordConfirmVerplicht").innerHTML="";
-
-    if (!(document.getElementById("paswoordConfirm").value==document.getElementById("paswoord").value)){
-      document.getElementById("paswoordConfirmVerplicht").innerHTML="bevestigingspaswoord en paswoord komen niet overeen";
-      ok=false;
-          }
-      else{
-          document.getElementById("paswoordConfirmVerplicht").innerHTML +="";
-      }
-  	}
-  if (ok==true){
-
-  }
-  }
+  <script src="vendor/jQuery/jquery.min.js">
   </script>
 
 </head>
@@ -138,10 +85,6 @@ session_start();
     </div>
     </nav>
 
-<?php
-    //bij succesvol inloggen komt de gebruiker terug naar de beginpagina.
-    if(isset($_SESSION["ingelogd"])){header("location:index.php");}
-    ?>
   <!-- Page Content -->
   <div class="container">
 
@@ -156,35 +99,93 @@ session_start();
       </li>
       <li class="breadcrumb-item active">Registratie</li>
     </ol>
+<label>Voornaam:</label><br>
+<input type="text" class="form-control" name="voornaam" id="voornaam"><br>
+<label>Achternaam:</label><br>
+<input type="text" class="form-control" name="achternaam" id="achternaam"><br>
+<label>Gebruikernaam:</label><br>
+<input type="text" class="form-control" name="gebruikernaam" id="gebruikernaam"><br>
+<label>Gemeente:</label><br>
+<input type="text" class="form-control" name="gemeente" id="gemeente"><br>
+<label>Postcode:</label><br>
+<input type="text" class="form-control" name="postcode" id="postcode"><br>
+<label>paswoord:</label><br>
+<input type="text" class="form-control" name="paswoord" id="paswoord"><br>
+<button type="submit" name="versturen" class="btn btn-primary" id="versturen">Versturen</button>
+<br><br>
+<label class="goed" id="goed"></label>
+<label class="fout" id="fout"></label>
+<br><br>
+<script>
+	$(function(){
+
+		$("#versturen").on('click',function() {
+			var $geslaagd = true;
+			var $voornaam = $("#voornaam").val();
+			var $achternaam = $("#achternaam").val();
+			var $gebruikersnaam = $("#gebruikernaam").val();
+			var $gemeente = $("#gemeente").val();
+			var $postcode = $("#postcode").val();
+			var $paswoord = $("#paswoord").val();
+
+			if($voornaam.trim().length == 0){
+				alert("voornaam mislukt");
+				geslaagd = false;
+			}
+			if($achternaam.trim().length == 0){
+				alert("achternaam mislukt");
+				geslaagd = false;
+			}
+			if($gebruikersnaam.trim().length == 0){
+				alert("gebruikersnaam mislukt");
+				geslaagd = false;
+			}
+			if($gemeente.trim().length == 0){
+				alert("gebruikersnaam mislukt");
+				geslaagd = false;
+			}
+			if($paswoord.trim().length == 0){
+				alert("pawoord mislukt");
+				geslaagd = false;
+			}
+			else {
+				var kletter = /[a-z]/g;
+				var gletter = /[A-Z]/g;
+				var nummer = /[0-9]/g;
+				if($paswoord.length < 8){
+					alert("niet lang genoeg");
+					geslaagd = false;
+				}
+				if (!($paswoord.match(nummer))) {
+					alert("geen cijfer in");
+					geslaagd = false;
+				}
+				if (!($paswoord.match(kletter))) {
+					alert("geen kleine letter in");
+					geslaagd = false;
+				}
+				if (!($paswoord.match(gletter))) {
+					alert("geen Groote letter in");
+					geslaagd = false;
+				}
+			}
+
+			if($geslaagd){
+				$("#goed").html("Geslaagd");
+				$("#fout").html("");
+			}
+			else {
+				$("#goed").html("");
+				$("#fout").html("Je hebt gegevens fout ingegeven");
+			}
+		})
 
 
 
-<form name="inlogpagina" id="myForm" method="post" action="aangemeld.php">
-<table cellspacing="4">
-<tr>
-<td><label for="naam">Naam:</label></td>
-<td><input type="text" name="naam" id="naam"></td>
-<td><label id="naamVerplicht" class="fout"></label></td>
-</tr>
-<tr>
-<tr>
-<td><label for="paswoord">paswoord:</label></td>
-<td><input type="password" name="paswoord" id="paswoord"  ></td>
-<td><label id="paswoordControle" class="fout"></label><label id="paswoordVerplicht" class="fout"></label></td>
-</tr>
-<tr>
-<td><label for="paswoordConfirm">bevestiging paswoord:</label></td>
-<td><input type="password" name="paswoordConfirm" id="paswoordConfirm"  ></td>
-<td><label id="paswoordConfirmControle" class="fout"></label><label id="paswoordConfirmVerplicht" class="fout"></label></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<input type="button" value="inloggen" onclick="wijzig()" />
-</td>
-</tr>
-</table>
-</form>
+	});
+
+</script>
+
 
   </div>
   <!-- /.container -->
