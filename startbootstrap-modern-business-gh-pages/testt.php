@@ -110,83 +110,15 @@ session_start();
 <label>Postcode:</label><br>
 <input type="text" class="form-control" name="postcode" id="postcode"><br>
 <label>paswoord:</label><br>
-<input type="text" class="form-control" name="paswoord" id="paswoord"><br>
+<input type="password" class="form-control" name="paswoord" id="paswoord"><br>
+<label>Controle Paswoord:</label><br>
+<input type="password" class="form-control" name="cpaswoord" id="cpaswoord"><br>
 <button type="submit" name="versturen" class="btn btn-primary" id="versturen">Versturen</button>
 <br><br>
 <label class="goed" id="goed"></label>
 <label class="fout" id="fout"></label>
 <br><br>
-<script>
-	$(function(){
-
-		$("#versturen").on('click',function() {
-			var $geslaagd = true;
-			var $voornaam = $("#voornaam").val();
-			var $achternaam = $("#achternaam").val();
-			var $gebruikersnaam = $("#gebruikernaam").val();
-			var $gemeente = $("#gemeente").val();
-			var $postcode = $("#postcode").val();
-			var $paswoord = $("#paswoord").val();
-
-			if($voornaam.trim().length == 0){
-				alert("voornaam mislukt");
-				geslaagd = false;
-			}
-			if($achternaam.trim().length == 0){
-				alert("achternaam mislukt");
-				geslaagd = false;
-			}
-			if($gebruikersnaam.trim().length == 0){
-				alert("gebruikersnaam mislukt");
-				geslaagd = false;
-			}
-			if($gemeente.trim().length == 0){
-				alert("gebruikersnaam mislukt");
-				geslaagd = false;
-			}
-			if($paswoord.trim().length == 0){
-				alert("pawoord mislukt");
-				geslaagd = false;
-			}
-			else {
-				var kletter = /[a-z]/g;
-				var gletter = /[A-Z]/g;
-				var nummer = /[0-9]/g;
-				if($paswoord.length < 8){
-					alert("niet lang genoeg");
-					geslaagd = false;
-				}
-				if (!($paswoord.match(nummer))) {
-					alert("geen cijfer in");
-					geslaagd = false;
-				}
-				if (!($paswoord.match(kletter))) {
-					alert("geen kleine letter in");
-					geslaagd = false;
-				}
-				if (!($paswoord.match(gletter))) {
-					alert("geen Groote letter in");
-					geslaagd = false;
-				}
-			}
-
-			if($geslaagd){
-				$("#goed").html("Geslaagd");
-				$("#fout").html("");
-			}
-			else {
-				$("#goed").html("");
-				$("#fout").html("Je hebt gegevens fout ingegeven");
-			}
-		})
-
-
-
-	});
-
-</script>
-
-
+<script src="js\registratie.js"></script>
   </div>
   <!-- /.container -->
 
