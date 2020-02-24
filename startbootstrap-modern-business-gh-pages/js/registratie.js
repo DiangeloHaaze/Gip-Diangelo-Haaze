@@ -34,24 +34,12 @@ $(function(){
 		if($postcode.trim().length == 0){
 			alert("postcode mislukt");
 			$geslaagd = false;
-			$pem = false;
 		}
 		else{
 			if ($postcode.length != 4) {
 				alert("postcode is te kort");
 				$geslaagd = false;
-				$pem = false;
 			}
-		}
-		if ($pem) {
-
-			$.post("php/postocodeid.php",{
-				postcodef: $postcode,
-				gemeentef: $gemeente
-			});
-			$.get('php/postocodeid.php',{
-				
-			})
 		}
 		if($paswoord.trim().length == 0){
 			alert("pawoord mislukt");

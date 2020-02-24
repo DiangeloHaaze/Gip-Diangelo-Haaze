@@ -2,6 +2,7 @@
 //hier word bekeken of de velden zijn ingevuld en of deze wel of niet volgens het juiste patroon zijn ingedient. Meer info staat bij de stellingen zelf.
 $gekeurt = true;
 if(isset($_POST['versturen'])){
+	
 $gekeurt = true;
 
 
