@@ -99,6 +99,9 @@ session_start();
       </li>
       <li class="breadcrumb-item active">Registratie</li>
     </ol>
+<form class="" action="testt.php" method="post">
+
+
 <label>Voornaam:</label><br>
 <input type="text" class="form-control" name="voornaam" id="voornaam"><br>
 <label>Achternaam:</label><br>
@@ -120,6 +123,7 @@ session_start();
 <label id="test"></label>
 <br><br>
 <script src="js\registratie.js"></script>
+</form>
   </div>
   <!-- /.container -->
 

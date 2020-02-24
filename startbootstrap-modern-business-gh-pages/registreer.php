@@ -2,10 +2,11 @@
 //de pagina die ervoor zorgt dat een klant zich kan registreren en deze nieuwe klant dan ook opslaat in de databank.
 session_start();
 $foutreg = 0;
+
+if(isset($_POST["versturen"])){
 include('php/foutcontrole.php');
-if(isset($_POST["versturen"]) && $gekeurt == true){
-include("php/postcodeid.php");
-include('php/registratie.php');
+//include("php/postcodeid.php");
+//include('php/registratie.php');
 }
 ?>
 <!DOCTYPE html>
@@ -147,7 +148,7 @@ include('php/registratie.php');
             <div class="control-group form-group">
             <div class="controls">
               <label>Postcode:</label>
-              <input type="text" class="form-control" name="postcode" title="Moet bestaan uit 4 cijfers" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" pattern="[0-9]{4}">
+              <input type="text" class="form-control" name="postcode" title="Moet bestaan uit 4 cijfers" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" >
 			  <?php if(isset($foutingpostcode)){ ?>
 				  <p class="fout">Er is een fout bij postcode</p>
 			  <?php } ?>

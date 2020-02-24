@@ -11,9 +11,6 @@ $(function(){
 		var $paswoord = $("#paswoord").val();
 		var $cpaswoord = $("#cpaswoord").val();
 
-
-
-
 		if($voornaam.trim().length == 0){
 			alert("voornaam mislukt");
 			$geslaagd = false;
@@ -35,6 +32,10 @@ $(function(){
 			alert("postcode mislukt");
 			$geslaagd = false;
 		}
+		$("#test").load("php/postcodeid", {
+			postcode : $postcode,
+			gemeente : $gemeente
+		})
 		else{
 			if ($postcode.length != 4) {
 				alert("postcode is te kort");
