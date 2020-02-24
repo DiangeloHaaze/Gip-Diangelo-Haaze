@@ -5,7 +5,7 @@ $foutreg = 0;
 
 if(isset($_POST["versturen"])){
 include('php/foutcontrole.php');
-//include("php/postcodeid.php");
+include("php/postcodeid.php");
 //include('php/registratie.php');
 }
 ?>

@@ -50,7 +50,10 @@ if(empty($paswoord)){
 if(empty($bpaswoord)){
 	$gekeurt = false;
 }
-
+include("php/postcodeid.php");
+if(empty($pcid)){
+	$gekeurt = false;
+}
 if($gekeurt){
 echo "geslaagd";
 }
