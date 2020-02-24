@@ -2,6 +2,7 @@ $(function(){
 
 	$("#versturen").on('click',function() {
 		var $geslaagd = true;
+		var $pem = true;
 		var $voornaam = $("#voornaam").val();
 		var $achternaam = $("#achternaam").val();
 		var $gebruikersnaam = $("#gebruikernaam").val();
@@ -9,6 +10,9 @@ $(function(){
 		var $postcode = $("#postcode").val();
 		var $paswoord = $("#paswoord").val();
 		var $cpaswoord = $("#cpaswoord").val();
+
+
+
 
 		if($voornaam.trim().length == 0){
 			alert("voornaam mislukt");
@@ -24,21 +28,30 @@ $(function(){
 		}
 		if($gemeente.trim().length == 0){
 			alert("gemeente mislukt");
+			$pem = false;
 			$geslaagd = false;
 		}
 		if($postcode.trim().length == 0){
 			alert("postcode mislukt");
 			$geslaagd = false;
+			$pem = false;
 		}
 		else{
 			if ($postcode.length != 4) {
 				alert("postcode is te kort");
 				$geslaagd = false;
+				$pem = false;
 			}
-			if(!(Number.isInteger($postcode))){
-				alert("postcode is geen nummer");
-				$geslaagd = false;
-			}
+		}
+		if ($pem) {
+
+			$.post("php/postocodeid.php",{
+				postcodef: $postcode,
+				gemeentef: $gemeente
+			});
+			$.get('php/postocodeid.php',{
+				
+			})
 		}
 		if($paswoord.trim().length == 0){
 			alert("pawoord mislukt");

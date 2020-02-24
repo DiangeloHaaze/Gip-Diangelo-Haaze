@@ -117,6 +117,7 @@ session_start();
 <br><br>
 <label class="goed" id="goed"></label>
 <label class="fout" id="fout"></label>
+<label id="test"></label>
 <br><br>
 <script src="js\registratie.js"></script>
   </div>
