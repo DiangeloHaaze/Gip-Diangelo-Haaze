@@ -3,7 +3,8 @@ $leeg = 0;
 session_start();
 if(isset($_POST["versturen"])){
 
-    if($_POST['categorie'] == 'start' && $_POST['zoekterm'] == "" && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
+$term = trim($_POST['zoekterm']);
+    if($_POST['categorie'] == 'start' &&  $term == "" && $_POST['soort'] == 'start' && $_POST['rangorde'] == 'start'){
     $fout = true;
     }
     if(!isset($fout)){

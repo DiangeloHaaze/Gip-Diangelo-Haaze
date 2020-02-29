@@ -46,7 +46,7 @@ if(empty($paswoord)){
 	$gekeurt = false;
 }
 else{
-	if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
+	if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $paswoord)) {
 	    $gekeurt = false;
 	}
 }
