@@ -1,11 +1,10 @@
 <?php
 session_start();
-if(!(isset($_SESSION['ingelogd']))){header("location:index.php");}
-if(isset($_POST["versturen"])){
-include("php/Keuzeweizig.php");
-if($goedkeuring){
-	include("php/wijzig.php");
+if(!(isset($_SESSION["gebruikernaam"]))){
+	header('location:index.php');
 }
+else{
+	include("php/nieuwpaswoord.php");
 }
  ?>
 <!DOCTYPE html>
@@ -103,69 +102,39 @@ if($goedkeuring){
       </li>
       <li class="breadcrumb-item active">Weizigen</li>
     </ol>
-
-
-
-    <div class="row">
-      <div class="col-lg-9 mb-4">
-        <h3>Wat wilt u weizigen?</h3>
-
+	<div class="row">
+	  <div class="col-lg-9 mb-4">
+		<h3>Wijzigen Paswoord</h3><br>
 		<form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-          <div class="control-group form-group">
-            <div class="controls">
-				<?php
 
-				$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
-				if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+		  <div class="control-group form-group">
+		  <div class="controls">
+			<label>Huidig Paswoord:</label>
+			<input type="password" class="form-control" name="oudpaswoord" id="oudpaswoord" >
+		  </div>
+		</div>
+			<div class="control-group form-group">
+			<div class="controls">
+			  <label>nieuw wachtwoord:</label>
+			  <input type="password" class="form-control" name="nieuwpaswoord" id="nieuwpaswoord">
+			</div>
+		  </div>
 
-				else
-				{
-					$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
-					$sql = "SELECT voornaam, achternaam, postcodeid FROM tblklanten where gebruikersnaam = '$username'";
-					if($stmt = $mysqli->prepare($sql)){
-								if(!$stmt->execute()){
-									echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
-								}
-								else{
-									$stmt->bind_result($voornaam, $achternaam, $postcodeid);
-									while($stmt->fetch()){
-										include("php/Rpostcodeid2.php");
-				 ?>
-				 <span>Voornaam:</span>
-				 <input type="text" class="form-control" name="voornaam" id="voornaam" value="<?php if(isset($_POST["voornaam"])){echo $_POST["voornaam"];} else{echo $voornaam;} ?>">
-				 <br>
-				 <span>Achternaam:</span>
-				 <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} else{echo $achternaam;} ?>">
-				 <br>
-				 <span>Postcode:</span>
-				 <input type="text" class="form-control" pattern="[0-9]{4}" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} else{echo $postcode;} ?>">
-				 <br>
-				 <span>Gemeente:</span>
-				 <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} else{echo $gemeente;} ?>">
-				 <br>
-	  <?php }}}} ?>
-		<br><br>
-          <div id="success"></div><hr>
-          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
-		<?php if(isset($_POST["versturen"])){ if(!($goedkeuring)) { ?>
-		<span class="fout">Je hebt iets niet ingevuld. Gelieve dit te doen. </span><br>
-		<?php } ?>
-		<?php if (!(isset($pcid))) { ?>
-		<span class="fout">De gemeente samen met de postcode bestaan niet samen. Kijk of je de waarden correct hebt ingegeven. </span><br>
-		<?php } ?>
-		<?php if ($allesgoed) { ?>
-		<span class="goed">Alles is geupdate.</span><br>
-	<?php }}?>
-         </form>
-      </div>
-
-    </div>
-	</div>
-    <!-- /.row -->
-
-  </div>
+			<div class="control-group form-group">
+			<div class="controls">
+			  <label>Bevestig nieuw wachtwoord:</label>
+			  <input type="password" class="form-control" name="bnieuwpaswoord" id="bnieuwpaswoord">
+			  </div>
+			  </div>
+			  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+		  </form>
 </div>
-  <!-- /.container -->
+</div>
+</div>
+
+
+
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

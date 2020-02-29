@@ -1,60 +1,60 @@
 <?php
-$voornaam = trim($_POST["voornaam"]);
-$achternaam = trim($_POST["achternaam"]);
-$gebruikersnaam = trim($_POST["gebruikersnaam"]);
-$email = trim($_POST["email"]);
-$postcode = trim($_POST["postcode"]);
-$gemeente = trim($_POST["gemeente"]);
-$paswoord = trim($_POST["paswoord"]);
-$bpaswoord = trim($_POST["confirmpaswoord"]);
+$fvoornaam = trim($_POST["voornaam"]);
+$fachternaam = trim($_POST["achternaam"]);
+$fgebruikersnaam = trim($_POST["gebruikersnaam"]);
+$femail = trim($_POST["email"]);
+$fpostcode = trim($_POST["postcode"]);
+$fgemeente = trim($_POST["gemeente"]);
+$fpaswoord = trim($_POST["paswoord"]);
+$fbpaswoord = trim($_POST["confirmpaswoord"]);
 $gekeurt = true;
 
-if(empty($voornaam)){
+if(empty($fvoornaam)){
 	$gekeurt = false;
 }
-if(empty($achternaam)){
+if(empty($fachternaam)){
 	$gekeurt = false;
 }
-if(empty($gebruikersnaam)){
+if(empty($fgebruikersnaam)){
 	$gekeurt = false;
 }
-if(empty($email)){
+if(empty($femail)){
 	$gekeurt = false;
 }
 else{
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	if (!filter_var($femail, FILTER_VALIDATE_EMAIL)) {
 	  $gekeurt = false;
   }}
-if(empty($postcode)){
+if(empty($fpostcode)){
 	$gekeurt = false;
 }
 else{
-	if (strlen($postcode) != 4) {
+	if (strlen($fpostcode) != 4) {
 		$gekeurt = false;
 	}
 	else{
 		$pat = '[0-9]';
-		if(!(preg_match("/^\d+$/",$postcode))){
+		if(!(preg_match("/^\d+$/",$fpostcode))){
 			$gekeurt = false;
 		}
 	}
 }
-if(empty($gemeente)){
+if(empty($fgemeente)){
 	$gekeurt = false;
 }
-if(empty($paswoord)){
+if(empty($fpaswoord)){
 	$gekeurt = false;
 }
 else{
-	if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $paswoord)) {
+	if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $fpaswoord)) {
 	    $gekeurt = false;
 	}
 }
-if(empty($bpaswoord)){
+if(empty($fbpaswoord)){
 	$gekeurt = false;
 }
 else{
-	if($bpaswoord != $paswoord){
+	if($fbpaswoord != $fpaswoord){
 		$gekeurt = false;
 	}
 }
@@ -67,6 +67,7 @@ if(empty($pcid)){
 
 if($gekeurt){
 include('php/registratie.php');
+
 }
 
 ?>

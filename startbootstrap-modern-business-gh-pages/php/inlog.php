@@ -10,7 +10,17 @@ else
   	$gebruikersnaam = mysqli_real_escape_string($mysqli, $_POST['gebruikersnaam']);
   	$password = mysqli_real_escape_string($mysqli, $_POST['paswoord']);
 
-  	$sql = "SELECT soortklant FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$password'";
+	$sql_p = "SELECT paswoord FROM tblklanten WHERE gebruikersnaam = '$gebruikersnaam'";
+
+	$res_p = mysqli_query($mysqli, $sql_p);
+	if ($res_p->num_rows == 1) {
+	while($row = $res_p->fetch_assoc()){
+	$hash = $row["paswoord"];}}
+
+	if(password_verify($password, $hash)){
+
+
+  	$sql = "SELECT soortklant FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$hash'";
 	if($stmt = $mysqli->prepare($sql)){
 				if(!$stmt->execute()){
 					echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
@@ -20,11 +30,14 @@ else
 					while($stmt->fetch()){
                 $_SESSION["ingelogd"] = true;
                 $_SESSION["gebruikernaam"] = $gebruikersnaam;
-                $_SESSION["paswoord"] = $paswoord;
 				$_SESSION["soortklant"] = $soortklant;
 			}
 		}
 
+}
+}
+else{
+	echo "hey";
 }
 }
 }

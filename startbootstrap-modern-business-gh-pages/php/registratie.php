@@ -6,8 +6,12 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 else
 {
 //verandert de ingegeven waardes om naar stukken text
+$voornaam = mysqli_real_escape_string($mysqli,$_POST['voornaam']);
+$achternaam = mysqli_real_escape_string($mysqli,$_POST['achternaam']);
 $username = mysqli_real_escape_string($mysqli,$_POST['gebruikersnaam']);
 $email = mysqli_real_escape_string($mysqli,$_POST['email']);
+$paswoord = mysqli_real_escape_string($mysqli,$_POST['paswoord']);
+$paswoord = password_hash($paswoord, PASSWORD_BCRYPT);
 
 //sqlen die moeten kijken of de gebruikersnaam of email al bestaan of niet.
 $sql_u = "SELECT * FROM tblklanten WHERE gebruikersnaam='$username'";
@@ -28,29 +32,13 @@ else{
 // de sql en resultaat voor het invoegen van een gebruiker nadat hij zich correct heeft geregistreerd
 
 	 $sql = "
-	 INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, postcodeid, email, paswoord) VALUES ( ?,?,?,?,?,?)";
-	if($stmt = $mysqli->prepare($sql))
-	{
-	$stmt->bind_param('sssiss',$voornaam,$achternaam,$gebruikersnaam2,$postcodeid,$email2,$paswoord2);
-	 $voornaam = mysqli_real_escape_string($mysqli,$_POST["voornaam"]);
-	 $achternaam = mysqli_real_escape_string($mysqli,$_POST["achternaam"]);
-	 $gebruikersnaam = mysqli_real_escape_string($mysqli,$_POST["gebruikersnaam"]);
-		$_SESSION["gebruikernaam"] = mysqli_real_escape_string($mysqli,$_POST["gebruikersnaam"]);
-	 $postcodeid = $pcid;
-	 $email = mysqli_real_escape_string($mysqli,$_POST["email"]);
-	 $paswoord = mysqli_real_escape_string($mysqli,$_POST["paswoord"]);
-		$_SESSION["paswoord"] = mysqli_real_escape_string($mysqli,$_POST["paswoord"]);
-		 if(!$stmt->execute()){
-		echo 'het uitvoeren van de query is mislukt:';
-		 }
-		 else
-			 {
+	 INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, postcodeid, email, paswoord) VALUES ( '$voornaam','$achternaam','$username','$pcid','$email','$paswoord')";
+	 mysqli_query($mysqli, $sql);
+
+	 		 $_SESSION["gebruikernaam"]	= $username;
 			 $_SESSION["ingelogd"] = true;
-			 ; }
-			$stmt->close();
-			}
-	 else{ echo 'Er zit een fout in de query'; }
-			}
-}
+
+
+}}
 //behoort to de pagina registratie.php
  ?>

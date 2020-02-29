@@ -134,6 +134,15 @@ include('php/foutcontrole.php');
 			  <?php } ?>
             </div>
           </div>
+		  <div class="control-group form-group">
+		  <div class="controls">
+			<label>Postcode:</label>
+			<input type="text" class="form-control" name="postcode" title="Moet bestaan uit 4 cijfers" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" >
+			<?php if(isset($foutingpostcode)){ ?>
+				<p class="fout">Er is een fout bij postcode</p>
+			<?php } ?>
+		  </div>
+		</div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Gemeente:</label>
@@ -143,15 +152,7 @@ include('php/foutcontrole.php');
 			  <?php } ?>
             </div>
           </div>
-            <div class="control-group form-group">
-            <div class="controls">
-              <label>Postcode:</label>
-              <input type="text" class="form-control" name="postcode" title="Moet bestaan uit 4 cijfers" value="<?php if(isset($_POST['postcode'])){echo $_POST['postcode'];} ?>" id="postcode" >
-			  <?php if(isset($foutingpostcode)){ ?>
-				  <p class="fout">Er is een fout bij postcode</p>
-			  <?php } ?>
-            </div>
-          </div>
+
             <div class="control-group form-group">
             <div class="controls">
               <label>Gebruikersnaam:</label>

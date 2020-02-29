@@ -1,19 +1,16 @@
 <?php
-if (!(isset($counts))){
-	$counts = 0;
+$koopwaar = $_SESSION["koopwaren"];
+$tell = 0;
+foreach ($koopwaar as $kw) {
+	if($kw != $id){
+		$nieuw[$tell] = $kw;
+	}
+	$tell++;
 }
-do{
-if($_SESSION["koopwaren"][$counts] == $id){
-	$goed = true;
-	unset($_SESSION["koopwaren"][$counts]);
-	unset($_SESSION["aantal"][$counts]);
-	$_SESSION["count"]--;
+
+$_SESSION["koopwaren"] = array_merge($koopwaar,$nieuw);
+foreach ($_SESSION["koopwaren"] as $key) {
+	echo $key;
 }
-else{
-	$counts++;
-}
-}while(!isset($goed));
 
-
-
- ?>
+?>
