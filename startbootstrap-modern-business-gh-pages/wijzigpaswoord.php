@@ -126,7 +126,10 @@ else{
 			  <input type="password" class="form-control" name="bnieuwpaswoord" id="bnieuwpaswoord">
 			  </div>
 			  </div>
-			  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+			  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
+			  <?php if(isset($geslaagd)){ ?>
+				  <label class="goed">Uw wachtwoord is geslaagd</label>
+			  <?php } ?>
 		  </form>
 </div>
 </div>
