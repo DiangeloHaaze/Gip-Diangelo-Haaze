@@ -116,8 +116,15 @@ else{
 			<div class="control-group form-group">
 			<div class="controls">
 			  <label>nieuw wachtwoord:</label>
-			  <input type="password" class="form-control" name="nieuwpaswoord" id="nieuwpaswoord">
+			  <input type="password" class="form-control" name="nieuwpaswoord" id="paswoord">
 			</div>
+		  </div>
+		  <div id="message">
+			<h3>Het wachtwoord moet minstens :</h3>
+			<p id="letter" class="fout">Een <b>Kleine</b> letter</p>
+			<p id="capital" class="fout">Een <b>Hoofdletter</b></p>
+			<p id="number" class="fout">Een <b>nummer</b></p>
+			<p id="length" class="fout">Minimum <b>8 karakters</b></p>
 		  </div>
 
 			<div class="control-group form-group">
@@ -128,8 +135,11 @@ else{
 			  </div>
 			  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
 			  <?php if(isset($geslaagd)){ ?>
-				  <label class="goed">Uw wachtwoord is geslaagd</label>
+				  <label class="goed">Uw wachtwoord is successvol geupdate.</label>
+			  <?php } if(isset($fout)){?>
+				  <label class="fout">Er is een fout </label>
 			  <?php } ?>
+
 		  </form>
 </div>
 </div>
