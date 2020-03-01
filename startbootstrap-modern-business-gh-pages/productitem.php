@@ -167,10 +167,8 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 		<hr>
 			<form action="#"  method="post">
 			<?php if(!(isset($kopen))){?>
-				<button type="submit" name="voorkopen" class="btn btn-primary" id="sendMessageButton">Kopen</button>
-			<?php } ?>
-			<?php if(isset($kopen)){?>
-				<button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Kopen </button>
+				<button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Kopen </button><br>
+				<span>Aantal Producten:</span>
 				<select name="aantal">
 					<option value="1">--1--</option>
 					<option value="2">--2--</option>

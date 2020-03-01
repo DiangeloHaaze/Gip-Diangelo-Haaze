@@ -5,6 +5,9 @@ if(!isset($_SESSION["adminkey"])){
 }
 else{
 
+	if(isset($_POST['versturen2'])){
+		include("php/weizigproduct.php");
+	}
 }
  ?>
  <!DOCTYPE html>
@@ -130,22 +133,29 @@ else{
 		  else
 		  {
 			  $productnaam = mysqli_real_escape_string($mysqli,$_POST["productnaam"]);
-			  $sql_a = "SELECT productnaam, producttaal, beschrijving, prijsPstuk FROM tblproducten WHERE productnaam LIKE '$productnaam'";
+			  $sql_a = "SELECT productnaam, producttaal, beschrijving, prijsPstuk, linkfoto FROM tblproducten WHERE productnaam LIKE '$productnaam'";
 
 			  if($stmt = $mysqli->prepare($sql_a)){
 						  if(!$stmt->execute()){
 							  echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 						  }
 						  else{
-							  $stmt->bind_result($productnaam, $producttaal, $beschrijving,$prijsPstuk);
+							  $stmt->bind_result($productnaam, $producttaal, $beschrijving,$prijsPstuk, $linkfoto);
 							  while($stmt->fetch()){
 	  ?>
 	  		<span>Productnaam:</span><br>
-			<input type="text" class="form-control" name="productnaam2" value="<?php if (isset($_POST["productnaam2"])) {
-				echo $_POST["productnaam2"];
-			}else {
-				echo $productnaam;
-			} ?>">
+			<input type="text" class="form-control" name="productnaam2" value="<?php if (isset($_POST["productnaam2"])){echo $_POST["productnaam2"];}else {echo $productnaam;}?>">
+			<span>ProductTaal:</span><br>
+			<input type="text" class="form-control" name="producttaal" value="<?php if (isset($_POST["producttaal"])){echo $_POST["producttaal"];}else {echo $producttaal;}?>">
+			<span>Beschrijving:</span><br>
+			<textarea name="beschrijvings" rows="8" cols="80"><?php if (isset($_POST["beschrijvings"])){echo $_POST["beschrijvings"];}else {echo $beschrijving;}?></textarea><br>
+			<span>Prijs Per Stuk:</span><br>
+			<input type="text" class="form-control" name="prijsPstuk" value="<?php if (isset($_POST["prijsPstuk"])){echo $_POST["prijsPstuk"];}else {echo $prijsPstuk;}?>">
+			<span>Link naar foto:</span><br>
+			<input type="text" class="form-control" name="linkfoto" value="<?php if (isset($_POST["linkfoto"])){echo $_POST["linkfoto"];}else {echo $linkfoto;}?>">
+			<hr>
+			<button type="submit" name="versturen2" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
+
   <?php }}}}} ?>
           </form>
        </div>
