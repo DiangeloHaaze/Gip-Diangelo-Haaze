@@ -7,22 +7,27 @@ if(isset($_POST["versturen"])){
 
 	if(empty($oudpaswoord)){
 		$fout = false;
+		echo "stringd";
 	}
 	if(empty($nieuwpaswoord)){
 		$fout = false;
+		echo "stringo";
 	}
 	else{
 			if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $nieuwpaswoord)) {
 			    $gekeurt = false;
+				echo "stringd";
 			}
 		}
 
 	if(empty($bnieuwpaswoord)){
+		echo "string";
 		$fout = false;
 	}
 	else{
 		if($nieuwpaswoord != $bnieuwpaswoord){
 			$fout = false;
+			echo "strings";
 		}
 	}
 
@@ -36,8 +41,8 @@ if(isset($_POST["versturen"])){
 
 
 
-
 			       $sql_p = "SELECT paswoord FROM tblklanten WHERE gebruikersnaam = '$username_s'";
+
 				   $sql_i = "UPDATE tblklanten SET paswoord = '$nieuwpaswoord_s' WHERE gebruikersnaam = '$username_s'";
 
 			   	   $res_p = mysqli_query($mysqli, $sql_p);
@@ -47,17 +52,19 @@ if(isset($_POST["versturen"])){
 
 				   if(password_verify($oudpaswoord_s, $hash)){
 					   if($stmt = $mysqli->prepare($sql_i))
-					 {
-				     $geslaagd = true;
-					 $stmt->close();
-					 }
+				  {
+				  if(!$stmt->execute()){ echo 'het uitvoeren van de query is mislukt:';}
+				  else {
+					  echo 'Het updaten is gelukt';
+					  $geslaagd = true;
+				  }
+				  $stmt->close();
+
+				  }
+			   }
+			   else
+			   {
+				   $fout = false;
 			   }
 }}
-
-
-
-
-
-
-
  ?>

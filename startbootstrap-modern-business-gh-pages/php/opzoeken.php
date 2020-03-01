@@ -7,8 +7,8 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 
 else
 {
-
- $zoekwaarde = mysqli_real_escape_string($mysqli, $_POST["zoekwaarde"]);
+ $zoekwaarde = trim($_POST["zoekwaarde"]);
+ $zoekwaarde = mysqli_real_escape_string($mysqli, $zoekwaarde);
 
 switch($_POST['keus']){
     case "voornaam":

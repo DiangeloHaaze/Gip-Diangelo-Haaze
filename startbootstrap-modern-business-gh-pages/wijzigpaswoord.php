@@ -136,7 +136,7 @@ else{
 			  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
 			  <?php if(isset($geslaagd)){ ?>
 				  <label class="goed">Uw wachtwoord is successvol geupdate.</label>
-			  <?php } if(isset($fout)){?>
+			  <?php } if(!$fout){?>
 				  <label class="fout">Er is een fout </label>
 			  <?php } ?>
 

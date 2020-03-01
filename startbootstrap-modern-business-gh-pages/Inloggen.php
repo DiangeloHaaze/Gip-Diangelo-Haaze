@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('php/inlog.php')
+include('php/inlog.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ include('php/inlog.php')
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/modern-business.css" rel="stylesheet">
-  <link href="css/diangelostyle.css" rel="stylesheet">  
+  <link href="css/diangelostyle.css" rel="stylesheet">
 </head>
 
 <body>

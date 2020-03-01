@@ -24,7 +24,7 @@ else{
   <link href="css/diangelostyle.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-
+  <link href="css/GIPstyle.css" rel="stylesheet">
 </head>
 
 <body>
@@ -125,7 +125,7 @@ else{
           <div id="success"></div>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
             <?php } else{ for($i = 0; $i < $teller; $i++){ ?>
-            <div class="list-group">
+            <div class="klantendisplay">
           <p><b>Voornaam: </b>  <?php echo $voornaam[$i]; ?> </p>
           <p><b>Achternaam: </b><?php echo $achternaam[$i]; ?> </p>
           <p><b>gebruikersnaam: </b><?php echo $gebruikersnaam[$i]; ?> </p>
