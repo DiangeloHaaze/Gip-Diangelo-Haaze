@@ -90,3 +90,25 @@
 	padding-top: 40px;
 	border-color: grey;
 }
+.factuuritem{
+	border: solid 3px;
+	border-color: black;
+	padding: 40px;
+}
+.factuurtext{
+	font-weight: bold;
+	font-size: 17px;
+}
+.factuurlink{
+	font-weight: bold;
+	font-size: 17px;
+	color: red;
+}
+.factuurlink:hover{
+	color: red;
+	text-decoration: none;
+}
+.factuurfoto{
+	border: 1px;
+	border-color: red;
+}

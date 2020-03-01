@@ -1,17 +1,5 @@
 <?php
 session_start();
-if(isset($_POST["allesverwijderen"]) && $_POST["allesverwijderen"] == 'allesverwijderen'){
-	include("php/allesverwijderen.php");
-}
-if(isset($_GET['actiep']) && $_GET['actiep'] == 'wis' && isset($_GET['productid'])){
-	$id = $_GET['productid'];
-	include('php/verwijder.php');
-}
-if(isset($_POST["bevestigen"])){
-	header("location:factuur.php");
-	$_SESSION["factuur"] = true;
-}
-
 
 $totaal = 0;
 ?>
@@ -32,7 +20,7 @@ $totaal = 0;
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-  <link href="css/diangelostyle.css" rel="stylesheet">
+  <link href="css/gipstyle.css" rel="stylesheet">
 
 </head>
 
@@ -112,6 +100,8 @@ $totaal = 0;
       <li class="breadcrumb-item active">Games F1</li>
     </ol>
 
+<div class="factuuritem">
+	<h2>Uw Winkelmand:</h2><br>
       <?php
 	  if($_SESSION["count"] != 0){
 		  $tel = 0;
@@ -136,57 +126,48 @@ $totaal = 0;
 		                  else{
 		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
 		                      while($stmt->fetch()){
-
+								  $totaal = $prijsPstuk + $totaal;
         ?>
-	<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-    <div class="row">
-      <div class="col-md-7">
-        <a href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>">
-          <img class="fotos" src="<?php echo $linkfoto;  ?>" alt="http://placehold.it/700x300">
-        </a>
-      </div>
-      <div class="col-md-5">
-        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>"> <?php echo $productnaam . " (" . $producttaal.")"; ?></h3><a>
-        <p><?php echo $beschrijving ?></p>
-        </a>
-		<h4 > Aantallen: <?php echo $aantalproducten[$tel];?> </h4>
-		<h4> Prijs Per Stuk: €<?php echo $prijsPstuk; ?></h4>
-		<h4>Totaal prijs product: €<?php $totaalpp = $aantalproducten[$tel] * $prijsPstuk; echo $totaalpp; $totaal = $totaal + $totaalpp; ?></h4>
-		<h4><a class="rodelink" href="<?php echo $_SERVER['PHP_SELF']; ?>?actiep=wis&productid=<?php echo $productid; ?>">
-			<i>Verwijderen?</i>
-		</a>
-	</h4>
-      </div>
-    </div>
- </form>
-    <hr>
-    <?php
-	unset($querrie);
-	$tel++;
-}
-$stmt->close();
-}
-}
-}
-}  ?>
-	  <h1>Totaalbedrag is: €<?php echo $totaal; ?></h1>
-	  <?php if(isset($_SESSION["ingelogd"])){ ?>
-		  <form id="form2" name="form2" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-			  <button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton"> Bevestigen
-			  </button>
-	   </form>
+			<img class="factuurfoto" src="<?php echo $linkfoto; ?>" alt=""><br>
+			<span class="factuurtext"><?php echo $productnaam; ?></span><br>
+			<span class="factuurtext">Prijs: <?php echo $prijsPstuk; ?></span><br>
+			<span class="factuurtext">Beschrijving:<br>
+				<?php echo $beschrijving; ?></span>
+			<br>
 
-  <?php } else{ ?>
-	  <a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om te kunnen kopen.</a>
-  <?php }} else { ?>
+<?php }}}} ?>
+<hr>
+<span class="factuurtext">Totaalprijs: €<?php echo $totaal; ?></span><br>
+<a href="producten.php" class="factuurlink">Verder naar producten Kijken</a>
+</div>
+<?php
+		$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+		$sql = "SELECT voornaam, achternaam, postcodeid, email FROM tblklanten where gebruikersnaam = '$username'";
+		if($stmt = $mysqli->prepare($sql)){
+				if(!$stmt->execute()){
+					echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+				}
+				else{
+					$stmt->bind_result($voornaam, $achternaam, $postcodeid,$email);
+					while($stmt->fetch()){
+						include("php/Rpostcodeid2.php");
+?>
+<div class="factuuritem">
+	<h2>Uw Contactgegevens:</h2><br>
+	<span class="factuurtext">Voornaam: <?php echo $voornaam; ?></span><br>
+	<span class="factuurtext">Achternaam: <?php echo $achternaam; ?></span><br>
+	<span class="factuurtext">Gemeente: <?php echo $gemeente; ?></span><br>
+	<span class="factuurtext">Postcode: <?php echo $postcode; ?></span><br>
+	<span class="factuurtext">Email adres: <?php echo $email; ?></span>
+	<br>
+	<a href="weizigen.php" class="factuurlink">Aanpassen</a>
+</div>
+<?php }}} }} ?>
+<br>
+<button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
+<div ></div>
 
-	  <p class='leeg'> Je hebt nog niets gekocht</p>
-	  <a href="index.php" class='zwartelink'> Will je terugkeren? </a>
-
-  <?php } ?>
-    <hr>
-
-
+</div>
   </div>
   <!-- /.container -->
 
