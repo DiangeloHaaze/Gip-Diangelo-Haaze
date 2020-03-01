@@ -22,17 +22,18 @@ $term = trim($_POST['zoekterm']);
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Athena's Game</title>
+  <title>Modern Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-  <link href="css/diangelostyle.css" rel="stylesheet">
+  <link href="css/gipstyle.css" rel="stylesheet">
 </head>
 
 <body>
+
 
 	<!-- De navigatie balk bovenaan de pagina op elke pagina. -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -49,6 +50,9 @@ $term = trim($_POST['zoekterm']);
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
+		<li class="nav-item">
+    		  <a class="nav-link" href="test.php">test</a>
+    		</li>
   		  <li class="nav-item">
   		  <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
   		</li>
@@ -72,6 +76,7 @@ $term = trim($_POST['zoekterm']);
   		  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
   			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
+			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
   			  <?php
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
   			if($_SESSION["adminkey"] == true){?>

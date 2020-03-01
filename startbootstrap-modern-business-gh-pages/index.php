@@ -23,8 +23,7 @@ include('php/featured.php');
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-  <link href="css/Stylediangelo.css" rel="stylesheet">
-  <link href="css/diangelostyle.css" rel="stylesheet">
+  <link href="css/gipstyle.css" rel="stylesheet">
 </head>
 
 <body>

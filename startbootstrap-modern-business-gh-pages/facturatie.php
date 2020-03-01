@@ -1,7 +1,8 @@
 <?php
 session_start();
-
 $totaal = 0;
+include("php/factuur.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,6 +100,8 @@ $totaal = 0;
       </li>
       <li class="breadcrumb-item active">Games F1</li>
     </ol>
+<form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
 
 <div class="factuuritem">
 	<h2>Uw Winkelmand:</h2><br>
@@ -166,9 +169,8 @@ $totaal = 0;
 <br>
 <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
 <div ></div>
-
+</form>
 </div>
-  </div>
   <!-- /.container -->
 
   <!-- Footer -->

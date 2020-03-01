@@ -8,7 +8,7 @@ if(isset($_GET['actiep']) && $_GET['actiep'] == 'wis' && isset($_GET['productid'
 	include('php/verwijder.php');
 }
 if(isset($_POST["bevestigen"])){
-	header("location:factuur.php");
+	header("location:facturatie.php");
 	$_SESSION["factuur"] = true;
 }
 
