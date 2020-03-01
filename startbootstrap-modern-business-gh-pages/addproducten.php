@@ -156,7 +156,7 @@ if(isset($_POST["versturen"])){
 			  		                    $stmt_s->bind_result($soortid, $soort);
 			  		                    while($stmt_s->fetch()){
 			  ?>
-          <option value="<?php echo $soortid; ?>" <?php if($soortid == $_POST["soort"]){?> selected <?php } ?> >--<?php echo $soort; ?>--</option>
+          <option value="<?php echo $soortid;?>">--<?php echo $soort; ?>--</option>
 	  <?php }}}}
 		  ?>
         </select>

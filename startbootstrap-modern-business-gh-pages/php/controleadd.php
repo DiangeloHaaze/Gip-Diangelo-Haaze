@@ -1,26 +1,51 @@
 <?php
 $foutief = true;
 $aantalcat = 0;
-if(!(isset($_POST['productnaam']) && $_POST["productnaam"] != "")){
+$productnaam = trim($_POST["productnaam"]);
+$producttaal = trim($_POST["producttaal"]);
+$beschrijving = trim($_POST["beschrijving"]);
+$prijsperstuk = trim($_POST["prijsPstuk"]);
+$linkfoto = trim($_POST["linkfoto"]);
+$soort = $_POST["soort"];
+
+if(empty($productnaam)){
 	$foutief = false;
 }
-if(!(isset($_POST["producttaal"]) && $_POST["producttaal"] != "" strlen($_POST["producttaal"]) == 2)){
+if(empty($producttaal)){
 	$foutief = false;
 }
-if(!(isset($_POST["beschrijving"]) && $_POST["beschrijving"] != "")){
+else{
+	if (strlen($producttaal) != 2) {
+		$foutief = false;
+
+	}
+}
+if(empty($beschrijving)){
 	$foutief = false;
 }
-if(!(isset($_POST["prijsPstuk"]) && $_POST["prijsPstuk"] != "" && is_numeric($_POST["prijsPstuk"]))){
+if(empty($prijsperstuk)){
 	$foutief = false;
 }
-if(!(isset($_POST["linkfoto"]) && $_POST["linkfoto"] != "")){
-	$foutief = false;
+else{
+	if(!(preg_match("/^\d+$/",$prijsperstuk))){
+		$foutief = false;
+
+	}
 }
-if(!($_POST["soort"] != "start")){
+if(empty($linkfoto)){
 	$foutief = false;
 }
 
-if ($foutief == true) {
+
+if($soort == "start"){
+	$foutief = false;
+}
+
+if ($foutief){
+	echo "good";
 	include("voegproducttoe.php");
+}
+else{
+	echo "bad";
 }
 ?>
