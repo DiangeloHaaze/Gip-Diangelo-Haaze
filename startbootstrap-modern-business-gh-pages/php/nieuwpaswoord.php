@@ -1,33 +1,27 @@
 <?php
 if(isset($_POST["versturen"])){
-	$fout = true;
 	$oudpaswoord = trim($_POST["oudpaswoord"]);
 	$nieuwpaswoord = trim($_POST["nieuwpaswoord"]);
 	$bnieuwpaswoord = trim($_POST["bnieuwpaswoord"]);
 
 	if(empty($oudpaswoord)){
 		$fout = false;
-		echo "stringd";
 	}
 	if(empty($nieuwpaswoord)){
 		$fout = false;
-		echo "stringo";
 	}
 	else{
 			if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $nieuwpaswoord)) {
 			    $gekeurt = false;
-				echo "stringd";
 			}
 		}
 
 	if(empty($bnieuwpaswoord)){
-		echo "string";
 		$fout = false;
 	}
 	else{
 		if($nieuwpaswoord != $bnieuwpaswoord){
 			$fout = false;
-			echo "strings";
 		}
 	}
 
@@ -50,18 +44,18 @@ if(isset($_POST["versturen"])){
 			   	   while($row = $res_p->fetch_assoc()){
 			   	   $hash = $row["paswoord"];}}
 
-				   if(password_verify($oudpaswoord_s, $hash)){
+				 //  if(password_verify($oudpaswoord_s, $hash)){
 					   if($stmt = $mysqli->prepare($sql_i))
 				  {
-				  if(!$stmt->execute()){ echo 'het uitvoeren van de query is mislukt:';}
+
+				  if(!$stmt->execute()){ $fout = false;}
 				  else {
-					  echo 'Het updaten is gelukt';
 					  $geslaagd = true;
 				  }
 				  $stmt->close();
 
 				  }
-			   }
+			  // }
 			   else
 			   {
 				   $fout = false;

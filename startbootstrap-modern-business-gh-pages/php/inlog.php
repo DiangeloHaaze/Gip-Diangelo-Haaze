@@ -36,9 +36,6 @@ else
 
 }
 }
-else{
-	echo "hey";
-}
 }
 }
 // Behoort tot de pagina Inloggen.php.

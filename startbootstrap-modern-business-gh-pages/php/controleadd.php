@@ -42,10 +42,6 @@ if($soort == "start"){
 }
 
 if ($foutief){
-	echo "good";
 	include("voegproducttoe.php");
-}
-else{
-	echo "bad";
 }
 ?>

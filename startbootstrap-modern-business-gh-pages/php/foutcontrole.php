@@ -67,7 +67,6 @@ if(empty($pcid)){
 
 if($gekeurt){
 include('php/registratie.php');
-
 }
 
 ?>

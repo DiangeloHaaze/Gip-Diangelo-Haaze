@@ -24,7 +24,7 @@ else{
 
    <!-- Custom styles for this template -->
    <link href="css/modern-business.css" rel="stylesheet">
-   <link href="css/gipstyle.css" rel="stylesheet">
+   <link href="css/GIPstyle.css" rel="stylesheet">
  </head>
 
  <body>
@@ -141,7 +141,7 @@ else{
 			  <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
 			  <?php if(isset($geslaagd)){ ?>
 				  <label class="goed">Uw wachtwoord is successvol geupdate.</label>
-			  <?php } if(!$fout){?>
+			  <?php } if(isset($fout)){?>
 				  <label class="fout">Er is een fout </label>
 			  <?php } ?>
 
@@ -151,7 +151,9 @@ else{
 </div>
 
 
-
+<div class="lol">
+	<p>Lol cdd</p>
+</div>
 
 
   <!-- Footer -->
