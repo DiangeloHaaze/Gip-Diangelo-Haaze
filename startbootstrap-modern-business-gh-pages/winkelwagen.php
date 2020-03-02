@@ -4,7 +4,6 @@ if(isset($_POST["allesverwijderen"]) && $_POST["allesverwijderen"] == 'allesverw
 	include("php/allesverwijderen.php");
 }
 if(isset($_GET['actiep']) && $_GET['actiep'] == 'wis' && isset($_GET['productid'])){
-	$id = $_GET['productid'];
 	include('php/verwijder.php');
 }
 if(isset($_POST["bevestigen"])){

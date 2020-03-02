@@ -44,7 +44,7 @@ if(isset($_POST["versturen"])){
 			   	   while($row = $res_p->fetch_assoc()){
 			   	   $hash = $row["paswoord"];}}
 
-				 //  if(password_verify($oudpaswoord_s, $hash)){
+				   if(password_verify($oudpaswoord_s, $hash)){
 					   if($stmt = $mysqli->prepare($sql_i))
 				  {
 
@@ -55,7 +55,7 @@ if(isset($_POST["versturen"])){
 				  $stmt->close();
 
 				  }
-			  // }
+			   }
 			   else
 			   {
 				   $fout = false;
