@@ -151,10 +151,6 @@ else{
 </div>
 
 
-<div class="lol">
-	<p>Lol cdd</p>
-</div>
-
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

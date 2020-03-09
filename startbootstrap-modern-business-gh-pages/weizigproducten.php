@@ -160,7 +160,6 @@ else{
 			<input type="text" class="form-control" name="linkfoto" value="<?php if (isset($_POST["linkfoto"])){echo $_POST["linkfoto"];}else {echo $linkfoto;}?>">
 			<hr>
 			<button type="submit" name="versturen2" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
-
   <?php }}}}} ?>
           </form>
        </div>
