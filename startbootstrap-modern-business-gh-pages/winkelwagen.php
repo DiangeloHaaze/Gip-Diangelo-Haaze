@@ -10,7 +10,9 @@ if(isset($_POST["bevestigen"])){
 	header("location:facturatie.php");
 	$_SESSION["factuur"] = true;
 }
-
+if(isset($_POST["VerwijderAlles"])){
+	include("php/VerwijderAlles.php");
+}
 
 $totaal = 0;
 ?>
@@ -172,6 +174,8 @@ $stmt->close();
 	  <?php if(isset($_SESSION["ingelogd"])){ ?>
 		  <form id="form2" name="form2" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 			  <button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton"> Bevestigen
+			  </button>
+			  <button type="submit" name="VerwijderAlles" class="btn btn-primary" id="sendMessageButton"> Verwijder Alles
 			  </button>
 	   </form>
 
