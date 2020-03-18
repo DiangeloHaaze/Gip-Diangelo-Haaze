@@ -140,7 +140,7 @@ if (isset($_POST['aantal'])){
 
       <div class="col-md-4">
         <h3 class="my-3"><?php echo $productnaam;?></h3>
-        <p><?php echo $beschrijving; ?></p>
+        <p><?php include("php/longtext.php"); echo $beschrijving; ?></p>
         <h3 class="my-3">Details</h3>
         <ul>
           <li class="tags">Taal: <?php echo $producttaal; ?></li>

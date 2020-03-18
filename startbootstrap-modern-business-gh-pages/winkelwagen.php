@@ -148,7 +148,7 @@ $totaal = 0;
       </div>
       <div class="col-md-5">
         <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>"> <?php echo $productnaam . " (" . $producttaal.")"; ?></h3><a>
-        <p><?php echo $beschrijving ?></p>
+        <p><?php include("php/longtext.php"); echo $beschrijving ?></p>
         </a>
 		<h4 > Aantallen: <?php echo $aantalproducten[$tel];?> </h4>
 		<h4> Prijs Per Stuk: €<?php echo $prijsPstuk; ?></h4>

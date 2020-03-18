@@ -131,17 +131,24 @@ include("php/factuur.php");
 		                      while($stmt->fetch()){
 								  $totaal = $prijsPstuk + $totaal;
         ?>
-		<table width="100%">
+		<table border="5px">
 			<tr>
 				<td><img class="factuurfoto" src="<?php echo $linkfoto; ?>" alt=""><br></td>
+			</tr>
+			<tr>
 				<td><span class="factuurtext"><?php echo $productnaam; ?></span></td>
-				<td><span class="factuurtext">Prijs: <?php echo $prijsPstuk; ?></span></td>
-				<td><span class="factuurtext">Beschrijving:<br>
-
+			</tr>
+			<tr>
+				<td><span class="factuurtext">Prijs: € <?php echo $prijsPstuk; ?></span></td>
+			</tr>
+			<tr>
+				<td><span class="factuurtext">Beschrijving:<br> -->
 					<?php
 					include("php/longtext.php");
+					echo $beschrijving;
 					 ?></span></td>
 			</tr>
+
 		</table>
 
 <?php }}}} ?>
