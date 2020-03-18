@@ -167,7 +167,7 @@ $term = trim($_POST['zoekterm']);
         </form>
 
       <?php
-	  
+
 		  if(isset($zoeker)){
 			  include('php/zoekkeuzes.php');
 		  }
@@ -192,7 +192,9 @@ $term = trim($_POST['zoekterm']);
       </div>
       <div class="col-md-5">
         <h3><?php echo $productnaam ." (" . $producttaal.")"; ?></h3>
-        <p><?php echo $beschrijving ?></p>
+        <p><?php include("php/longtext.php");
+				 echo $beschrijving;
+		?></p>
         <a class="btn btn-primary" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>">Zie product
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>

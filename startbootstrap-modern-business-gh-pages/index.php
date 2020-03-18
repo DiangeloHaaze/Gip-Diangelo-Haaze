@@ -190,7 +190,10 @@ include('php/featured.php');
             <h4 class="card-title">
               <a href="productitem.php?actie=doorgang&productid=<?php echo $productiden[$games[$y]];?>"><?php echo $producten[$games[$y]] ?> </a>
             </h4>
-            <p class="card-text"><?php echo $beschrijvingen[$games[$y]]; ?></p>
+			<?php $beschrijving = $beschrijvingen[$games[$y]];
+			include("php/longtext.php");
+			?>
+            <p class="card-text"><?php echo $beschrijving ?></p>
           </div>
         </div>
       </div>
