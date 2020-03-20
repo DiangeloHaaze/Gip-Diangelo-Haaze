@@ -131,9 +131,9 @@ if (isset($_POST['aantal'])){
 	  	                    while($stmt->fetch()){}
 	   ?>
       <li class="breadcrumb-item active"><?php echo $productnaam;?></li>
+	  <form action="#"  method="post">
     </ol>
     <div class="row">
-
       <div class="col-md-8">
         <img class="img-fluid" src="<?php echo $linkfoto; ?>" alt="http://placehold.it/750x500">
       </div>
@@ -141,6 +141,11 @@ if (isset($_POST['aantal'])){
       <div class="col-md-4">
         <h3 class="my-3"><?php echo $productnaam;?></h3>
         <p><?php include("php/longtext.php"); echo $beschrijving; ?></p>
+		<?php if(!(isset($_POST["meertext"]))){ ?>
+		<button type="submit" name="meertext" class="btn btn-primary" id="sendMessageButton"> Meer Text </button>
+	<?php }else{ ?>
+		<button type="submit" name="mindertext" class="btn btn-primary" id="sendMessageButton"> Minder Text </button>
+	<?php } ?>
         <h3 class="my-3">Details</h3>
         <ul>
           <li class="tags">Taal: <?php echo $producttaal; ?></li>
@@ -170,7 +175,6 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 	   ?>
         </ul>
 		<hr>
-			<form action="#"  method="post">
 			<?php if(!(isset($kopen))){?>
 				<button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Kopen </button><br>
 				<span>Aantal Producten:</span>
