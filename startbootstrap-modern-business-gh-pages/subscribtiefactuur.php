@@ -99,63 +99,39 @@ session_start();
       <li class="breadcrumb-item">
         <a href="index.html">Start</a>
       </li>
-      <li class="breadcrumb-item active">Prijs subscriptie</li>
+      <li class="breadcrumb-item active">Facturatie Subscribtie</li>
     </ol>
 
     <!-- Content Row -->
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">Basic</h3>
-          <div class="card-body">
-            <div class="display-4">€5.99</div>
-            <div class="font-italic">per Trimester</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">5% korting</li>
-            <li class="list-group-item">Recht op Preorders</li>
-            <li class="list-group-item">recht op preorders</li>
-            <li class="list-group-item">
-              <a href="subscribtiefactuur.php" class="btn btn-primary">Registreer!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card card-outline-primary h-100">
-          <h3 class="card-header bg-primary text-white">Plus</h3>
-          <div class="card-body">
-            <div class="display-4">€10.99</div>
-            <div class="font-italic">per Trimester</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">10% korting</li>
-            <li class="list-group-item">recht op preorders</li>
-            <li class="list-group-item">Speciale Deals</li>
-            <li class="list-group-item">
-              <a href="subscribtiefactuur.php" class="btn btn-primary">Registreer!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">Ultra</h3>
-          <div class="card-body">
-            <div class="display-4">€20.99</div>
-            <div class="font-italic">per Trimester</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">20% korting</li>
-            <li class="list-group-item">Voorrang bij Orders/Preorders</li>
-            <li class="list-group-item">Speciale Deals</li>
-            <li class="list-group-item">
-              <a href="subscribtiefactuur.php" class="btn btn-primary">Registreer!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+	<?php
+	$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+	if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+		else
+			{
+			$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+			$sql = "SELECT voornaam, achternaam, postcodeid, email FROM tblklanten where gebruikersnaam = '$username'";
+			if($stmt = $mysqli->prepare($sql)){
+					if(!$stmt->execute()){
+						echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
+					}
+					else{
+						$stmt->bind_result($voornaam, $achternaam, $postcodeid,$email);
+						while($stmt->fetch()){
+							include("php/Rpostcodeid2.php");
+	?>
+	<div class="factuuritem">
+		<h2>Uw Contactgegevens:</h2><br>
+		<span class="factuurtext">Voornaam: <?php echo $voornaam; ?></span><br>
+		<span class="factuurtext">Achternaam: <?php echo $achternaam; ?></span><br>
+		<span class="factuurtext">Gemeente: <?php echo $gemeente; ?></span><br>
+		<span class="factuurtext">Postcode: <?php echo $postcode; ?></span><br>
+		<span class="factuurtext">Email adres: <?php echo $email; ?></span>
+		<br>
+		<a href="weizigen.php" class="factuurlink">Aanpassen</a>
+	</div>
+<?php }}} }?>
+<br>
+<button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
     <!-- /.row -->
 
   </div>
