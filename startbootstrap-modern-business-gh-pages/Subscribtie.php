@@ -106,17 +106,17 @@ session_start();
     <div class="row">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h3 class="card-header">Basic</h3>
+          <h3 class="card-header">Basis</h3>
           <div class="card-body">
             <div class="display-4">€5.99</div>
-            <div class="font-italic">per Trimester</div>
+            <div class="font-italic">Per trimester</div>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">5% korting</li>
-            <li class="list-group-item">Recht op Preorders</li>
-            <li class="list-group-item">recht op preorders</li>
+            <li class="list-group-item">Recht op preorders</li>
+            <li class="list-group-item">Nieuwsbrief</li>
             <li class="list-group-item">
-              <a href="subscribtiefactuur.php" class="btn btn-primary">Registreer!</a>
+              <a href="subscribtiefactuur.php?actie=doorgang1" class="btn btn-primary">Registreer!</a>
             </li>
           </ul>
         </div>
@@ -126,14 +126,14 @@ session_start();
           <h3 class="card-header bg-primary text-white">Plus</h3>
           <div class="card-body">
             <div class="display-4">€10.99</div>
-            <div class="font-italic">per Trimester</div>
+            <div class="font-italic">Per trimester</div>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">10% korting</li>
-            <li class="list-group-item">recht op preorders</li>
-            <li class="list-group-item">Speciale Deals</li>
+            <li class="list-group-item">Recht op preorders</li>
+            <li class="list-group-item">Speciale deals</li>
             <li class="list-group-item">
-              <a href="subscribtiefactuur.php" class="btn btn-primary">Registreer!</a>
+              <a href="subscribtiefactuur.php?actie=doorgang2" class="btn btn-primary">Registreer!</a>
             </li>
           </ul>
         </div>
@@ -143,14 +143,14 @@ session_start();
           <h3 class="card-header">Ultra</h3>
           <div class="card-body">
             <div class="display-4">€20.99</div>
-            <div class="font-italic">per Trimester</div>
+            <div class="font-italic">Per trimester</div>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">20% korting</li>
-            <li class="list-group-item">Voorrang bij Orders/Preorders</li>
-            <li class="list-group-item">Speciale Deals</li>
+            <li class="list-group-item">Voorrang bij orders/preorders</li>
+            <li class="list-group-item">Speciale deals</li>
             <li class="list-group-item">
-              <a href="subscribtiefactuur.php" class="btn btn-primary">Registreer!</a>
+              <a href="subscribtiefactuur.php?actie=doorgang3" class="btn btn-primary">Registreer!</a>
             </li>
           </ul>
         </div>

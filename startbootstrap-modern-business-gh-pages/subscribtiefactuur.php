@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!(isset($_GET["actie"]))){
+	header("location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +56,7 @@ session_start();
   		  <a class="nav-link" href="registreer.php">Registreer</a>
   		</li>
   		  <li class="nav-item">
-  		  <a class="nav-link" href="Inloggen.php">inloggen</a>
+  		  <a class="nav-link" href="Inloggen.php">Inloggen</a>
   		</li>
   		  <?php }
   		// en als je niet ingelogd ben krijg je dit te zien.
@@ -103,6 +106,27 @@ session_start();
     </ol>
 
     <!-- Content Row -->
+	<div class="factuuritem">
+
+		<span class="factuurtext"> Keuze abbonement:</span><br>
+		<?php switch($_GET["actie"]){
+			case 'doorgang1':
+				?>
+				<span class="factuurtext"> Basis abbonement</span><br>
+				<?php
+				break;
+			case 'doorgang2':
+				?>
+				<span class="factuurtext"> Plus abbonement</span><br>
+				<?php
+				break;
+			case 'doorgang3':
+				?>
+				<span class="factuurtext"> Ultra abbonement</span><br>
+				<?php
+				break;
+		} ?>
+	</div>
 	<?php
 	$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 	if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
@@ -131,9 +155,8 @@ session_start();
 	</div>
 <?php }}} }?>
 <br>
-<button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br>
+<button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton">Bevestigen</button><br><br>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
 

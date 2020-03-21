@@ -31,7 +31,7 @@ include('php/foutcontrole.php');
 
 
 	<!-- De navigatie balk bovenaan de pagina op elke pagina. -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
   	<a class="navbar-brand" href="index.php">Athena's Game</a>
   	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@ include('php/foutcontrole.php');
   		  <a class="nav-link" href="registreer.php">Registreer</a>
   		</li>
   		  <li class="nav-item">
-  		  <a class="nav-link" href="Inloggen.php">inloggen</a>
+  		  <a class="nav-link" href="Inloggen.php">Inloggen</a>
   		</li>
   		  <?php }
   		// en als je niet ingelogd ben krijg je dit te zien.
@@ -77,7 +77,7 @@ include('php/foutcontrole.php');
   			if($_SESSION["adminkey"] == true){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>
 			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
-			<a class="dropdown-item" href="weizigproducten.php"> Producten Weizigen</a>
+			<a class="dropdown-item" href="weizigproducten.php"> Producten Wijzigen</a>
   			  <?php } ?>
   		  </div>
   		</li>
