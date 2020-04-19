@@ -27,6 +27,7 @@ else
 	if ($res->num_rows == 1) {
 	while($row = $res->fetch_assoc()){
 	$factuurid = $row["MAX(factuurid)"];
+	$_SESSION["factuurid"] = $factuurid;
 }
 }
 
@@ -38,6 +39,7 @@ for ($y=0; $y < $_SESSION['count']; $y++) {
 	if ($res_prijs->num_rows == 1) {
 	while($row = $res_prijs->fetch_assoc()){
 	$prijsPstuk_kost = $row["prijsPstuk"];
+	$_SESSION["prijzen"][$y] =  $prijsPstuk_kost;
 }
 
 }

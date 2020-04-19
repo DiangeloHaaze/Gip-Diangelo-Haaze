@@ -126,13 +126,13 @@ if($goedkeuring){
 				else
 				{
 					$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
-					$sql = "SELECT voornaam, achternaam, postcodeid FROM tblklanten where gebruikersnaam = '$username'";
+					$sql = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer FROM tblklanten where gebruikersnaam = '$username'";
 					if($stmt = $mysqli->prepare($sql)){
 								if(!$stmt->execute()){
 									echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 								}
 								else{
-									$stmt->bind_result($voornaam, $achternaam, $postcodeid);
+									$stmt->bind_result($voornaam, $achternaam, $postcodeid, $straat, $straatnr);
 									while($stmt->fetch()){
 										include("php/Rpostcodeid2.php");
 				 ?>
@@ -147,6 +147,12 @@ if($goedkeuring){
 				 <br>
 				 <span>Gemeente:</span>
 				 <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} else{echo $gemeente;} ?>">
+				 <br>
+				 <span>Straat:</span>
+				 <input type="text" class="form-control" name="Straat" id="Straat" value="<?php if(isset($_POST["Straat"])){echo $_POST["Straat"];} else{echo $straat;} ?>">
+				 <br>
+				 <span>Straatnummer:</span>
+				 <input type="text" class="form-control" name="straatnr" id="straatnr" value="<?php if(isset($_POST["straatnr"])){echo $_POST["straatnr"];} else{echo $straatnr;} ?>">
 				 <br>
 	  <?php }}}} ?>
 		<br><br>

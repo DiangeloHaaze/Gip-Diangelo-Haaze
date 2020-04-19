@@ -1,7 +1,7 @@
 <?php
 session_start();
-
-
+$totaal_prijs = 0;
+$totaal_aantal = 0;
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +104,84 @@ session_start();
        <li class="breadcrumb-item active">Games F1</li>
      </ol>
  <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<?php $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+else
+{
+	$Gnaam = $_SESSION["gebruikernaam"];
 
+	$sql_a = "SELECT voornaam, achternaam FROM tblklanten WHERE gebruikersnaam = '$Gnaam'";
+
+	$res_a = mysqli_query($mysqli, $sql_a);
+	if ($res_a->num_rows == 1) {
+	while($row = $res_a->fetch_assoc()){
+	$vnaam = $row["voornaam"];
+	$anaam = $row["achternaam"];
+}}
+
+
+
+
+
+	 ?>
+<table border="1px">
+	<tr>
+		<td><b>Gebruikersnaam</b></td>
+		<td><b>Factuurid</b></td>
+		<td><b>Naam</b></td>
+		<td><b>Achternaam</b></td>
+	</tr>
+	<tr>
+		<td><?php echo $Gnaam; ?></td>
+		<td><?php echo $_SESSION["factuurid"]; ?> </td>
+		<td><?php echo $vnaam; ?></td>
+		<td><?php echo $anaam; ?></td>
+	</tr>
+	<tr>
+		<td><b>Email</b></td>
+		<td><b>Gemeente</b></td>
+		<td><b>Postcode</b></td>
+		<td><b>Adress</b></td>
+	</tr>
+	<tr>
+		<td><?php echo "string";?></td>
+		<td><?php echo "string"; ?> </td>
+		<td><?php echo "string"; ?></td>
+		<td><?php echo "string"; ?></td>
+	</tr>
+	<tr>
+		<td><b>Productnummer</b></td>
+		<td><b>Productnaam</b></td>
+		<td><b>Prijs</b></td>
+		<td><b>Aantal</b></td>
+	</tr>
+	<?php for ($i=0; $i < $_SESSION["count"]; $i++) {
+
+		$productid = $_SESSION["koopwaren"][$i];
+		$sql_b = "SELECT Productnaam FROM tblproducten WHERE productid = '$productid'";
+		$res_b = mysqli_query($mysqli, $sql_b);
+		if ($res_b->num_rows == 1) {
+		while($row = $res_b->fetch_assoc()){
+		$productnaam = $row["Productnaam"];
+	}}
+		?>
+		<tr>
+			<td><?php echo $_SESSION["koopwaren"][$i]; ?></td>
+			<td><?php echo $productnaam; ?> </td>
+			<td><?php echo $_SESSION["prijzen"][$i]; ?></td>
+			<td><?php echo $_SESSION["aantal"][$i]; ?></td>
+		</tr>
+		<?php
+	}} ?>
+	<tr>
+		<td><b>Totaal Prijs</b></td>
+		<td><b>Totaal Aantal</b></td>
+	</tr>
+	<tr>
+		<td><?php echo $totaal_prijs ?></td>
+		<td><?php echo $totaal_aantal ?></td>
+	</tr>
+</table>
  </form>
 
  </div>

@@ -1,10 +1,14 @@
 <?php
+//*Note to myself:
+//in registreer.php word er verwezen naar induviduele foutmeldingen maar die zijn er niet. Kijk later of je dit nog gaat gebruiken of deze gaat verwijderen
 $fvoornaam = trim($_POST["voornaam"]);
 $fachternaam = trim($_POST["achternaam"]);
 $fgebruikersnaam = trim($_POST["gebruikersnaam"]);
 $femail = trim($_POST["email"]);
 $fpostcode = trim($_POST["postcode"]);
 $fgemeente = trim($_POST["gemeente"]);
+$fstraat = trim($_POST["Straat"]);
+$fstraatnr = trim($_POST["straatnr"]);
 $fpaswoord = trim($_POST["paswoord"]);
 $fbpaswoord = trim($_POST["confirmpaswoord"]);
 $gekeurt = true;
@@ -16,6 +20,12 @@ if(empty($fachternaam)){
 	$gekeurt = false;
 }
 if(empty($fgebruikersnaam)){
+	$gekeurt = false;
+}
+if(empty($fstraat)){
+	$gekeurt = false;
+}
+if(empty($fstraatnr)){
 	$gekeurt = false;
 }
 if(empty($femail)){

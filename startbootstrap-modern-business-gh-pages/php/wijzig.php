@@ -10,9 +10,11 @@ else
 	$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
 	$klantvnaam = mysqli_real_escape_string($mysqli,$_POST["voornaam"]);
 	$klantanaam = mysqli_real_escape_string($mysqli,$_POST["achternaam"]);
+	$klantstraat = mysqli_real_escape_string($mysqli,$_POST["Straat"]);
+	$klantstraatnr = mysqli_real_escape_string($mysqli,$_POST["straatnr"]);
 	if(isset($pcid)){
 	$sql = "
-	UPDATE tblklanten SET voornaam = '$klantvnaam', achternaam = '$klantanaam', postcodeid = '$pcid' WHERE gebruikersnaam = '$username'";
+	UPDATE tblklanten SET voornaam = '$klantvnaam', achternaam = '$klantanaam', postcodeid = '$pcid', Straat = '$klantstraat', straatnummer = '$klantstraatnr' WHERE gebruikersnaam = '$username'";
 	if($mysqli->query($sql)==true){
 		$allesgoed = true;
 	}

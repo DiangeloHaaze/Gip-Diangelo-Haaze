@@ -9,6 +9,8 @@ else
 $voornaam = mysqli_real_escape_string($mysqli,$_POST['voornaam']);
 $achternaam = mysqli_real_escape_string($mysqli,$_POST['achternaam']);
 $username = mysqli_real_escape_string($mysqli,$_POST['gebruikersnaam']);
+$straat = mysqli_real_escape_string($mysqli,$_POST['Straat']);
+$straatnr = mysqli_real_escape_string($mysqli,$_POST['straatnr']);
 $email = mysqli_real_escape_string($mysqli,$_POST['email']);
 $paswoord = mysqli_real_escape_string($mysqli,$_POST['paswoord']);
 $paswoord = password_hash($paswoord, PASSWORD_BCRYPT);
@@ -32,7 +34,7 @@ else{
 // de sql en resultaat voor het invoegen van een gebruiker nadat hij zich correct heeft geregistreerd
 
 	 $sql = "
-	 INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, postcodeid, email, paswoord) VALUES ( '$voornaam','$achternaam','$username','$pcid','$email','$paswoord')";
+	 INSERT INTO tblklanten ( voornaam, achternaam, gebruikersnaam, Straat, straatnummer, postcodeid, email, paswoord) VALUES ( '$voornaam','$achternaam','$username', '$straat', '$straatnr', '$pcid','$email','$paswoord')";
 	 mysqli_query($mysqli, $sql);
 //de inlog gegevens die gebruikt worden voor de gebruiker.
 	 		 $_SESSION["gebruikernaam"]	= $username;
