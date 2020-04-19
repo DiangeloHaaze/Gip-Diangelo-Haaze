@@ -110,7 +110,7 @@ include('php/featured.php');
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('Pictures/wallpaper2.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>Console</h3>
+            <h3>Consoles</h3>
             <p>Elke console van hier tot in japan</p>
           </div>
         </div>

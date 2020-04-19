@@ -106,6 +106,7 @@ if(!(isset($_GET["actie"]))){
     </ol>
 
     <!-- Content Row -->
+	<?php if(isset($_SESSION["ingelogd"])){ ?>
 	<div class="factuuritem">
 
 		<span class="factuurtext"> Keuze abbonement:</span><br>
@@ -156,7 +157,13 @@ if(!(isset($_GET["actie"]))){
 <?php }}} }?>
 <br>
 <button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton">Bevestigen</button><br><br>
+<?php }else {
+	?>
+	<a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om dit te kunnen kopen.</a><br><br>
+	<?php
+} ?>
     <!-- /.row -->
+
   </div>
   <!-- /.container -->
 
