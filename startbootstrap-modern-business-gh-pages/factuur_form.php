@@ -94,14 +94,14 @@ $totaal_aantal = 0;
  <!-- /.container -->
  <div class="container">
 	 <!-- Page Heading/Breadcrumbs -->
-     <h1 class="mt-4 mb-3">Games
+     <h1 class="mt-4 mb-3">Factuur
      </h1>
 
      <ol class="breadcrumb">
        <li class="breadcrumb-item">
          <a href="index.php">Home</a>
        </li>
-       <li class="breadcrumb-item active">Games F1</li>
+       <li class="breadcrumb-item active">Factuur</li>
      </ol>
  <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
@@ -110,13 +110,18 @@ else
 {
 	$Gnaam = $_SESSION["gebruikernaam"];
 
-	$sql_a = "SELECT voornaam, achternaam FROM tblklanten WHERE gebruikersnaam = '$Gnaam'";
+	$sql_a = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer, email FROM tblklanten WHERE gebruikersnaam = '$Gnaam'";
 
 	$res_a = mysqli_query($mysqli, $sql_a);
 	if ($res_a->num_rows == 1) {
 	while($row = $res_a->fetch_assoc()){
 	$vnaam = $row["voornaam"];
 	$anaam = $row["achternaam"];
+	$email = $row["email"];
+	$straat = $row["Straat"];
+	$straatnr = $row["straatnummer"];
+	$postcodeid = $row["postcodeid"];
+	include("php/Rpostcodeid2.php");
 }}
 
 
@@ -139,15 +144,15 @@ else
 	</tr>
 	<tr>
 		<td><b>Email</b></td>
-		<td><b>Gemeente</b></td>
 		<td><b>Postcode</b></td>
+		<td><b>Gemeente</b></td>
 		<td><b>Adress</b></td>
 	</tr>
 	<tr>
-		<td><?php echo "string";?></td>
-		<td><?php echo "string"; ?> </td>
-		<td><?php echo "string"; ?></td>
-		<td><?php echo "string"; ?></td>
+		<td><?php echo $email;?></td>
+		<td><?php echo $postcode; ?> </td>
+		<td><?php echo $gemeente; ?></td>
+		<td><?php echo $straat." ".$straatnr; ?></td>
 	</tr>
 	<tr>
 		<td><b>Productnummer</b></td>
@@ -163,13 +168,16 @@ else
 		if ($res_b->num_rows == 1) {
 		while($row = $res_b->fetch_assoc()){
 		$productnaam = $row["Productnaam"];
+
 	}}
 		?>
 		<tr>
 			<td><?php echo $_SESSION["koopwaren"][$i]; ?></td>
 			<td><?php echo $productnaam; ?> </td>
-			<td><?php echo $_SESSION["prijzen"][$i]; ?></td>
-			<td><?php echo $_SESSION["aantal"][$i]; ?></td>
+			<td><?php echo $_SESSION["prijzen"][$i]; $totaal_prijs = $totaal_prijs + $_SESSION["prijzen"][$i];?>
+			</td>
+			<td><?php echo $_SESSION["aantal"][$i]; $totaal_aantal = $totaal_aantal + $_SESSION["aantal"][$i];?>
+			</td>
 		</tr>
 		<?php
 	}} ?>
@@ -182,6 +190,7 @@ else
 		<td><?php echo $totaal_aantal ?></td>
 	</tr>
 </table>
+<hr>
  </form>
 
  </div>

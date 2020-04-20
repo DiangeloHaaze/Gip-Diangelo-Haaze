@@ -162,23 +162,24 @@ include("php/factuur.php");
 </div>
 <?php
 		$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
-		$sql = "SELECT voornaam, achternaam, postcodeid, email FROM tblklanten where gebruikersnaam = '$username'";
+		$sql = "SELECT voornaam, achternaam, postcodeid, email, Straat, straatnummer FROM tblklanten where gebruikersnaam = '$username'";
 		if($stmt = $mysqli->prepare($sql)){
 				if(!$stmt->execute()){
 					echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 				}
 				else{
-					$stmt->bind_result($voornaam, $achternaam, $postcodeid,$email);
+					$stmt->bind_result($voornaam, $achternaam, $postcodeid,$email, $straat, $straatnr);
 					while($stmt->fetch()){
 						include("php/Rpostcodeid2.php");
 ?>
 <div class="factuuritem">
 	<h2>Uw Contactgegevens:</h2><br>
-	<span class="factuurtext">Voornaam: <?php echo $voornaam; ?></span><br>
-	<span class="factuurtext">Achternaam: <?php echo $achternaam; ?></span><br>
-	<span class="factuurtext">Gemeente: <?php echo $gemeente; ?></span><br>
-	<span class="factuurtext">Postcode: <?php echo $postcode; ?></span><br>
-	<span class="factuurtext">Email adres: <?php echo $email; ?></span>
+	<span class="factuurtext"><i>Voornaam:</i> <?php echo $voornaam; ?></span><br>
+	<span class="factuurtext"><i>Achternaam:</i> <?php echo $achternaam; ?></span><br>
+	<span class="factuurtext"><i>Gemeente:</i> <?php echo $gemeente; ?></span><br>
+	<span class="factuurtext"><i>Postcode:</i> <?php echo $postcode; ?></span><br>
+	<span class="factuurtext"><i>Email adres:</i> <?php echo $email; ?></span><br>
+	<span class="factuurtext"><i>Straat:</i> <?php echo $straat." ".$straatnr; ?></span>
 	<br>
 	<a href="weizigen.php" class="factuurlink">Aanpassen</a>
 </div>
