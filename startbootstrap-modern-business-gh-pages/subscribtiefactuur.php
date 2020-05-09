@@ -113,17 +113,17 @@ if(!(isset($_GET["actie"]))){
 		<?php switch($_GET["actie"]){
 			case 'doorgang1':
 				?>
-				<span class="factuurtext"> Basis abbonement</span><br>
+				<span class="factuurtext"> Basis abbonement: €5.99</span><br>
 				<?php
 				break;
 			case 'doorgang2':
 				?>
-				<span class="factuurtext"> Plus abbonement</span><br>
+				<span class="factuurtext"> Plus abbonement: €10.99</span><br>
 				<?php
 				break;
 			case 'doorgang3':
 				?>
-				<span class="factuurtext"> Ultra abbonement</span><br>
+				<span class="factuurtext"> Ultra abbonement: €20.99</span><br>
 				<?php
 				break;
 		} ?>
