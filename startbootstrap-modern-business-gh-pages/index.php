@@ -5,6 +5,7 @@ if(!isset($_SESSION["count"])){
 }
 include('php/Checkadmin.php');
 include('php/featured.php');
+include('php/opzeggenabbo.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +72,11 @@ include('php/featured.php');
   			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
 			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
+			<?php if(
+			$_SESSION["klantabbonement"] != 1){ ?>
+			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abbonnement</a>
   			  <?php
+		  }
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
   			if($_SESSION["adminkey"] == true){?>
   			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>

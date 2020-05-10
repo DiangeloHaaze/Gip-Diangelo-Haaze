@@ -1,11 +1,11 @@
 <?php
 session_start();
-if(!(isset($_SESSION["actie"]))){
+if($_GET["actie"] != $_SESSION["actie"]){
 	$_SESSION["actie"] = $_GET["actie"];
 }
 
 if(!(isset($_SESSION["actie"]) || isset($_POST["bevestigen"]))){
-	header("location:index.php");
+	//header("location:index.php");
 }
 include("php/checkabbonement.php");
 include("php/facturatie_abbonnement.php");
