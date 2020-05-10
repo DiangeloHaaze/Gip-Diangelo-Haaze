@@ -25,7 +25,6 @@ include('php/inlog.php');
 <body>
 
 
-	<!-- De navigatie balk bovenaan de pagina op elke pagina. -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 	<div class="container">
 	<a class="navbar-brand" href="index.php">Athena's Game</a>
@@ -40,9 +39,6 @@ include('php/inlog.php');
 	  <li class="nav-item">
 		  <a class="nav-link" href="producten.php">Producten</a>
 		</li>
-		<li class="nav-item">
-			  <a class="nav-link" href="test.php">test</a>
-			</li>
 		  <li class="nav-item">
 		  <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
 		</li>
@@ -67,7 +63,13 @@ include('php/inlog.php');
 			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
 			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
 			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
+			<?php
+			//kijkt of de gebruiker een abbonnement heeft
+			if(
+			$_SESSION["klantabbonement"] != 1){ ?>
+			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abbonnement</a>
 			  <?php
+		  }
 			// dit is alleen zichtbaar waneer de gebruiker een admin is.
 			if($_SESSION["adminkey"] == true){?>
 			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>
@@ -87,7 +89,7 @@ include('php/inlog.php');
 	</div>
 	</div>
 	</nav>
-
+	
     <?php
     //gaan naar start na het inloggen
     if(isset($_SESSION["ingelogd"])){header("location:index.php");}

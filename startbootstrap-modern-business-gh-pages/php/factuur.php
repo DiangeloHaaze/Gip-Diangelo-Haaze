@@ -39,7 +39,7 @@ for ($y=0; $y < $_SESSION['count']; $y++) {
 	if ($res_prijs->num_rows == 1) {
 	while($row = $res_prijs->fetch_assoc()){
 	$prijsPstuk_kost = $row["prijsPstuk"];
-	$totaal = $totaal + $prijsPstuk_kost;
+	$totaal = $prijsPstuk_kost;
 }
 include("php/totaalprijs.php");
 }

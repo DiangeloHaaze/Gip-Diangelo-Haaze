@@ -45,9 +45,6 @@ include('php/opzeggenabbo.php');
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
-		<li class="nav-item">
-    		  <a class="nav-link" href="test.php">test</a>
-    		</li>
   		  <li class="nav-item">
   		  <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
   		</li>
@@ -72,7 +69,9 @@ include('php/opzeggenabbo.php');
   			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
 			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
-			<?php if(
+			<?php
+			//kijkt of de gebruiker een abbonnement heeft
+			if(
 			$_SESSION["klantabbonement"] != 1){ ?>
 			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abbonnement</a>
   			  <?php
