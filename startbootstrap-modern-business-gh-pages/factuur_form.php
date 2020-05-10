@@ -1,6 +1,6 @@
 <?php
 session_start();
-$totaal_prijs = 0;
+$totaal = 0;
 $totaal_aantal = 0;
  ?>
 <!DOCTYPE html>
@@ -108,9 +108,9 @@ $totaal_aantal = 0;
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 else
 {
-	$Gnaam = $_SESSION["gebruikernaam"];
+	$username = $_SESSION["gebruikernaam"];
 
-	$sql_a = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer, email FROM tblklanten WHERE gebruikersnaam = '$Gnaam'";
+	$sql_a = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer, email FROM tblklanten WHERE gebruikersnaam = '$username'";
 
 	$res_a = mysqli_query($mysqli, $sql_a);
 	if ($res_a->num_rows == 1) {
@@ -137,7 +137,7 @@ else
 		<td><b>Achternaam</b></td>
 	</tr>
 	<tr>
-		<td><?php echo $Gnaam; ?></td>
+		<td><?php echo $username; ?></td>
 		<td><?php echo $_SESSION["factuurid"]; ?> </td>
 		<td><?php echo $vnaam; ?></td>
 		<td><?php echo $anaam; ?></td>
@@ -174,7 +174,7 @@ else
 		<tr>
 			<td><?php echo $_SESSION["koopwaren"][$i]; ?></td>
 			<td><?php echo $productnaam; ?> </td>
-			<td><?php echo $_SESSION["prijzen"][$i]; $totaal_prijs = $totaal_prijs + $_SESSION["prijzen"][$i];?>
+			<td><?php echo $_SESSION["prijzen"][$i]; $totaal = $totaal + $_SESSION["prijzen"][$i];?>
 			</td>
 			<td><?php echo $_SESSION["aantal"][$i]; $totaal_aantal = $totaal_aantal + $_SESSION["aantal"][$i];?>
 			</td>
@@ -186,7 +186,10 @@ else
 		<td><b>Totaal Aantal</b></td>
 	</tr>
 	<tr>
-		<td><?php echo $totaal_prijs ?></td>
+
+		<td><?php
+		include("php/totaalprijs.php");
+		echo $totaal ?></td>
 		<td><?php echo $totaal_aantal ?></td>
 	</tr>
 </table>
@@ -210,3 +213,8 @@ else
 </body>
 
 </html>
+<?php
+$_SESSION["koopwaren"] = null;
+$_SESSION["aantal"] = null;
+$_SESSION["count"] = 0;
+ ?>

@@ -133,7 +133,9 @@ include("php/factuur.php");
 		                  else{
 		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
 		                      while($stmt->fetch()){
-								  $totaal = $prijsPstuk + $totaal;
+								  $totaal = $totaal + $prijsPstuk;
+								  $username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+
         ?>
 		<table border="5px">
 			<tr>
@@ -157,11 +159,13 @@ include("php/factuur.php");
 
 <?php }}}} ?>
 <hr>
-<span class="factuurtext">Totaalprijs: €<?php echo $totaal; ?></span><br>
+<span class="factuurtext">Totaalprijs: €<?php
+include("php/totaalprijs.php");
+echo $totaal; ?></span><br>
 <a href="producten.php" class="factuurlink">Verder naar producten Kijken</a>
 </div>
 <?php
-		$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+
 		$sql = "SELECT voornaam, achternaam, postcodeid, email, Straat, straatnummer FROM tblklanten where gebruikersnaam = '$username'";
 		if($stmt = $mysqli->prepare($sql)){
 				if(!$stmt->execute()){
@@ -173,14 +177,36 @@ include("php/factuur.php");
 						include("php/Rpostcodeid2.php");
 ?>
 <div class="factuuritem">
-	<h2>Uw Contactgegevens:</h2><br>
+	<h2>Uw Gegevens:</h2><br>
 	<span class="factuurtext"><i>Voornaam:</i> <?php echo $voornaam; ?></span><br>
 	<span class="factuurtext"><i>Achternaam:</i> <?php echo $achternaam; ?></span><br>
 	<span class="factuurtext"><i>Gemeente:</i> <?php echo $gemeente; ?></span><br>
 	<span class="factuurtext"><i>Postcode:</i> <?php echo $postcode; ?></span><br>
 	<span class="factuurtext"><i>Email adres:</i> <?php echo $email; ?></span><br>
-	<span class="factuurtext"><i>Straat:</i> <?php echo $straat." ".$straatnr; ?></span>
-	<br>
+	<span class="factuurtext"><i>Straat:</i> <?php echo $straat." ".$straatnr; ?></span><br>
+	<?php switch($klantabonnement_a){
+		case '2':
+			?>
+<span class="factuurtext"><i>Abonnement:</i> Basic</span><br>
+			<?php
+			break;
+		case '3':
+			?>
+			<span class="factuurtext"><i>Abonnement:</i> Plus</span><br>
+			<?php
+			break;
+		case '4':
+			?>
+			<span class="factuurtext"><i>Abonnement:</i> Ultra</span><br>
+			<?php
+			break;
+
+		default:
+			?>
+			<span class="factuurtext"><i>Abonnement:</i> Geen</span><br>
+			<?php
+			break;
+	} ?>
 	<a href="weizigen.php" class="factuurlink">Aanpassen</a>
 </div>
 <?php }}} }} ?>

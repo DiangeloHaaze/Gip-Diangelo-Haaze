@@ -31,7 +31,7 @@ else
 }
 }
 
-
+$totaal = 0;
 for ($y=0; $y < $_SESSION['count']; $y++) {
 
 	$sql_c = "SELECT prijsPstuk FROM tblproducten WHERE productid = '$productiden[$y]' ";
@@ -39,11 +39,11 @@ for ($y=0; $y < $_SESSION['count']; $y++) {
 	if ($res_prijs->num_rows == 1) {
 	while($row = $res_prijs->fetch_assoc()){
 	$prijsPstuk_kost = $row["prijsPstuk"];
-	$_SESSION["prijzen"][$y] =  $prijsPstuk_kost;
+	$totaal = $totaal + $prijsPstuk_kost;
 }
-
+include("php/totaalprijs.php");
 }
-$sql_d = "INSERT INTO tblfactuurlijnen (productid, factuurid, Prijsbijaankoop, aantal) VALUES ( '$productiden[$y]', '$factuurid', '$prijsPstuk_kost', '$aantalproducten[$y]') ";
+$sql_d = "INSERT INTO tblfactuurlijnen (productid, factuurid, Prijsbijaankoop, aantal) VALUES ( '$productiden[$y]', '$factuurid', '$totaal', '$aantalproducten[$y]')";
 mysqli_query($mysqli, $sql_d);
 }}}
 header("location:factuur_form.php");
