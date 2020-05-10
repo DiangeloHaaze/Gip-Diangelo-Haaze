@@ -1,8 +1,14 @@
 <?php
 session_start();
-if(!(isset($_GET["actie"]))){
+if(!(isset($_SESSION["actie"]))){
+	$_SESSION["actie"] = $_GET["actie"];
+}
+
+if(!(isset($_SESSION["actie"]) || isset($_POST["bevestigen"]))){
 	header("location:index.php");
 }
+include("php/checkabbonement.php");
+include("php/facturatie_abbonnement.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,18 +116,18 @@ if(!(isset($_GET["actie"]))){
 	<div class="factuuritem">
 
 		<span class="factuurtext"> Keuze abbonement:</span><br>
-		<?php switch($_GET["actie"]){
-			case 'doorgang1':
+		<?php switch($_SESSION["actie"]){
+			case '2':
 				?>
 				<span class="factuurtext"> Basis abbonement: €5.99</span><br>
 				<?php
 				break;
-			case 'doorgang2':
+			case '3':
 				?>
 				<span class="factuurtext"> Plus abbonement: €10.99</span><br>
 				<?php
 				break;
-			case 'doorgang3':
+			case '4':
 				?>
 				<span class="factuurtext"> Ultra abbonement: €20.99</span><br>
 				<?php
@@ -133,7 +139,7 @@ if(!(isset($_GET["actie"]))){
 	if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 		else
 			{
-			$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+
 			$sql = "SELECT voornaam, achternaam, postcodeid, email FROM tblklanten where gebruikersnaam = '$username'";
 			if($stmt = $mysqli->prepare($sql)){
 					if(!$stmt->execute()){
@@ -156,12 +162,15 @@ if(!(isset($_GET["actie"]))){
 	</div>
 <?php }}} }?>
 <br>
-<button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton">Bevestigen</button><br><br>
-<?php }else {
-	?>
-	<a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om dit te kunnen kopen.</a><br><br>
-	<?php
-} ?>
+<form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+	<button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton">Bevestigen</button><br><br>
+	<?php }else {
+		?>
+		<a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om dit te kunnen kopen.</a><br><br>
+		<?php
+	} ?>
+</form>
+
     <!-- /.row -->
 
   </div>

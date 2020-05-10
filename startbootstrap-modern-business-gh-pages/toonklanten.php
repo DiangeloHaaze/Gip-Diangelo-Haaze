@@ -135,6 +135,20 @@ else{
           <p><b>Achternaam: </b><?php echo $achternaam[$i]; ?> </p>
           <p><b>gebruikersnaam: </b><?php echo $gebruikersnaam[$i]; ?> </p>
           <p><b>Email: </b><?php echo $email[$i]; ?> </p>
+		  <p><b>Soort Abbonement: </b><?php switch ($klantabbonement[$i]) {
+		  	case 2:
+		  		echo "Basis";
+		  		break;
+			case 3:
+			  	echo "Plus";
+			  		break;
+			case 4:
+				echo "Ultra";
+					break;
+		  	default:
+		  		echo "Heeft geen abbonement";
+		  		break;
+		  } ?></p>
           <p><b>Postcode en gemeente </b><?php $postcodeid = $postcodeids[$i]; include('php/Rpostcodeid.php'); echo $pcid; ?> </p>
 
           <br />

@@ -116,7 +116,7 @@ session_start();
             <li class="list-group-item">Recht op preorders</li>
             <li class="list-group-item">Nieuwsbrief</li>
             <li class="list-group-item">
-              <a href="subscribtiefactuur.php?actie=doorgang1" class="btn btn-primary">Registreer!</a>
+              <a href="subscribtiefactuur.php?actie=2" class="btn btn-primary">Registreer!</a>
             </li>
           </ul>
         </div>
@@ -133,7 +133,7 @@ session_start();
             <li class="list-group-item">Recht op preorders</li>
             <li class="list-group-item">Speciale deals</li>
             <li class="list-group-item">
-              <a href="subscribtiefactuur.php?actie=doorgang2" class="btn btn-primary">Registreer!</a>
+              <a href="subscribtiefactuur.php?actie=3" class="btn btn-primary">Registreer!</a>
             </li>
           </ul>
         </div>
@@ -150,7 +150,7 @@ session_start();
             <li class="list-group-item">Voorrang bij orders/preorders</li>
             <li class="list-group-item">Speciale deals</li>
             <li class="list-group-item">
-              <a href="subscribtiefactuur.php?actie=doorgang3" class="btn btn-primary">Registreer!</a>
+              <a href="subscribtiefactuur.php?actie=4" class="btn btn-primary">Registreer!</a>
             </li>
           </ul>
         </div>

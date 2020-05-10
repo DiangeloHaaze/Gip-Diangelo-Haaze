@@ -12,16 +12,16 @@ else
 
 switch($_POST['keus']){
     case "voornaam":
-        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email FROM tblklanten WHERE  voornaam LIKE '%$zoekwaarde%'";
+        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email, klantabonnement FROM tblklanten WHERE  voornaam LIKE '%$zoekwaarde%'";
         break;
     case "gebruikersnaam":
-        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email FROM tblklanten WHERE gebruikersnaam LIKE '%$zoekwaarde%'";
+        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email, klantabonnement FROM tblklanten WHERE gebruikersnaam LIKE '%$zoekwaarde%'";
         break;
     case "achternaam":
-        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email FROM tblklanten WHERE achternaam LIKE '%$zoekwaarde%'";
+        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email, klantabonnement FROM tblklanten WHERE achternaam LIKE '%$zoekwaarde%'";
         break;
     case "email":
-        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email FROM tblklanten WHERE email LIKE '%$zoekwaarde%'";
+        $sql = "SELECT voornaam, gebruikersnaam, achternaam, postcodeid, email, klantabonnement FROM tblklanten WHERE email LIKE '%$zoekwaarde%'";
         break;
 }
 
@@ -40,6 +40,7 @@ if ($result->num_rows > 0) {
             $gebruikersnaam[$teller] = $row["gebruikersnaam"];
             $postcodeids[$teller] = $row["postcodeid"];
             $email[$teller] = $row["email"];
+			$klantabbonement[$teller] = $row["klantabonnement"];
             $teller++;
     }
 } else {

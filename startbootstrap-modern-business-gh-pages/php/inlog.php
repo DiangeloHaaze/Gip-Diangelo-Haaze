@@ -18,17 +18,18 @@ else
 	if(password_verify($password, $hash)){
 
 
-  	$sql = "SELECT soortklant FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$hash'";
+  	$sql = "SELECT soortklant, klantabonnement FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$hash'";
 	if($stmt = $mysqli->prepare($sql)){
 				if(!$stmt->execute()){
 					echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 				}
 				else{
-					$stmt->bind_result($soortklant);
+					$stmt->bind_result($soortklant, $klantabbonement);
 					while($stmt->fetch()){
                 $_SESSION["ingelogd"] = true;
                 $_SESSION["gebruikernaam"] = $gebruikersnaam;
 				$_SESSION["soortklant"] = $soortklant;
+				$_SESSION["klantabbonement"] = $klantabbonement;
 			}
 		}
 
