@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('php/opzeggenabbo.php');
 if(!(isset($_SESSION['ingelogd']))){header("location:index.php");}
 if(isset($_POST["versturen"])){
 include("php/Keuzeweizig.php");

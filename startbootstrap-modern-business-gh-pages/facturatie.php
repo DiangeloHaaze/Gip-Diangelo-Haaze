@@ -2,7 +2,7 @@
 session_start();
 $totaal = 0;
 include("php/factuur.php");
-
+include('php/opzeggenabbo.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

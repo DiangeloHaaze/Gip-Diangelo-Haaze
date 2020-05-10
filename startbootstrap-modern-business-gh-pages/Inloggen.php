@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('php/inlog.php');
+include('php/opzeggenabbo.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +90,7 @@ include('php/inlog.php');
 	</div>
 	</div>
 	</nav>
-	
+
     <?php
     //gaan naar start na het inloggen
     if(isset($_SESSION["ingelogd"])){header("location:index.php");}

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('php/opzeggenabbo.php');
 if(isset($_POST["allesverwijderen"]) && $_POST["allesverwijderen"] == 'allesverwijderen'){
 	include("php/allesverwijderen.php");
 }

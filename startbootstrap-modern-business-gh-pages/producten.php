@@ -1,6 +1,7 @@
 <?php
 $leeg = 0;
 session_start();
+include('php/opzeggenabbo.php');
 if(isset($_POST["versturen"])){
 
 $term = trim($_POST['zoekterm']);

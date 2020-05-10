@@ -6,6 +6,7 @@ if(!isset($_SESSION["adminkey"])){
 if(isset($_POST["versturen"])){
 	include("php/controleadd.php");
 }
+include('php/opzeggenabbo.php');
  ?>
  <!DOCTYPE html>
  <html lang="en">

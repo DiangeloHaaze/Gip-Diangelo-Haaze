@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('php/opzeggenabbo.php');
 include('php/itemdisplay.php');
 if(isset($_POST["voorkopen"])){
 	$kopen = true;

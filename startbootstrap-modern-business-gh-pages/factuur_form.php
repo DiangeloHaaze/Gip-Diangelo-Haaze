@@ -2,6 +2,7 @@
 session_start();
 $totaal = 0;
 $totaal_aantal = 0;
+include('php/opzeggenabbo.php');
  ?>
 <!DOCTYPE html>
 <html lang="en">

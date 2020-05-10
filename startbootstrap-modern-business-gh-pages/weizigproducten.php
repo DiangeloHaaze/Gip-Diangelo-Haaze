@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('php/opzeggenabbo.php');
 if(!isset($_SESSION["adminkey"])){
     header('location:index.php');
 }

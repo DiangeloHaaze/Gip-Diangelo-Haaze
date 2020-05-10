@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('php/opzeggenabbo.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
