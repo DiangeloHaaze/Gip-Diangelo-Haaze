@@ -6,7 +6,7 @@ if(isset($_POST["versturen"])){
 include("php/Keuzeweizig.php");
 if($goedkeuring){
 	include("php/wijzig.php");
-}
+} 
 }
  ?>
  <!DOCTYPE html>
