@@ -11,7 +11,7 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 								echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 							}
 							else{
-								$stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+								$stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$Stock);
 								while($stmt->fetch()){
 									$productiden[$teller] = $productid;
 									$producten[$teller] = $productnaam;

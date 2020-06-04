@@ -130,7 +130,7 @@ if (isset($_POST['aantal'])){
 	  	                    echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 	  	                }
 	  	                else{
-	  	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+	  	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$aantalInStock);
 	  	                    while($stmt->fetch()){}
 	   ?>
       <li class="breadcrumb-item active"><?php echo $productnaam;?></li>
@@ -145,9 +145,9 @@ if (isset($_POST['aantal'])){
         <h3 class="my-3"><?php echo $productnaam;?></h3>
         <p><?php include("php/longtext.php"); echo $beschrijving; ?></p>
 		<?php if(!(isset($_POST["meertext"]))){ ?>
-		<button type="submit" name="meertext" class="btn btn-primary" id="sendMessageButton"> Meer Text </button>
+		<button type="submit" name="meertext" class="btn btn-primary" id="sendMessageButton"> Meer Tekst </button>
 	<?php }else{ ?>
-		<button type="submit" name="mindertext" class="btn btn-primary" id="sendMessageButton"> Minder Text </button>
+		<button type="submit" name="mindertext" class="btn btn-primary" id="sendMessageButton"> Minder Tekst </button>
 	<?php } ?>
         <h3 class="my-3">Details</h3>
         <ul>
@@ -169,43 +169,50 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 					$tel++;
 		   ?>
 		  <li class="tags"> &nbsp; &nbsp; <?php echo $categorie ?></li>
-	  <?php
-  }
-}
-}
-}
-}
-	   ?>
+		  <?php }}} ?>
         </ul>
 		<hr>
-			<?php if(!(isset($kopen))){?>
-				<button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Kopen </button><br>
-				<span>Aantal Producten:</span>
-				<select name="aantal">
-					<option value="1">--1--</option>
-					<option value="2">--2--</option>
-					<option value="3">--3--</option>
-					<option value="4">--4--</option>
-					<option value="5">--5--</option>
-				</select>
+		<?php if(!(isset($kopen))){
+					if($aantalInStock != 0){
+					?>
+					<button type="submit" name="kopen" class="btn btn-primary" id="sendMessageButton"> Kopen </button><br>
+					<span>Aantal Producten:</span>
+					<select name="aantal">
+						<?php for ($i=1; $i <= $aantalInStock; $i++) {?>
+					<option value="<?php echo $i; ?>">--<?php echo $i; ?>--</option>
 
+						<?php }?>
+			</select>
+				<?php
+			}else {
+				?>
+				<a class="rodelink" href="producten.php"> De stock is jammer genoeg op.</a>
+				<?php
+			}
 
-			<?php } if(isset($compleet)){ ?>
+			}
+			  	   ?>
+
+			<?php  if(isset($compleet)){ ?>
 				<p class='goed'> Wat wilt u vervolgens doen: <br>
 			<a href="producten.php" class="aankoopboodschap">doorshoppen</a> of naar uw
 			<a href="winkelwagen.php" class="aankoopboodschap"> winkelwagen </a>
-			<?php } ?>
+		<?php }}} ?>
 		</form>
 
 	</div>
 	  <div>
     <!-- /.row -->
 <!--  -->
-    <h3 class="my-4">gerelateerde producten</h3>
+ <?php
+include('php/related.php');
+if(isset($productiden)){
+?>
+    <h3 class="my-4">Gerelateerde producten</h3>
 
     <div class="row">
 		<?php
-		include('php/related.php');
+
 		for ($i=0; $i < 4; $i++) {
 
 			?>
@@ -214,7 +221,7 @@ if($stmt_t = $mysqli->prepare($sql_t)){
   	 		<img class="img-fluid" src="<?php echo $link[$i]; ?>" alt="">
 			</a>
 		 </div>
-		 <?php } ?>
+	 <?php }} ?>
     </div>
     <!-- /.row -->
 </div>

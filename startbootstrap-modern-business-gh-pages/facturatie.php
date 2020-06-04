@@ -113,11 +113,12 @@ include('php/opzeggenabbo.php');
 	<h2>Uw Winkelmand:</h2><br>
       <?php
 	  if($_SESSION["count"] != 0){
-		  $tel = 0;
+		  $tel = 0; $z = 0;
 		  $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 		  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 		  else
 		  {
+
 		  	for ($y=0; $y < $_SESSION['count']; $y++) {
 		  		$aantalproducten[$y] = $_SESSION["aantal"][$y];
 		  		$productiden[$y] = $_SESSION["koopwaren"][$y];
@@ -133,7 +134,7 @@ include('php/opzeggenabbo.php');
 		                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$querrie;
 		                  }
 		                  else{
-		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$Stock);
 		                      while($stmt->fetch()){
 								  $totaal = $totaal + $prijsPstuk;
 								  $username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
@@ -144,10 +145,13 @@ include('php/opzeggenabbo.php');
 				<td><img class="factuurfoto" src="<?php echo $linkfoto; ?>" alt=""><br></td>
 			</tr>
 			<tr>
-				<td><span class="factuurtext"><?php echo $productnaam; ?></span></td>
+				<td><span class="factuurtext">Titel: <?php echo $productnaam; ?></span></td>
 			</tr>
 			<tr>
-				<td><span class="factuurtext">Prijs: € <?php echo $prijsPstuk; ?></span></td>
+				<td><span class="factuurtext">Aantal :<?php echo $_SESSION["aantal"][$z]; ?></span></td>
+			</tr>
+			<tr>
+				<td><span class="factuurtext">Prijs Per Stuk: € <?php echo $prijsPstuk; ?></span></td>
 			</tr>
 			<tr>
 				<td><span class="factuurtext">Beschrijving:<br> -->
@@ -158,12 +162,15 @@ include('php/opzeggenabbo.php');
 			</tr>
 
 		</table>
-
+<?php
+include("php/totaalprijs.php"); ?>
 <?php }}}} ?>
 <hr>
-<span class="factuurtext">Totaalprijs: €<?php
-include("php/totaalprijs.php");
-echo $totaal; ?></span><br>
+
+<?php if($korting != "0%"){ ?>
+<span class="factuurtext">Korting: <?php echo $korting; ?></span><br>
+<?php } ?>
+<span class="factuurtext">Totaalprijs: € <?php echo $totaal; ?></span><br>
 <a href="producten.php" class="factuurlink">Verder naar producten Kijken</a>
 </div>
 <?php

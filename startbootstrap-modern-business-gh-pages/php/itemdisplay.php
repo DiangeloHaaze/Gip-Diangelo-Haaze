@@ -18,7 +18,7 @@ if(isset($_GET["actie"]) && $_GET["actie"] == 'doorgang' && isset($_GET["product
 	                    echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 	                }
 	                else{
-	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$stock);
 	                    while($stmt->fetch()){
 	                        $product = $productnaam;
 	                        $taal = $producttaal;

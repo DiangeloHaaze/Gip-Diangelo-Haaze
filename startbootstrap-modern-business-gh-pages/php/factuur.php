@@ -1,7 +1,8 @@
 <?php
-for ($y=0; $y < $_SESSION['count']; $y++) {
-	$aantalproducten[$y] = $_SESSION["aantal"][$y];
-	$productiden[$y] = $_SESSION["koopwaren"][$y];
+$erdoor = true;
+for ($z=0; $z < $_SESSION['count']; $z++) {
+	$aantalproducten[$z] = $_SESSION["aantal"][$z];
+	$productiden[$z] = $_SESSION["koopwaren"][$z];
 }
 
 if(isset($_POST["versturen"])){
@@ -32,9 +33,9 @@ else
 }
 
 $totaal = 0;
-for ($y=0; $y < $_SESSION['count']; $y++) {
+for ($z=0; $z < $_SESSION['count']; $z++) {
 
-	$sql_c = "SELECT prijsPstuk FROM tblproducten WHERE productid = '$productiden[$y]' ";
+	$sql_c = "SELECT prijsPstuk FROM tblproducten WHERE productid = '$productiden[$z]'";
 	$res_prijs = mysqli_query($mysqli, $sql_c);
 	if ($res_prijs->num_rows == 1) {
 	while($row = $res_prijs->fetch_assoc()){
@@ -43,9 +44,12 @@ for ($y=0; $y < $_SESSION['count']; $y++) {
 }
 include("php/totaalprijs.php");
 }
-$sql_d = "INSERT INTO tblfactuurlijnen (productid, factuurid, Prijsbijaankoop, aantal) VALUES ( '$productiden[$y]', '$factuurid', '$totaal', '$aantalproducten[$y]')";
+$sql_d = "INSERT INTO tblfactuurlijnen (productid, factuurid, Prijsbijaankoop, aantal) VALUES ( '$productiden[$z]', '$factuurid', '$totaal', '$aantalproducten[$z]')";
 mysqli_query($mysqli, $sql_d);
+include("php/Verminderstock.php");
 }}}
-header("location:factuur_form.php");
+if($erdoor){
+	header("location:factuur_form.php");
+}
 }
  ?>

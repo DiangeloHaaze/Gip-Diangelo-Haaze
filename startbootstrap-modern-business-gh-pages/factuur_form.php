@@ -184,7 +184,14 @@ else
 			</td>
 		</tr>
 		<?php
-	}} ?>
+	}} if($_SESSION["Korting"] != "0%"){?>
+	<tr>
+		<td><b>Totaal Korting</b></td>
+	</tr>
+	<tr>
+		<td><?php echo $_SESSION["Korting"]; ?></td>
+	</tr>
+<?php } ?>
 	<tr>
 		<td><b>Totaal Prijs</b></td>
 		<td><b>Totaal Aantal</b></td>
@@ -192,10 +199,10 @@ else
 	<tr>
 
 		<td><?php
-		include("php/totaalprijs.php");
-		echo $totaal ?></td>
+		echo $_SESSION["Totaal"]; ?></td>
 		<td><?php echo $totaal_aantal ?></td>
 	</tr>
+
 </table>
 <hr>
  </form>
@@ -221,4 +228,5 @@ else
 $_SESSION["koopwaren"] = null;
 $_SESSION["aantal"] = null;
 $_SESSION["count"] = 0;
+$_SESSION["Totaal"] = 0;
  ?>

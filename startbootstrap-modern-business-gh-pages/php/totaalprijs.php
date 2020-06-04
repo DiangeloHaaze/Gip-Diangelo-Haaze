@@ -13,21 +13,27 @@ else
 		switch ($klantabonnement_a) {
 			case '2':
 				$totaal = $totaal - ($totaal*0.05);
+				$korting = "5%";
 				break;
 			case '3':
 				$totaal = $totaal - ($totaal*0.1);
+				$korting = "10%";
 				break;
 			case '4':
 				$totaal = $totaal - ($totaal*0.2);
+				$korting = "20%";
 				break;
 
 			default:
 				$totaal = $totaal - ($totaal*0);
+				$korting = "0%";
 				break;
 		}
 }
+
 }}
-
-
+$totaal = ($totaal * $_SESSION["aantal"][$z]);
+$_SESSION["Totaal"] = $totaal;
+$_SESSION["Korting"] = $korting;
 
  ?>

@@ -121,21 +121,21 @@ include("php/facturatie_abbonnement.php");
 	<?php if(isset($_SESSION["ingelogd"])){ ?>
 	<div class="factuuritem">
 
-		<span class="factuurtext"> Keuze abbonement:</span><br>
+		<span class="factuurtext"> Keuze abonnement:</span><br>
 		<?php switch($_SESSION["actie"]){
 			case '2':
 				?>
-				<span class="factuurtext"> Basis abbonement: €5.99</span><br>
+				<span class="factuurtext"> Basis abonnement: €5.99</span><br>
 				<?php
 				break;
 			case '3':
 				?>
-				<span class="factuurtext"> Plus abbonement: €10.99</span><br>
+				<span class="factuurtext"> Plus abonnement: €10.99</span><br>
 				<?php
 				break;
 			case '4':
 				?>
-				<span class="factuurtext"> Ultra abbonement: €20.99</span><br>
+				<span class="factuurtext"> Ultra abonnement: €20.99</span><br>
 				<?php
 				break;
 		} ?>

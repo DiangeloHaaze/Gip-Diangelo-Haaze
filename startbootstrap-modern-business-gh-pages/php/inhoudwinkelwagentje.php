@@ -9,7 +9,7 @@ while( $i < $_SESSION["count"]){
 	$i++;
 }
 if (isset($erdoor)) {
-	$_SESSION["aantal"][$herhaling] = $_SESSION["aantal"][$herhaling] + $_POST["aantal"];
+	$_SESSION["aantal"][$herhaling] = $_POST["aantal"];
 }
 else{
 	$_SESSION["aantal"][$_SESSION["count"]] = $_POST["aantal"];

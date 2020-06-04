@@ -183,7 +183,7 @@ $term = trim($_POST['zoekterm']);
 	                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 	                  }
 	                  else{
-	                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto);
+	                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$Stock);
 	                      while($stmt->fetch()){ $leeg++;
         ?>
 	<form action="productitem.php?actie=" method="post">
