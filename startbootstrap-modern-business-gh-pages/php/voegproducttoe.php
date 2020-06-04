@@ -1,4 +1,5 @@
 <?php
+
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 
@@ -12,7 +13,8 @@ else
 	$soort = mysqli_real_escape_string($mysqli,$soort);
 
 			$sql_a = "
-			INSERT INTO tblproducten(productnaam, producttaal, soortid, beschrijving, prijsPstuk, linkfoto) VALUES ('$productnaam', '$producttaal', '$soort', '$beschrijving', '$prijsperstuk', '$linkfoto')";
+			INSERT INTO tblproducten(productnaam, producttaal, soortid, beschrijving, prijsPstuk, linkfoto,AantalInStock) VALUES ('$productnaam', '$producttaal', '$soort', '$beschrijving', '$prijsperstuk', '$linkfoto',5)";
 			mysqli_query($mysqli, $sql_a);
+			$goed = true;
 }
  ?>

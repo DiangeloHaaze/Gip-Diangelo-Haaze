@@ -1,8 +1,5 @@
 <?php
 session_start();
-if(!(isset($_GET["actie"])) && $_GET["actie"] != "doorgang"){
-	header("location:index.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,81 +105,34 @@ if(!(isset($_GET["actie"])) && $_GET["actie"] != "doorgang"){
     </ol>
 <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	<table border="1px">
-		<?php $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
-		if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
-		else
-		{
-			$factuurid = $_GET["factuurid"];
-			$totaal = 0;
+		<tr>
+			<td> <b>Factuurid</b> </td>
+			<td> <b> Datum </b> </td>
+			<td> <b> Volledige factuur </b> </td>
+		</tr>
 
-			$sql_b = "SELECT klantid FROM tblfacturen WHERE factuurid = '$factuurid'";
-			$res_b = mysqli_query($mysqli, $sql_b);
-			if ($res_b->num_rows == 1) {
-			while($row = $res_b->fetch_assoc()){
-				$klantid = $row["klantid"];
-			}
-			}
-
-			$sql_a = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer, email, gebruikersnaam FROM tblklanten WHERE klantid = '$klantid'";
-			$res_a = mysqli_query($mysqli, $sql_a);
-			if ($res_a->num_rows == 1) {
-			while($row = $res_a->fetch_assoc()){
-			$vnaam = $row["voornaam"];
-			$anaam = $row["achternaam"];
-			$email = $row["email"];
-			$straat = $row["Straat"];
-			$straatnr = $row["straatnummer"];
-			$postcodeid = $row["postcodeid"];
-			$username = $row["gebruikersnaam"];
-			include("php/Rpostcodeid2.php");
-		}} ?>
-		<tr>
-			<td><b>Gebruikersnaam</b></td>
-			<td><b>Factuurid</b></td>
-			<td><b>Naam</b></td>
-			<td><b>Achternaam</b></td>
-		</tr>
-		<tr>
-			<td><?php echo $username; ?></td>
-			<td><?php echo $factuurid; ?> </td>
-			<td><?php echo $vnaam; ?></td>
-			<td><?php echo $anaam; ?></td>
-		</tr>
-		<tr>
-			<td><b>Productnummer</b></td>
-			<td><b>Productnaam</b></td>
-			<td><b>Prijs</b></td>
-			<td><b>Aantal</b></td>
-		</tr>
-		<?php
-	$sql_z = "SELECT p.productid, p.productnaam, fl.Prijsbijaankoop, fl.aantal, fl.korting From tblproducten p, tblfactuurlijnen fl WHERE fl.productid = p.productid AND fl.factuurid = '$factuurid'";
-	if($stmt_z = $mysqli->prepare($sql_z)){
-				if(!$stmt_z->execute()){
-					echo 'Het uitvoeren van de query is mislukt: '.$stmt_z->error.' in query: '.$sql_z;
+<?php $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+else
+{
+	$sql_a = "SELECT factuurid, datum From tblfacturen";
+	if($stmt_a = $mysqli->prepare($sql_a)){
+				if(!$stmt_a->execute()){
+					echo 'Het uitvoeren van de query is mislukt: '.$stmt_a->error.' in query: '.$sql_a;
 				}
 				else{
-					$stmt_z->bind_result($productid,$productnaam,$Prijsbijaankoop,$aantal,$korting);
-					while($stmt_z->fetch()){
-						$totaal = $totaal + $Prijsbijaankoop;
-	 ?>
-	 <tr>
-	 	<td><?php echo $productid; ?></td>
-		<td><?php echo $productnaam; ?></td>
-		<td><?php echo $Prijsbijaankoop; ?></td>
-		<td><?php echo $aantal; ?></td>
-	 </tr>
-	 <tr>
- 		<td><b>Totaal Prijs</b></td>
- 		<td><b>Totaal Aantal</b></td>
- 	</tr>
- 	<tr>
-
- 		<td><?php
- 		echo $totaal; ?></td>
- 		<td><?php echo $korting; ?></td>
- 	</tr>
+					$stmt_a->bind_result($factuurid,$datum);
+					while($stmt_a->fetch()){
+	?>
+	<tr>
+		<td> <?php echo $factuurid; ?> </td>
+		<td> <?php echo $datum; ?> </td>
+		<td> <a href="factuur_zicht.php?actie=doorgang&factuurid=<?php echo $factuurid; ?>">Bekijk</a> </td>
+	</tr>
+	<?php
+}}}}
+?>
 	</table>
-<?php }}}} ?>
 </form>
 </div>
   <!-- /.container -->

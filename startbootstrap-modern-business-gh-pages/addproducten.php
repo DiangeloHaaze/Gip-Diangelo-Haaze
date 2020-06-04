@@ -132,7 +132,7 @@ include('php/opzeggenabbo.php');
 		  <div class="control-group form-group">
             <div class="controls">
               <label>Beschrijving:</label>
-              <input type="text" class="form-control" name="beschrijving" id="beschrijving" value="<?php if(isset($_POST["beschrijving"])){echo $_POST["beschrijving"];} ?>">
+			  <textarea name="beschrijving" rows="8" cols="80"><?php if (isset($_POST["beschrijving"])){echo $_POST["beschrijving"];}?></textarea><br>
             </div>
           </div>
 		  <div class="control-group form-group">
@@ -172,7 +172,7 @@ include('php/opzeggenabbo.php');
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
 		  <?php
-		  if (isset($goedkeuring)){
+		  if (isset($goed)){
 		  	?>
 			<p class="goed">Het product is successvol toegevoegd</p>
 		  <?php }?>
