@@ -170,7 +170,6 @@ $term = trim($_POST['zoekterm']);
         </form>
 
       <?php
-
 		  if(isset($zoeker)){
 			  include('php/zoekkeuzes.php');
 		  }

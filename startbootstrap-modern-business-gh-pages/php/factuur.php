@@ -4,7 +4,7 @@ for ($z=0; $z < $_SESSION['count']; $z++) {
 	$aantalproducten[$z] = $_SESSION["aantal"][$z];
 	$productiden[$z] = $_SESSION["koopwaren"][$z];
 }
-
+ $korting_text = $_SESSION["Korting"];
 if(isset($_POST["versturen"])){
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 
@@ -44,7 +44,7 @@ for ($z=0; $z < $_SESSION['count']; $z++) {
 }
 include("php/totaalprijs.php");
 }
-$sql_d = "INSERT INTO tblfactuurlijnen (productid, factuurid, Prijsbijaankoop, aantal) VALUES ( '$productiden[$z]', '$factuurid', '$totaal', '$aantalproducten[$z]')";
+$sql_d = "INSERT INTO tblfactuurlijnen (productid, factuurid, Prijsbijaankoop, aantal,korting) VALUES ( '$productiden[$z]', '$factuurid', '$totaal', '$aantalproducten[$z]',$korting_text)";
 mysqli_query($mysqli, $sql_d);
 include("php/Verminderstock.php");
 }}}

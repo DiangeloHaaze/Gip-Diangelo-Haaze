@@ -69,6 +69,7 @@ include('php/opzeggenabbo.php');
   			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
 			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
+			<a class="dropdown-item" href="eigenfacturen.php">Facturen bekijken</a>
 			<?php
 			//kijkt of de gebruiker een abbonnement heeft
 			if(

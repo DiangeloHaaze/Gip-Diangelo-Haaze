@@ -126,11 +126,6 @@ else
 	$postcodeid = $row["postcodeid"];
 	include("php/Rpostcodeid2.php");
 }}
-
-
-
-
-
 	 ?>
 <table border="1px">
 	<tr>
@@ -175,8 +170,8 @@ else
 
 	}}
 		?>
-		<tr
-			<td><?php echo $_SESSION["koopwaren"][$i]; ?></td>
+		<tr>
+			<td><?php echo $productid; ?></td>
 			<td><?php echo $productnaam; ?> </td>
 			<td><?php echo $prijzen; $totaal = $totaal + ($prijzen * $_SESSION["aantal"][$i]);?>
 			</td>
