@@ -15,7 +15,7 @@ else
  $aantal = $aantal - $aantalproducten[$z];
  if ($aantal < 0) {
  	?>
-<a href="producten.php" class="factuurlink">We hebben niet langer genoeg in stock</a>
+<a href="producten.php" class="factuurlink">We hebben dit niet langer genoeg in stock</a>
 	<?php
 	$erdoor = false;
  }

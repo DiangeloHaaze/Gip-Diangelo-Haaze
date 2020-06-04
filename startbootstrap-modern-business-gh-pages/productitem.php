@@ -186,7 +186,7 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 				<?php
 			}else {
 				?>
-				<a class="rodelink" href="producten.php"> De stock is jammer genoeg op.</a>
+				<a class="rodelink" href="producten.php"> Dit product is momenteel niet ter beschikking</a>
 				<?php
 			}
 
