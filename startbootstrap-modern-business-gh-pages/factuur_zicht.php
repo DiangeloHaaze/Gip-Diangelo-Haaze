@@ -14,7 +14,7 @@ if(!(isset($_GET["actie"])) && $_GET["actie"] != "doorgang"){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Athena Game's</title>
+  <title>Athena's Game</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
