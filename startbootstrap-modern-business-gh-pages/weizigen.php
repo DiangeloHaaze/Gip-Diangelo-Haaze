@@ -147,7 +147,7 @@ if($goedkeuring){
 				 <input type="text" class="form-control" name="achternaam" id="achternaam" value="<?php if(isset($_POST["achternaam"])){echo $_POST["achternaam"];} else{echo $achternaam;} ?>">
 				 <br>
 				 <span>Postcode:</span>
-				 <input type="text" class="form-control" pattern="[0-9]{4}" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} else{echo $postcode;} ?>">
+				 <input type="text" class="form-control" name="postcode" id="postcode" value="<?php if(isset($_POST["postcode"])){echo $_POST["postcode"];} else{echo $postcode;} ?>">
 				 <br>
 				 <span>Gemeente:</span>
 				 <input type="text" class="form-control" name="gemeente" id="gemeente" value="<?php if(isset($_POST["gemeente"])){echo $_POST["gemeente"];} else{echo $gemeente;} ?>">
@@ -162,15 +162,6 @@ if($goedkeuring){
 		<br><br>
           <div id="success"></div><hr>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button><br><br>
-		<?php if(isset($_POST["versturen"])){ if(!($goedkeuring)) { ?>
-		<span class="fout">Je hebt iets niet ingevuld. Gelieve dit te doen. </span><br>
-		<?php } ?>
-		<?php if (!(isset($pcid))) { ?>
-		<span class="fout">De gemeente samen met de postcode bestaan niet samen. Kijk of je de waarden correct hebt ingegeven. </span><br>
-		<?php } ?>
-		<?php if ($allesgoed) { ?>
-		<span class="goed">Alles is geupdate.</span><br>
-	<?php }}?>
          </form>
       </div>
 

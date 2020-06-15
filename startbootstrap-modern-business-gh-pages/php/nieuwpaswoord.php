@@ -6,22 +6,27 @@ if(isset($_POST["versturen"])){
 
 	if(empty($oudpaswoord)){
 		$fout = false;
+		echo '<div class="alert alert-danger" role="alert">Het veld voor het oude paswoord is niet ingevult. </div>';
 	}
 	if(empty($nieuwpaswoord)){
 		$fout = false;
+		echo '<div class="alert alert-danger" role="alert">Het veld voor het nieuwe paswoord is niet ingevult. </div>';
 	}
 	else{
 			if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $nieuwpaswoord)) {
 			    $gekeurt = false;
+				echo '<div class="alert alert-danger" role="alert">Het nieuwe paswoord komt niet overeen aan de gevraagde eisen. </div>';
 			}
 		}
 
 	if(empty($bnieuwpaswoord)){
 		$fout = false;
+		echo '<div class="alert alert-danger" role="alert">Het veld voor het bevestig paswoord is niet ingevult. </div>';
 	}
 	else{
 		if($nieuwpaswoord != $bnieuwpaswoord){
 			$fout = false;
+			echo '<div class="alert alert-danger" role="alert">Het paswoord en het bevestigd paswoord komen niet overeen met elkaar. </div>';
 		}
 	}
 
@@ -48,7 +53,10 @@ if(isset($_POST["versturen"])){
 					   if($stmt = $mysqli->prepare($sql_i))
 				  {
 
-				  if(!$stmt->execute()){ $fout = false;}
+				  if(!$stmt->execute()){
+				  $fout = false;
+
+			  	  }
 				  else {
 					  $geslaagd = true;
 				  }
@@ -59,6 +67,8 @@ if(isset($_POST["versturen"])){
 			   else
 			   {
 				   $fout = false;
+					   echo '<div class="alert alert-danger" role="alert">Het ingegeven paswoord komt niet overeen met het bestaand paswoord. </div>';
+
 			   }
 }}
  ?>

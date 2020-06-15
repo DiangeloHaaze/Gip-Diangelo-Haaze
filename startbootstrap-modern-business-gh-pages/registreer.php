@@ -65,7 +65,7 @@ include('php/foutcontrole.php');
   		  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
   			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
-			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
+			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen paswoord</a>
 			<a class="dropdown-item" href="eigenfacturen.php">Eigen facturen bekijken</a>
 			<?php
 			//kijkt of de gebruiker een abbonnement heeft
@@ -176,7 +176,7 @@ include('php/foutcontrole.php');
             </div>
             </div>
             <div id="message">
-              <h3>Het wachtwoord moet minstens :</h3>
+              <h3>Het paswoord moet minstens :</h3>
               <p id="letter" class="fout">Een <b>Kleine</b> letter</p>
               <p id="capital" class="fout">Een <b>Hoofdletter</b></p>
               <p id="number" class="fout">Een <b>nummer</b></p>

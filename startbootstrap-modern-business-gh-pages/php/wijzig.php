@@ -16,9 +16,12 @@ else
 	$sql = "
 	UPDATE tblklanten SET voornaam = '$klantvnaam', achternaam = '$klantanaam', postcodeid = '$pcid', Straat = '$klantstraat', straatnummer = '$klantstraatnr' WHERE gebruikersnaam = '$username'";
 	if($mysqli->query($sql)==true){
-		$allesgoed = true;
+		echo '<div class="alert alert-success" role="alert">Alles is correct geupdate.</div>';
 	}
 
+	}
+	else{
+		echo '<div class="alert alert-danger" role="alert">De combinatie van postcode en gemeente zijn niet correct. </div>';
 	}
 }
 // behoort to de webpagina weizigen.php

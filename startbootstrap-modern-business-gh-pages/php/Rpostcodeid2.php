@@ -8,11 +8,9 @@ $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 
                 if ($res->num_rows == 1) {
                 while($row = $res->fetch_assoc()){
-
             	$postcode = $row["postcode"];
 				$gemeente = $row["gemeente"];
-
                 }
-           }
+				}
 }
  ?>
