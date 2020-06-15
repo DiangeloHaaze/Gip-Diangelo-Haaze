@@ -1,6 +1,10 @@
 <?php
 session_start();
 include('php/opzeggenabbo.php');
+if (isset($_SESSION["subscritie_fout"])) {
+	echo '<div class="alert alert-danger" role="alert"> Je hebt deze Subscriptie al.</div>';
+	$_SESSION["subscritie_fout"] = NULL;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

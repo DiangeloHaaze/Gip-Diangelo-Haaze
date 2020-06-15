@@ -41,8 +41,6 @@ else{
 			 $_SESSION["ingelogd"] = true;
 			 $_SESSION["adminkey"] = false;
 			 $_SESSION["klantabbonement"] = 1;
-
-
 }}
 //behoort to de pagina registratie.php
  ?>

@@ -13,7 +13,8 @@ if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error
 						$stmt_c->bind_result($klantabonnement);
 						while($stmt_c->fetch()){
 							if($klantabonnement == $_SESSION["actie"]){
-								header("location:index.php");
+								$_SESSION["subscritie_fout"] = false;
+								header("location:Subscribtie.php");
 							}
 
 						}
