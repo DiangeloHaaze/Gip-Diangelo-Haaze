@@ -32,7 +32,8 @@ if($goedkeuring){
  <body>
 
 
-	 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	 <!-- De navigatie balk bovenaan de pagina op elke pagina. -->
+     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
      <div class="container">
    	<a class="navbar-brand" href="index.php">Athena's Game</a>
    	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,14 +41,11 @@ if($goedkeuring){
    	</button>
    	<div class="collapse navbar-collapse" id="navbarResponsive">
    	  <ul class="navbar-nav ml-auto">
-   		<li class="nav-item">
-   		  <a class="nav-link" href="contact.php">Contact</a>
-   		</li>
    	  <li class="nav-item">
    		  <a class="nav-link" href="producten.php">Producten</a>
    		</li>
    		  <li class="nav-item">
-   		  <a class="nav-link" href="Subscribtie.php">Subscribtie</a>
+   		  <a class="nav-link" href="Subscribtie.php">Subscriptie</a>
    		</li>
    		   <?php
    		 //kijkt of de gebruiker is ingelogd en indien ja komt dit tevoorschijn.
@@ -70,11 +68,12 @@ if($goedkeuring){
    			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
    			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
  			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
+ 			<a class="dropdown-item" href="eigenfacturen.php">Eigen facturen bekijken</a>
  			<?php
  			//kijkt of de gebruiker een abbonnement heeft
  			if(
  			$_SESSION["klantabbonement"] != 1){ ?>
- 			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abbonnement</a>
+ 			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abonnement</a>
    			  <?php
  		  }
    			// dit is alleen zichtbaar waneer de gebruiker een admin is.
@@ -82,12 +81,14 @@ if($goedkeuring){
    			<a class="dropdown-item" href="toonklanten.php">Gebruikers Bekijken</a>
  			<a class="dropdown-item" href="addproducten.php"> Producten Toevoegen</a>
  			<a class="dropdown-item" href="weizigproducten.php"> Producten Wijzigen</a>
+ 			<a class="dropdown-item" href="Voegstocktoe.php">Stock toevoegen</a>
+ 			<a class="dropdown-item" href="bekijk_alle_factuurs.php">Facturen bekijken</a>
    			  <?php } ?>
    		  </div>
    		</li>
    		  <?php
    		  }
-   		//hierna word het winkelwagentje getoont. Als er niets is ingevuld dan toont hij niet het aantel prodcuten maar als dit wel zo is geeft hij weer hoeveel er van 1 product aanwezig is in de winkelwagentje.
+   		//hierna word het winkelwagentje getoont. Als er niets is ingevuld dan toont hij niet het aantel producten maar als dit wel zo is geeft hij weer hoeveel er van 1 product aanwezig is in de winkelwagentje.
    		  ?>
    	  <li class="nav-item">
    			<a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>

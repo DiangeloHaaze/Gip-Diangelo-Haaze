@@ -39,14 +39,11 @@ include('php/opzeggenabbo.php');
   	</button>
   	<div class="collapse navbar-collapse" id="navbarResponsive">
   	  <ul class="navbar-nav ml-auto">
-  		<li class="nav-item">
-  		  <a class="nav-link" href="contact.php">Contact</a>
-  		</li>
   	  <li class="nav-item">
   		  <a class="nav-link" href="producten.php">Producten</a>
   		</li>
   		  <li class="nav-item">
-  		  <a class="nav-link" href="Subscriptie.php">Subscribtie</a>
+  		  <a class="nav-link" href="Subscribtie.php">Subscriptie</a>
   		</li>
   		   <?php
   		 //kijkt of de gebruiker is ingelogd en indien ja komt dit tevoorschijn.
@@ -89,7 +86,7 @@ include('php/opzeggenabbo.php');
   		</li>
   		  <?php
   		  }
-  		//hierna word het winkelwagentje getoont. Als er niets is ingevuld dan toont hij niet het aantel prodcuten maar als dit wel zo is geeft hij weer hoeveel er van 1 product aanwezig is in de winkelwagentje.
+  		//hierna word het winkelwagentje getoont. Als er niets is ingevuld dan toont hij niet het aantel producten maar als dit wel zo is geeft hij weer hoeveel er van 1 product aanwezig is in de winkelwagentje.
   		  ?>
   	  <li class="nav-item">
   			<a class="notification" href="winkelwagen.php"><span class="glyphicon">&#x1f6d2;</span><span class="badge"><?php if($_SESSION["count"] != 0){echo $_SESSION["count"];} ?></span></a>
@@ -143,7 +140,7 @@ include('php/opzeggenabbo.php');
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Welcome bij Athena's Game</h1>
+    <h1 class="my-4">Welkom bij Athena's Game</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
@@ -151,10 +148,10 @@ include('php/opzeggenabbo.php');
         <div class="card h-100">
           <h4 class="card-header">Contact</h4>
           <div class="card-body">
-            <p class="card-text">Als je een probleem hebt of een vraag die niet beantwoord werd door een FAQ dan can je ons gerust contacteren.</p>
+            <p class="card-text">Wij bieden een ruim aanbod aan producten. Als je deze producten die we in stock hebben wilt bekijken, klik dan hier.</p>
           </div>
           <div class="card-footer">
-            <a href="contact.html" class="btn btn-primary">Ga naar Contacten</a>
+            <a href="producten.php" class="btn btn-primary">Ga naar Producten</a>
           </div>
         </div>
       </div>
@@ -173,10 +170,10 @@ include('php/opzeggenabbo.php');
         <div class="card h-100">
           <h4 class="card-header">Subscripties</h4>
           <div class="card-body">
-            <p class="card-text">Voor goedkopere games en de kans om  te preordenen kan je een subscribtie kiezen uit een keuze van drie met verschillende aspecten voor verschillende prijzen</p>
+            <p class="card-text">Voor goedkopere games en de kans om  te preordenen kan je een Subscriptie kiezen uit een keuze van drie met verschillende aspecten voor verschillende prijzen</p>
           </div>
           <div class="card-footer">
-            <a href="Subscribtie.html" class="btn btn-primary">Ga naar subscribtie</a>
+            <a href="Subscribtie.html" class="btn btn-primary">Ga naar Subscripties</a>
           </div>
         </div>
       </div>
