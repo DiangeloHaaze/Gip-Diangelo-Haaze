@@ -11,30 +11,34 @@ else
 	$sql_p = "SELECT paswoord FROM tblklanten WHERE gebruikersnaam = '$gebruikersnaam'";
 
 	$res_p = mysqli_query($mysqli, $sql_p);
-	if ($res_p->num_rows == 1) {
+	if ($res_p->num_rows == 1){
 	while($row = $res_p->fetch_assoc()){
-	$hash = $row["paswoord"];}}
+	$hash = $row["paswoord"];}
 
 	if(password_verify($password, $hash)){
 
-
   	$sql = "SELECT soortklant, klantabonnement FROM tblklanten WHERE gebruikersnaam='$gebruikersnaam' AND paswoord = '$hash'";
-	if($stmt = $mysqli->prepare($sql)){
-				if(!$stmt->execute()){
-					echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
-				}
-				else{
-					$stmt->bind_result($soortklant, $klantabbonement);
-					while($stmt->fetch()){
-                $_SESSION["ingelogd"] = true;
-                $_SESSION["gebruikernaam"] = $gebruikersnaam;
-				$_SESSION["soortklant"] = $soortklant;
-				$_SESSION["klantabbonement"] = $klantabbonement;
-			}
-		}
 
+	$res_g = mysqli_query($mysqli, $sql);
+
+	if ($res_g->num_rows == 1) {
+	while($row = $res_g->fetch_assoc()){
+		$_SESSION["ingelogd"] = true;
+		$_SESSION["gebruikernaam"] = $gebruikersnaam;
+		$_SESSION["soortklant"] = $row["soortklant"];
+		$_SESSION["klantabbonement"] = $row["klantabonnement"];
+	}
 }
 }
+else{
+echo '<div class="alert alert-danger" role="alert">Het wachtwoord komt niet overeen. Vul het correct wachtwoord in. </div>';
+}
+}
+	else {
+echo '<div class="alert alert-danger" role="alert">De gebruikersnaam bestaat niet. Vul een geldige gebruikersnaam in. </div>';
+	}
+
+
 }
 }
 // Behoort tot de pagina Inloggen.php.

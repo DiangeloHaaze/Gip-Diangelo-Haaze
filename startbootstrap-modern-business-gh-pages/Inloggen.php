@@ -133,9 +133,6 @@ include('php/opzeggenabbo.php');
             </div>
           <div id="success"></div>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-		  <?php if(isset($_POST["versturen"]) && isset($_POST["gebruikersnaam"]) && $_POST["gebruikersnaam"] != ""  && $_POST["paswoord"] && isset($_POST["paswoord"]) && !isset($_SESSION["ingelogd"])){ ?>
-			  <p class="fout">Je hebt de foute combinatie van gebruikersnaam en paswoord gebruikt</p>
-		  <?php } ?>
          </form>
       </div>
 

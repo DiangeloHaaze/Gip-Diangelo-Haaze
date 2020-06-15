@@ -166,13 +166,13 @@ include('php/foutcontrole.php');
             <div class="control-group form-group">
             <div class="controls">
               <label>Email:</label>
-              <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" id="email">
+              <input type="text" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" id="email">
             </div>
           </div>
             <div class="control-group form-group">
             <div class="controls">
               <label>Paswoord:</label>
-               <input type="password" class="form-control" name="paswoord" id="paswoord" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Moet minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en moet minstens 8 letters groot zijn">
+               <input type="password" class="form-control" name="paswoord" id="paswoord"  title="Moet minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en moet minstens 8 letters groot zijn">
             </div>
             </div>
             <div id="message">
@@ -188,23 +188,6 @@ include('php/foutcontrole.php');
                <input type="password" class="form-control" name="confirmpaswoord" id="confirmpaswoord">
             </div>
             </div>
-            <?php
-			//toont weer welke foutboodschap er moet komen als men een al bestaande gebruikersnaam of email invoerden. Ook is er een boodschap als allebij al bestaan.
-                 switch($foutreg){
-                     case 1: ?>
-                          <p class="fout"> Je hebt een email en gebruikersnaam ingegeven die al bestaan </p>
-                         <?php break;
-                     case 2: ?>
-                         <p class="fout"> Je hebt een gebruikersnaam ingegeven die al bestaat</p>
-                         <?php break;
-                     case 3: ?>
-                         <p class="fout"> Je hebt een email ingegeven die al bestaat</p>
-                        <?php  break;
-                 }
-                 ?>
-			<?php
-
-			 ?>
           <div id="success"></div>
           <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
          </form>

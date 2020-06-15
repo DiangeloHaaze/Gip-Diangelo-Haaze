@@ -24,11 +24,11 @@ $res_u = mysqli_query($mysqli, $sql_u);
 $res_e = mysqli_query($mysqli, $sql_e);
 //Hier word gekeken of er al een bestond of niet en geeft dan op de pagina de juiste
 if (mysqli_num_rows($res_u) > 0 && mysqli_num_rows($res_e) > 0) {
-	$foutreg = 1;
+	echo '<div class="alert alert-danger" role="alert">Zowel de email als de gebruikersnaam bestaan al.</div>';
 }else if(mysqli_num_rows($res_u) > 0){
-	$foutreg = 2;
+	echo '<div class="alert alert-danger" role="alert"> De gebruikersnaam bestaat al.</div>';
 }else if(mysqli_num_rows($res_e) > 0){
-   $foutreg = 3;
+   echo '<div class="alert alert-danger" role="alert"> De Email bestaat al.</div>';
 }
 else{
 // de sql en resultaat voor het invoegen van een gebruiker nadat hij zich correct heeft geregistreerd
