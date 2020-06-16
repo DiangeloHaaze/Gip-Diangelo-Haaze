@@ -101,8 +101,8 @@ include('php/opzeggenabbo.php');
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Registreren
-      <small>Gegevens</small>
+    <h1 class="mt-4 mb-3">Toevoegen
+      <small>Producten</small>
     </h1>
 
     <ol class="breadcrumb">
@@ -126,8 +126,12 @@ include('php/opzeggenabbo.php');
           </div>
 		  <div class="control-group form-group">
             <div class="controls">
-              <label>Producttaal:</label>
-              <input type="text" class="form-control" name="producttaal" id="producttaal" value="<?php if(isset($_POST["producttaal"])){echo $_POST["producttaal"];} ?>">
+			  <select name="talen">
+				  <option value="start">--Kies een taal--</option>
+  		  <?php
+  		  include("php/retaal.php");
+  			?>
+  		</select><br>
             </div>
           </div>
 		  <div class="control-group form-group">
