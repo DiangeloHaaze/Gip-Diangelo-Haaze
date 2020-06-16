@@ -2,14 +2,15 @@
 session_start();
 include('php/opzeggenabbo.php');
 include('php/itemdisplay.php');
-if(isset($_POST["voorkopen"])){
-	$kopen = true;
-}
 if(isset($_POST["kopen"])){
 	$compleet = true;
 }
 if (isset($_POST['aantal'])){
 	include('php/inhoudwinkelwagentje.php');
+}
+if(isset($compleet)){
+echo '<div class="alert alert-success" role="alert">Uw product is correct in de winkelwagen gestoken</div>';
+echo '<div class="alert alert-info" role="alert">Wat wilt u vervolgens doen: <br> <a href="producten.php">doorshoppen</a> Of <a href="winkelwagen.php"> naar winkelwagen </a></div> ';
 }
  ?>
 
@@ -191,14 +192,8 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 				<?php
 			}
 
-			}
+		}}}
 			  	   ?>
-
-			<?php  if(isset($compleet)){ ?>
-				<p class='goed'> Wat wilt u vervolgens doen: <br>
-			<a href="producten.php" class="aankoopboodschap">doorshoppen</a> of naar uw
-			<a href="winkelwagen.php" class="aankoopboodschap"> winkelwagen </a>
-		<?php }}} ?>
 		</form>
 
 	</div>

@@ -59,6 +59,7 @@ if(isset($_POST["versturen"])){
 			  	  }
 				  else {
 					  $geslaagd = true;
+					  echo '<div class="alert alert-success" role="alert">Het wachtwoord is correct geupdate.</div>';
 				  }
 				  $stmt->close();
 
