@@ -12,6 +12,7 @@ $term = trim($_POST['zoekterm']);
     $zoeker = true;
     }
 }
+if(isset($fout)){ echo '<div class="alert alert-warning" role="alert">Je hebt niets ingevuld.</div>'; }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -166,7 +167,6 @@ $term = trim($_POST['zoekterm']);
         &nbsp;
         &nbsp;
         <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-        <?php if(isset($fout)){ ?> <p class="fout">je hebt niets ingevuld</p>  <?php } ?>
         <br><hr>
         </form>
 
@@ -208,7 +208,7 @@ $term = trim($_POST['zoekterm']);
     <?php
 						}
 						if($leeg == 0){
-?> <p class="fout">Er zijn geen producten die je wenst beschikbaar.</p> <?php
+							echo '<div class="alert alert-warning" role="alert">Er zijn geen producten die je wenst beschikbaar.</div>';
 						}
 
 						$stmt->close();

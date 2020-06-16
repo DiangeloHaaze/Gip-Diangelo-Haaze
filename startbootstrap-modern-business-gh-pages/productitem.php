@@ -187,9 +187,7 @@ if($stmt_t = $mysqli->prepare($sql_t)){
 			</select>
 				<?php
 			}else {
-				?>
-				<a class="rodelink" href="producten.php"> Dit product is momenteel niet ter beschikking</a>
-				<?php
+				echo '<div class="alert alert-danger" role="alert">Dit product is momenteel niet ter beschikking.</div>';
 			}
 
 		}}}

@@ -105,6 +105,17 @@ session_start();
       <li class="breadcrumb-item active">Games F1</li>
     </ol>
 <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+	<?php
+	$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+	if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+	else
+	{
+		include("php/klantid.php");
+		$sql_a = "SELECT factuurid, datum From tblfacturen WHERE klantid = '$id'";
+		$res = mysqli_query($mysqli, $sql_a);
+		if ($res->num_rows == 0) { echo '<div class="alert alert-info" role="alert">Je hebt nog geen facturen </div> ';}
+		else {
+		 ?>
 	<table border="1px">
 		<tr>
 			<td> <b>Factuurid</b> </td>
@@ -112,12 +123,9 @@ session_start();
 			<td> <b> Volledige factuur </b> </td>
 		</tr>
 
-<?php $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
-if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
-else
-{
-	include("php/klantid.php");
-	$sql_a = "SELECT factuurid, datum From tblfacturen WHERE klantid = '$id'";
+<?php
+
+
 	if($stmt_a = $mysqli->prepare($sql_a)){
 				if(!$stmt_a->execute()){
 					echo 'Het uitvoeren van de query is mislukt: '.$stmt_a->error.' in query: '.$sql_a;
@@ -132,7 +140,7 @@ else
 		<td> <a href="factuur_zicht.php?actie=doorgang&factuurid=<?php echo $factuurid; ?>">Bekijk</a> </td>
 	</tr>
 	<?php
-}}}}
+}}}}}
 ?>
 	</table>
 </form>

@@ -13,6 +13,7 @@ $productid = trim($_POST["versturen"]);
 
 	if(empty($nieuwS)){
 		$bad = 1;
+		echo '<div class="alert alert-danger" role="alert">Het veld voor de nieuwe waarde is leeg.</div>';
 	}
 	else {
 		$bad = 2;
@@ -126,19 +127,8 @@ $productid = trim($_POST["versturen"]);
       <li class="breadcrumb-item active">Voeg Stock toe</li>
     </ol>
 <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+Nieuwe aantal stock:
 <input type="number" name="nieuweStock" value="<?php if(isset($_POST["nieuweStock"])){echo $_POST["nieuweStock"]; } ?>">
-<?php if($bad == 1){
-
-	?>
-		<p class="fout">Je hebt geen waarde ingegeven</p>
-	<?php}
-if($geslaagd == 1){
-?>
-<p>Je hebt de stock succesvol geupdate.</p>
-<?php
-}
-?>
-
 	<table border="1px">
 		<tr>
 			<td><b>Productid</b></td>
