@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if(isset($_POST["versturen"])){
+	include("php/zoekforms.php");
+}
+else {
+	$sql_a = "SELECT factuurid, datum, klantid From tblfacturen";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,9 +113,22 @@ session_start();
       <li class="breadcrumb-item active">Games F1</li>
     </ol>
 <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+	Zoeken op:<br>
+	<select name="zoekkeuze">
+		<option value="start">--Kies--</option>
+		<option value="1">--Factuurid--</option>
+		<option value="2">--Klantnummer--</option>
+		<option value="3">--Voor Datum--</option>
+		<option value="4">--Na Datum--</option>
+	</select>
+	<input type="text" name="zoekterm" id="zoekterm" value="<?php if(isset($_POST['zoekterm'])){echo $_POST['zoekterm']; } ?>">
+	<button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
+<br><br>
 	<table border="1px">
 		<tr>
 			<td> <b>Factuurid</b> </td>
+			<td> <b> Klantnummer </b> </td>
 			<td> <b> Datum </b> </td>
 			<td> <b> Volledige factuur </b> </td>
 		</tr>
@@ -116,17 +137,17 @@ session_start();
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
 else
 {
-	$sql_a = "SELECT factuurid, datum From tblfacturen";
 	if($stmt_a = $mysqli->prepare($sql_a)){
 				if(!$stmt_a->execute()){
 					echo 'Het uitvoeren van de query is mislukt: '.$stmt_a->error.' in query: '.$sql_a;
 				}
 				else{
-					$stmt_a->bind_result($factuurid,$datum);
+					$stmt_a->bind_result($factuurid,$datum, $klantid);
 					while($stmt_a->fetch()){
 	?>
 	<tr>
 		<td> <?php echo $factuurid; ?> </td>
+		<td> <?php echo $klantid; ?></td>
 		<td> <?php echo $datum; ?> </td>
 		<td> <a href="factuur_zicht.php?actie=doorgang&factuurid=<?php echo $factuurid; ?>">Bekijk</a> </td>
 	</tr>
