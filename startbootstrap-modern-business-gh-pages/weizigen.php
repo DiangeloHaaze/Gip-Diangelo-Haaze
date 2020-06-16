@@ -1,6 +1,8 @@
 <?php
 session_start();
 include('php/opzeggenabbo.php');
+$username = $_SESSION["gebruikernaam"];
+
 if(!(isset($_SESSION['ingelogd']))){header("location:index.php");}
 if(isset($_POST["versturen"])){
 include("php/Keuzeweizig.php");
@@ -129,7 +131,7 @@ if($goedkeuring){
 
 				else
 				{
-					$username = mysqli_real_escape_string($mysqli,$_SESSION["gebruikernaam"]);
+
 					$sql = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer FROM tblklanten where gebruikersnaam = '$username'";
 					if($stmt = $mysqli->prepare($sql)){
 								if(!$stmt->execute()){

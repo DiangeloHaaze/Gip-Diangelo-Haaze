@@ -154,7 +154,9 @@ else{
 		  		break;
 		  } ?></p>
           <p><b>Postcode en gemeente </b><?php $postcodeid = $postcodeids[$i]; include('php/Rpostcodeid.php'); echo $pcid; ?> </p>
-
+		  <p>
+		   <b><a href="weizigklant.php?key=<?php echo $gebruikersnaam[$i]; ?>" class="rodelink">Wijzig klant</a></b>
+		  </p>
           <br />
         </div>
             <?php }}; ?>
