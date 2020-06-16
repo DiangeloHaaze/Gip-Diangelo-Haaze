@@ -124,7 +124,7 @@ echo '<div class="alert alert-info" role="alert">Wat wilt u vervolgens doen: <br
 	  		$id = mysqli_real_escape_string($mysqli, $_GET["productid"]);
 			$tel = 0;
 
-	  		$sql = "SELECT * FROM tblproducten WHERE productid = '$id'";
+	  		$sql = "SELECT p.*, taal FROM tblproducten p, tbltalen t WHERE p.taalid = t.taalid AND productid = '$id'";
 	  		$sql_t = "SELECT c.categorie FROM tblcategorieperproduct AS cap, tblcategorie AS c  WHERE cap.categorieid = c.categorieid AND cap.productid = '$id'";
 
 	  	    if($stmt = $mysqli->prepare($sql)){
@@ -132,7 +132,7 @@ echo '<div class="alert alert-info" role="alert">Wat wilt u vervolgens doen: <br
 	  	                    echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 	  	                }
 	  	                else{
-	  	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$aantalInStock);
+	  	                    $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$aantalInStock,$taal);
 	  	                    while($stmt->fetch()){}
 	   ?>
       <li class="breadcrumb-item active"><?php echo $productnaam;?></li>
@@ -153,7 +153,7 @@ echo '<div class="alert alert-info" role="alert">Wat wilt u vervolgens doen: <br
 	<?php } ?>
         <h3 class="my-3">Details</h3>
         <ul>
-          <li class="tags">Taal: <?php echo $producttaal; ?></li>
+          <li class="tags">Taal: <?php echo $taal; ?></li>
           <li class="tags">Prijs: €<?php echo $prijsPstuk; ?></li>
 		  <li class="tagt"> Tags: </li>
 		  <?php

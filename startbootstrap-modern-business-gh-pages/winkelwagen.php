@@ -133,7 +133,7 @@ $totaal = 0;
 			$querries = array();
 
 		  	for ($i=0; $i < $_SESSION['count']; $i++) {
-		  		$querries[$i] = "SELECT * FROM tblproducten WHERE productid = '$productiden[$i]'";
+		  		$querries[$i] = "SELECT p.*, taal FROM tblproducten p, tbltalen t WHERE p.taalid = t.taalid AND productid = '$productiden[$i]'";
 		  	}
 		  foreach ($querries as $querrie){
 		  	if($stmt = $mysqli->prepare($querrie)){
@@ -141,7 +141,7 @@ $totaal = 0;
 		                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$querrie;
 		                  }
 		                  else{
-		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$stock);
+		                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$stock, $taal);
 		                      while($stmt->fetch()){
 
         ?>
@@ -153,7 +153,7 @@ $totaal = 0;
         </a>
       </div>
       <div class="col-md-5">
-        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>"> <?php echo $productnaam . " (" . $producttaal.")"; ?></h3><a>
+        <h3><a class="zwartelink" href="productitem.php?actie=doorgang&productid=<?php echo $productid;?>"> <?php echo $productnaam . " (" .$taal.")"; ?></h3><a>
         <p><?php include("php/longtext.php"); echo $beschrijving ?></p>
         </a>
 		<h4 > Aantallen: <?php echo $aantalproducten[$tel];?> </h4>
@@ -186,7 +186,7 @@ $stmt->close();
 	   </form>
 
   <?php } else{ ?>
-	  <a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om te kunnen kopen.</a>
+	  <a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogd zijn om te kunnen kopen.</a>
   <?php }} else { ?>
 
 	  <p class='leeg'> Je hebt nog niets gekocht</p>

@@ -1,6 +1,5 @@
 <?php
 $prodnm = trim($_POST["productnaam2"]);
-$prodtl = trim($_POST["producttaal"]);
 $beschr = trim($_POST["beschrijvings"]);
 $pps = trim($_POST["prijsPstuk"]);
 $lkft = trim($_POST["linkfoto"]);
@@ -8,27 +7,24 @@ $controle = true;
 
 if(empty($prodnm)){
 	$controle = false;
-}
-if(empty($prodtl)){
-	$controle = false;
-}
-else{
-	if(strlen($prodtl) != 2){
-		$controle = false;
-	}
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de productnaam is niet ingevuld </div>';
 }
 if(empty($beschr)){
 	$controle = false;
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de beschrijving is niet ingevuld </div>';
 }
 if (empty($lkft)) {
 	$controle = false;
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de link naar de foto is niet ingevuld </div>';
 }
 if(empty($pps)){
 	$controle = false;
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de Prijs per stuk is niet ingevuld </div>';
 }
 else{
 	if(!(preg_match("/^\d+$/",$pps))){
 		$controle = false;
+		echo '<div class="alert alert-danger" role="alert">Het veld voor de prijs is niet een getal</div>';
 
 	}
 }
@@ -40,18 +36,17 @@ if($controle){
 	else{
 
 		$productnaam = mysqli_real_escape_string($mysqli,$prodnm);
-		$producttaal = mysqli_real_escape_string($mysqli,$prodtl);
+		$taalz = $_POST["talen"];
 		$prijsPstuk = mysqli_real_escape_string($mysqli,$pps);
 		$beschrijving = mysqli_real_escape_string($mysqli,$beschr);
 		$linkfoto = mysqli_real_escape_string($mysqli,$lkft);
 
-		$sql = "UPDATE tblproducten SET productnaam = '$productnaam', producttaal = '$producttaal', beschrijving = '$beschrijving', prijsPstuk = '$prijsPstuk', linkfoto = '$linkfoto' WHERE productnaam = '$productnaam'";
+		$sql = "UPDATE tblproducten SET productnaam = '$productnaam', taalid = '$taalz', beschrijving = '$beschrijving', prijsPstuk = '$prijsPstuk', linkfoto = '$linkfoto' WHERE productnaam = '$productnaam'";
 		if($mysqli->query($sql)==true){
 			$gelukt = true;
+			echo '<div class="alert alert-success" role="alert">Je hebt het product correct geweizigd.</div>';
 		}
 	}
 }
-else{
-	echo "bad";}
 
  ?>

@@ -15,27 +15,27 @@ $gekeurt = true;
 
 if(empty($fvoornaam)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de voornaam is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de voornaam is niet ingevuld </div>';
 }
 if(empty($fachternaam)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de achternaam is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de achternaam is niet ingevuld </div>';
 }
 if(empty($fgebruikersnaam)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de gebruikersnaam is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de gebruikersnaam is niet ingevuld </div>';
 }
 if(empty($fstraat)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de straat is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de straat is niet ingevuld </div>';
 }
 if(empty($fstraatnr)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de straatnummer is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de straatnummer is niet ingevuld </div>';
 }
 if(empty($femail)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de Email is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de Email is niet ingevuld </div>';
 }
 else{
 	if (!filter_var($femail, FILTER_VALIDATE_EMAIL)) {
@@ -59,11 +59,11 @@ else{
 }
 if(empty($fgemeente)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor de gemeente is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor de gemeente is niet ingevuld </div>';
 }
 if(empty($fpaswoord)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor het paswoord is niet ingevult </div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor het paswoord is niet ingevuld </div>';
 }
 else{
 	if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $fpaswoord)) {
@@ -73,7 +73,7 @@ else{
 }
 if(empty($fbpaswoord)){
 	$gekeurt = false;
-	echo '<div class="alert alert-danger" role="alert">Het veld voor bevestiging paswoord is niet ingevult.</div>';
+	echo '<div class="alert alert-danger" role="alert">Het veld voor bevestiging paswoord is niet ingevuld.</div>';
 }
 else{
 	if($fbpaswoord != $fpaswoord){

@@ -175,7 +175,7 @@ if(isset($fout)){ echo '<div class="alert alert-warning" role="alert">Je hebt ni
 			  include('php/zoekkeuzes.php');
 		  }
 		  else{
-			  $sql = "SELECT * FROM tblproducten";
+			  $sql = "SELECT p.*, taal FROM tblproducten p, tbltalen t where p.taalid = t.taalid";
 		  }
 
 	      if($stmt = $mysqli->prepare($sql)){
@@ -183,7 +183,7 @@ if(isset($fout)){ echo '<div class="alert alert-warning" role="alert">Je hebt ni
 	                      echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 	                  }
 	                  else{
-	                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$Stock);
+	                      $stmt->bind_result($productid, $productnaam, $producttaal, $soortid, $beschrijving, $prijsPstuk, $linkfoto,$Stock, $taal);
 	                      while($stmt->fetch()){ $leeg++;
         ?>
 	<form action="productitem.php?actie=" method="post">
@@ -194,7 +194,7 @@ if(isset($fout)){ echo '<div class="alert alert-warning" role="alert">Je hebt ni
         </a>
       </div>
       <div class="col-md-5">
-        <h3><?php echo $productnaam ." (" . $producttaal.")"; ?></h3>
+        <h3><?php echo $productnaam ." (" . $taal."-€".$prijsPstuk.")" ; ?></h3>
         <p><?php include("php/longtext.php");
 				 echo $beschrijving;
 		?></p>

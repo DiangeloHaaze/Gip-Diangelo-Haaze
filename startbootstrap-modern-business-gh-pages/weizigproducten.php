@@ -142,20 +142,23 @@ else{
 		  else
 		  {
 			  $productnaam = mysqli_real_escape_string($mysqli,$_POST["productnaam"]);
-			  $sql_a = "SELECT productnaam, producttaal, beschrijving, prijsPstuk, linkfoto FROM tblproducten WHERE productnaam LIKE '$productnaam'";
-
+			  $sql_a = "SELECT productnaam, beschrijving, prijsPstuk, linkfoto, taal FROM tblproducten p, tbltalen t WHERE t.taalid = p.taalid AND productnaam LIKE '$productnaam'";
 			  if($stmt = $mysqli->prepare($sql_a)){
 						  if(!$stmt->execute()){
 							  echo 'Het uitvoeren van de query is mislukt: '.$stmt->error.' in query: '.$sql;
 						  }
 						  else{
-							  $stmt->bind_result($productnaam, $producttaal, $beschrijving,$prijsPstuk, $linkfoto);
+							  $stmt->bind_result($productnaam, $beschrijving,$prijsPstuk, $linkfoto, $taal);
 							  while($stmt->fetch()){
 	  ?>
 	  		<span>Productnaam:</span><br>
 			<input type="text" class="form-control" name="productnaam2" value="<?php if (isset($_POST["productnaam2"])){echo $_POST["productnaam2"];}else {echo $productnaam;}?>">
 			<span>ProductTaal:</span><br>
-			<input type="text" class="form-control" name="producttaal" value="<?php if (isset($_POST["producttaal"])){echo $_POST["producttaal"];}else {echo $producttaal;}?>">
+			<select name="talen">
+		  <?php
+		  include("php/taal.php");
+			?>
+		</select><br>
 			<span>Beschrijving:</span><br>
 			<textarea name="beschrijvings" rows="8" cols="80"><?php if (isset($_POST["beschrijvings"])){echo $_POST["beschrijvings"];}else {echo $beschrijving;}?></textarea><br>
 			<span>Prijs Per Stuk:</span><br>

@@ -173,7 +173,7 @@ include("php/facturatie_abbonnement.php");
 	<button type="submit" name="bevestigen" class="btn btn-primary" id="sendMessageButton">Bevestigen</button><br><br>
 	<?php }else {
 		?>
-		<a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogt zijn om dit te kunnen kopen.</a><br><br>
+		<a class="rodelink" href="Inloggen.php"> Je moet eerst ingelogd zijn om dit te kunnen kopen.</a><br><br>
 		<?php
 	} ?>
 </form>
