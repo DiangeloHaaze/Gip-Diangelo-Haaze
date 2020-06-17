@@ -105,85 +105,132 @@ if(!(isset($_GET["actie"])) && $_GET["actie"] != "doorgang"){
       <li class="breadcrumb-item">
         <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active">Games F1</li>
+      <li class="breadcrumb-item active">Factuur</li>
     </ol>
 <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	<table border="1px">
-		<?php $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
-		if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
-		else
-		{
-			$factuurid = $_GET["factuurid"];
-			$totaal = 0;
-
-			$sql_b = "SELECT klantid FROM tblfacturen WHERE factuurid = '$factuurid'";
-			$res_b = mysqli_query($mysqli, $sql_b);
-			if ($res_b->num_rows == 1) {
-			while($row = $res_b->fetch_assoc()){
-				$klantid = $row["klantid"];
-			}
-			}
-
-			$sql_a = "SELECT voornaam, achternaam, postcodeid, Straat, straatnummer, email, gebruikersnaam FROM tblklanten WHERE klantid = '$klantid'";
-			$res_a = mysqli_query($mysqli, $sql_a);
-			if ($res_a->num_rows == 1) {
-			while($row = $res_a->fetch_assoc()){
-			$vnaam = $row["voornaam"];
-			$anaam = $row["achternaam"];
-			$email = $row["email"];
-			$straat = $row["Straat"];
-			$straatnr = $row["straatnummer"];
-			$postcodeid = $row["postcodeid"];
-			$username = $row["gebruikersnaam"];
-			include("php/Rpostcodeid2.php");
-		}} ?>
+		<tr>
+			<td><b>Factuurid</b></td>
+		</tr>
+		<tr>
+			<?php echo '<td>'.$_GET["factuurid"].'</td>' ?>
+		</tr>
 		<tr>
 			<td><b>Gebruikersnaam</b></td>
-			<td><b>Factuurid</b></td>
-			<td><b>Naam</b></td>
+			<td><b>Voornaam</b></td>
 			<td><b>Achternaam</b></td>
+			<td><b>Email</b></td>
 		</tr>
+		<?php
+	   $totaal = 0;
+	   $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+	   if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+	   else
+	   {
+		   $factuurid = $_GET["factuurid"];
+		   $sql_a = "SELECT * FROM tblfacturen f, tblklanten k WHERE k.klantid = f.klantid AND f.factuurid = '$factuurid'";
+
+		   $res_a = mysqli_query($mysqli, $sql_a);
+
+		   if ($res_a->num_rows == 1) {
+		   while($row = $res_a->fetch_assoc()){
+			   $klantid = $row["klantid"];
+			   $soortklant = $row["soortklant"];
+			   echo "<tr><td>".$row["gebruikersnaam"]."</td>";
+			   echo "<td>".$row["voornaam"]."</td>";
+			   echo "<td>".$row["achternaam"]."</td>";
+			   echo "<td>".$row["email"]."</td>";
+			   echo "</tr>";
+		   }
+	   }
+
+
+		 ?>
 		<tr>
-			<td><?php echo $username; ?></td>
-			<td><?php echo $factuurid; ?> </td>
-			<td><?php echo $vnaam; ?></td>
-			<td><?php echo $anaam; ?></td>
+			<td><b>Gemeente</b></td>
+			<td><b>Postcode</b></td>
+			<td><b>Straat</b></td>
+			<td><b>Straatnummer</b></td>
 		</tr>
+		<?php
+		$sql_b = "SELECT * FROM tblgemeente p, tblklanten k WHERE k.postcodeid = p.postcodeid AND k.klantid = '$klantid'";
+
+		$res_b = mysqli_query($mysqli, $sql_b);
+
+		if ($res_b->num_rows == 1) {
+		while($row = $res_b->fetch_assoc()){
+
+			echo "<tr><td>".$row["gemeente"]."</td>";
+			echo "<td>".$row["postcode"]."</td>";
+			echo "<td>".$row["Straat"]."</td>";
+			echo "<td>".$row["straatnummer"]."</td>";
+			echo "</tr>";
+		}
+	}
+
+		 ?>
 		<tr>
 			<td><b>Productnummer</b></td>
 			<td><b>Productnaam</b></td>
-			<td><b>Prijs</b></td>
+			<td><b>Prijs Per Stuk</b></td>
 			<td><b>Aantal</b></td>
-		</tr>
-		<?php
-	$sql_z = "SELECT p.productid, p.productnaam, fl.Prijsbijaankoop, fl.aantal, fl.korting From tblproducten p, tblfactuurlijnen fl WHERE fl.productid = p.productid AND fl.factuurid = '$factuurid'";
-	if($stmt_z = $mysqli->prepare($sql_z)){
-				if(!$stmt_z->execute()){
-					echo 'Het uitvoeren van de query is mislukt: '.$stmt_z->error.' in query: '.$sql_z;
-				}
-				else{
-					$stmt_z->bind_result($productid,$productnaam,$Prijsbijaankoop,$aantal,$korting);
-					while($stmt_z->fetch()){
-						$totaal = $totaal + $Prijsbijaankoop;
-	 ?>
-	 <tr>
-	 	<td><?php echo $productid; ?></td>
-		<td><?php echo $productnaam; ?></td>
-		<td><?php echo $Prijsbijaankoop; ?></td>
-		<td><?php echo $aantal; ?></td>
-	 </tr>
-	 <tr>
- 		<td><b>Totaal Prijs</b></td>
- 		<td><b>Totaal Aantal</b></td>
- 	</tr>
- 	<tr>
+			<td><b>Subtotaal</b></td>
+			<?php
 
- 		<td><?php
- 		echo $totaal; ?></td>
- 		<td><?php echo $korting; ?></td>
- 	</tr>
+     $sql_c = "SELECT p.*, fl.* FROM tblfacturen f, tblfactuurlijnen fl, tblproducten p WHERE f.factuurid = fl.factuurid AND fl.productid = p.productid AND f.factuurid = '$factuurid'";
+
+			$res_c = mysqli_query($mysqli, $sql_c);
+
+			while($row = $res_c->fetch_assoc()){
+
+				echo "<tr><td>".$row["productid"]."</td>";
+				echo "<td>".$row["productnaam"]."</td>";
+				$subtotaal = $row["Prijsbijaankoop"] / $row["aantal"];
+				echo "<td>".$subtotaal."</td>";
+				echo "<td>".$row["aantal"]."</td>";
+				echo "<td>".$row["Prijsbijaankoop"]."</td>";
+				$totaal = $totaal + $row["Prijsbijaankoop"];
+				echo "</tr>";
+			}
+
+
+
+}
+			 ?>
+		</tr>
+		<tr>
+			<td> <b>Subtotaal(alles)</b> </td>
+			<td> <b>Korting</b> </td>
+			<td> <b>Totaal</b> </td>
+		</tr>
+		<tr>
+			<?php
+			echo "<tr><td>".$totaal."</td>";
+			switch ($soortklant) {
+				case 2:
+				echo "<td>5%</td>";
+				$totaal = $totaal - ($totaal*0.05);
+				echo "<td>".$totaal."</td>";
+					break;
+				case 3:
+				echo "<td>10%</td>";
+				$totaal = $totaal - ($totaal*0.1);
+				echo "<td>".$totaal."</td>";
+					break;
+				case 4:
+				echo "<td>20%</td>";
+				$totaal = $totaal - ($totaal*0.2);
+				echo "<td>".$totaal."</td>";
+					break;
+				default:
+				echo "<td>0%</td>";
+				echo "<td>".$totaal."</td>";
+					break;
+			}
+			echo "</tr>";
+			 ?>
+		</tr>
 	</table>
-<?php }}}} ?>
 </form>
 </div>
   <!-- /.container -->

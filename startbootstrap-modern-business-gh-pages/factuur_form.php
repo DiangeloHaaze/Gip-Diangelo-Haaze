@@ -158,6 +158,7 @@ else
 		<td><b>Productnaam</b></td>
 		<td><b>Prijs</b></td>
 		<td><b>Aantal</b></td>
+		<td><b>Subtotaal</b></td>
 	</tr>
 	<?php for ($i=0; $i < $_SESSION["count"]; $i++) {
 
@@ -177,6 +178,8 @@ else
 			<td><?php echo $prijzen; $totaal = $totaal + ($prijzen * $_SESSION["aantal"][$i]);?>
 			</td>
 			<td><?php echo $_SESSION["aantal"][$i]; $totaal_aantal = $totaal_aantal + $_SESSION["aantal"][$i];?>
+			</td>
+			<td><?php $subtotaal = $_SESSION["aantal"][$i] * $prijzen;  echo $subtotaal;?>
 			</td>
 		</tr>
 		<?php
