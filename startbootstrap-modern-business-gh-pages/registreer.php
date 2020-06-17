@@ -65,13 +65,13 @@ include('php/foutcontrole.php');
   		  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
   			<a class="dropdown-item" href="Weizigen.php">Aanpassen</a>
   			<a class="dropdown-item" href="php/uitloggen.php">Uitloggen</a>
-			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen paswoord</a>
+			<a class="dropdown-item" href="wijzigpaswoord.php">Aanpassen wachtwoord</a>
 			<a class="dropdown-item" href="eigenfacturen.php">Eigen facturen bekijken</a>
 			<?php
 			//kijkt of de gebruiker een abbonnement heeft
 			if(
 			$_SESSION["klantabbonement"] != 1){ ?>
-			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abonnement</a>
+			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen Subscriptie</a>
   			  <?php
 		  }
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
@@ -81,6 +81,7 @@ include('php/foutcontrole.php');
 			<a class="dropdown-item" href="weizigproducten.php"> Producten Wijzigen</a>
 			<a class="dropdown-item" href="Voegstocktoe.php">Stock toevoegen</a>
 			<a class="dropdown-item" href="bekijk_alle_factuurs.php">Facturen bekijken</a>
+			<a class="dropdown-item" href="voegcategorie_toe.php">Categorieen</a>
   			  <?php } ?>
   		  </div>
   		</li>

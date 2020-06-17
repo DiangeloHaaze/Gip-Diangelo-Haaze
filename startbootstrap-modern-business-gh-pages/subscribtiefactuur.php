@@ -78,7 +78,7 @@ include("php/facturatie_abbonnement.php");
 			//kijkt of de gebruiker een abbonnement heeft
 			if(
 			$_SESSION["klantabbonement"] != 1){ ?>
-			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen abonnement</a>
+			<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?opzeggen=goed">Opzeggen Subscriptie</a>
   			  <?php
 		  }
   			// dit is alleen zichtbaar waneer de gebruiker een admin is.
@@ -88,6 +88,7 @@ include("php/facturatie_abbonnement.php");
 			<a class="dropdown-item" href="weizigproducten.php"> Producten Wijzigen</a>
 			<a class="dropdown-item" href="Voegstocktoe.php">Stock toevoegen</a>
 			<a class="dropdown-item" href="bekijk_alle_factuurs.php">Facturen bekijken</a>
+			<a class="dropdown-item" href="voegcategorie_toe.php">Categorieen</a>
   			  <?php } ?>
   		  </div>
   		</li>
@@ -102,7 +103,7 @@ include("php/facturatie_abbonnement.php");
   	</div>
     </div>
     </nav>
-
+	
   <!-- Page Content -->
   <div class="container">
 

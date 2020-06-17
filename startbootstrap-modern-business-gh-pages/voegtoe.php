@@ -1,11 +1,31 @@
 <?php
 session_start();
-include('php/opzeggenabbo.php');
-if(!isset($_SESSION["adminkey"])){
-    header('location:index.php');
+if(!$_SESSION["adminkey"]){
+	header("location:index.php");
+}
+if(isset($_SESSION["keyCategorie"])){
+if(isset($_POST["versturen"])){
+	if($_POST["Keuzeproduct"] == "Start"){
+		echo '<div class="alert alert-danger" role="alert">Je moet een categorie meegeven. </div>';
+	}
+	else{
+		$productid = $_SESSION["keyCategorie"];
+		$catid = $_POST["Keuzeproduct"];
+		$mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+		if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+
+		else
+		{
+		$sql_j = "INSERT tblcategorieperproduct (categorieid,productid) VALUES ('$catid','$productid')";
+		if($mysqli->query($sql_j)==true){
+			echo '<div class="alert alert-success" role="alert">De nieuwe categorie is toegevoegd.</div>';
+		}
+	}
+}
+}
 }
 else{
-    include('php/opzoeken.php');
+	header("location:voegcategorie_toe.php");
 }
 ?>
 <!DOCTYPE html>
@@ -26,10 +46,10 @@ else{
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/gipstyle.css" rel="stylesheet">
+
 </head>
 
 <body>
-
 
 	<!-- De navigatie balk bovenaan de pagina op elke pagina. -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -98,78 +118,47 @@ else{
     </div>
     </nav>
 
+
   <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Klanten Zoeken
-      <small></small>
+    <h1 class="mt-4 mb-3">
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.php">Home</a>
       </li>
-      <li class="breadcrumb-item active">Het opzoeken van klanten</li>
+      <li class="breadcrumb-item active">Categorieen toevoegen</li>
     </ol>
+	<form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+		<select name="Keuzeproduct">
 
+			   <?php echo '<option value="Start">--Start--</option>';
+			   $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
+		  if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }
+		  else
+		  {
+			  $sql = "SELECT * FROM tblcategorie";
+			  $res = mysqli_query($mysqli, $sql);
+			  while($row = $res->fetch_assoc()){
+				  $cnaam = $row["categorie"];
+				  $cid = $row["categorieid"];
+				  echo '<option value="'.$cid.'">--'.$cnaam.'--</option>';
+			  }
+	  	  }
+			   ?>
+		</select>
+		<button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton"> Toevoegen </button><br>
+	</form>
+</div>
+  <!-- /.container -->
 
-
-
-     <div class="col-lg-9 mb-4">
-        <h3></h3>
-        <form name="sentMessage" id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <?php if(!isset($toon)){ ?>
-            <div class="control-group form-group">
-            <div class="controls">
-              <label>Welk soort:</label><br>
-              <input type="radio" name="keus" value="voornaam"> &nbsp; <label>Voornaam</label><br>
-              <input type="radio" name="keus" value="achternaam"> &nbsp; <label>Achternaam</label><br>
-              <input type="radio" name="keus" value="gebruikersnaam" <?php if(isset($_POST["versturen"]) && $_POST["zoekwaarde"] == "gebruikersnaam"){ ?>checked <?php }else if(!isset($_POST["versturen"])){ ?>checked<?php } ?> > &nbsp; <label>Gebruikersnaam</label><br>
-              <input type="radio" name="keus" value="email"> &nbsp; <label>Email</label><br>
-
-              <label>Zoekwaarde:</label>
-              <input type="text" class="form-control" name="zoekwaarde" value="<?php if(isset($_POST["zoekwaarde"])){echo $_POST["zoekwaarde"];} ?>" id="zoekwaarde" required data-validation-required-message="Gelieve u zoekwaarde in te voeren.">
-            </div>
-          </div>
-          <div id="success"></div>
-          <button type="submit" name="versturen" class="btn btn-primary" id="sendMessageButton">Versturen</button>
-            <?php } else{ for($i = 0; $i < $teller; $i++){ ?>
-            <div class="klantendisplay">
-          <p><b>Voornaam: </b>  <?php echo $voornaam[$i]; ?> </p>
-          <p><b>Achternaam: </b><?php echo $achternaam[$i]; ?> </p>
-          <p><b>gebruikersnaam: </b><?php echo $gebruikersnaam[$i]; ?> </p>
-          <p><b>Email: </b><?php echo $email[$i]; ?> </p>
-		  <p><b>Soort Abbonement: </b><?php switch ($klantabbonement[$i]) {
-		  	case 2:
-		  		echo "Basis";
-		  		break;
-			case 3:
-			  	echo "Plus";
-			  		break;
-			case 4:
-				echo "Ultra";
-					break;
-		  	default:
-		  		echo "Heeft geen abbonement";
-		  		break;
-		  } ?></p>
-          <p><b>Postcode en gemeente </b><?php $postcodeid = $postcodeids[$i]; include('php/Rpostcodeid.php'); echo $pcid; ?> </p>
-		  <p>
-		   <b><a href="weizigklant.php?key=<?php echo $gebruikersnaam[$i]; ?>" class="rodelink">Wijzig klant</a></b>
-		  </p>
-          <br />
-        </div>
-            <?php }}; ?>
-         </form>
-      </div>
-
-
-    </div>
-
+  <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Athena's Game</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Athena's Game 2019</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -177,7 +166,7 @@ else{
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="js/scriptdiangelo.js"></script>
 </body>
 
 </html>

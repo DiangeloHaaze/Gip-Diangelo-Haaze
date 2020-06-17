@@ -81,6 +81,7 @@ include('php/opzeggenabbo.php');
 			<a class="dropdown-item" href="weizigproducten.php"> Producten Wijzigen</a>
 			<a class="dropdown-item" href="Voegstocktoe.php">Stock toevoegen</a>
 			<a class="dropdown-item" href="bekijk_alle_factuurs.php">Facturen bekijken</a>
+			<a class="dropdown-item" href="voegcategorie_toe.php">Categorieen</a>
   			  <?php } ?>
   		  </div>
   		</li>
