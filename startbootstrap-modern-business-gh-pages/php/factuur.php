@@ -4,8 +4,9 @@ for ($z=0; $z < $_SESSION['count']; $z++) {
 	$aantalproducten[$z] = $_SESSION["aantal"][$z];
 	$productiden[$z] = $_SESSION["koopwaren"][$z];
 }
- $korting_text = $_SESSION["Korting"];
+
 if(isset($_POST["versturen"])){
+$korting_text = $_SESSION["Korting"];
 $mysqli = mysqli_connect('localhost', 'root', '', 'athenagames');
 
 if(mysqli_connect_errno()) {trigger_error('Fout bij verbinding: '.$mysqli->error); }

@@ -195,7 +195,7 @@ if(isset($fout)){ echo '<div class="alert alert-warning" role="alert">Je hebt ni
         </a>
       </div>
       <div class="col-md-5">
-        <h3><?php echo $productnaam ." (" . $taal."-€".$prijsPstuk.")" ; ?></h3>
+        <h3><?php echo $productnaam ."--€". $prijsPstuk ."--".$taal."" ; ?></h3>
         <p><?php include("php/longtext.php");
 				 echo $beschrijving;
 		?></p>

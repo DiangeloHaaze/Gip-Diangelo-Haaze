@@ -16,10 +16,27 @@ if(isset($_POST["versturen"])){
 
 		else
 		{
-		$sql_j = "INSERT tblcategorieperproduct (categorieid,productid) VALUES ('$catid','$productid')";
+            $doorgang = false;
+        $sql_controle = "Select categorieid FROM tblcategorieperproduct WHERE productid = '$productid'";
+        $res_controle = mysqli_query($mysqli, $sql_controle);
+		   while($row = $res_controle->fetch_assoc()){
+               if($catid == $row["categorieid"]){
+                   $doorgang = true;
+               }
+               
+           }    
+            
+           
+        if($doorgang){
+            echo '<div class="alert alert-warning" role="alert">Het product heeft deze categorie al.</div>';
+        }
+            else{
+                $sql_j = "INSERT tblcategorieperproduct (categorieid,productid) VALUES ('$catid','$productid')";
 		if($mysqli->query($sql_j)==true){
 			echo '<div class="alert alert-success" role="alert">De nieuwe categorie is toegevoegd.</div>';
 		}
+            }
+		
 	}
 }
 }
